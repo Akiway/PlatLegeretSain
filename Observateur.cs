@@ -5,32 +5,27 @@ using System.Text;
 
 namespace PlatLegeretSain
 {
-    public class ChefRang : Employe, IObservateur
+    public class Observateur
     {
-        public List<Commande> commandes
+        public IObservateur IObservateur
         {
-            get => default(int);
+            get => default(IObservateur);
             set
             {
             }
         }
 
-        public void installerClient()
+        public void AjouterObservateur()
         {
             throw new System.NotImplementedException();
         }
 
-        public void donnerCarte()
+        public void SupprimerObservateur()
         {
             throw new System.NotImplementedException();
         }
 
-        public void prendreCommande()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void notifier()
+        public void NotifierObservateur()
         {
             throw new System.NotImplementedException();
         }

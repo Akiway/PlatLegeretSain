@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PlatLegeretSain
 {
-    public class Serveur : Employe
+    public class Serveur : Employe, IObservateur
     {
         public List<Repas> repas
         {
@@ -24,6 +24,11 @@ namespace PlatLegeretSain
         }
 
         public void debarasser()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void notifier()
         {
             throw new System.NotImplementedException();
         }

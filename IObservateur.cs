@@ -5,8 +5,8 @@ using System.Text;
 
 namespace PlatLegeretSain
 {
-    public interface ITableLibre
+    public interface IObservateur
     {
-        void AccueillirClient(MaitreHotel MH);
+        void notifier();
     }
 }

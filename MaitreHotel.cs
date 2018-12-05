@@ -12,9 +12,9 @@ namespace PlatLegeretSain
             throw new System.NotImplementedException();
         }
 
-        public ITableDisponible ITableDisponible
+        public ITableLibre ITableDisponible
         {
-            get => default(ITableDisponible);
+            get => default(ITableLibre);
             set
             {
             }
@@ -23,6 +23,14 @@ namespace PlatLegeretSain
         public int table
         {
             get => default(int);
+            set
+            {
+            }
+        }
+
+        public MaitreHotel MaitreHotel1
+        {
+            get => default(MaitreHotel);
             set
             {
             }
@@ -38,11 +46,14 @@ namespace PlatLegeretSain
             throw new System.NotImplementedException();
         }
 
-        public void setState(ITableDisponible iTableDisponible)
+        public void setState(ITableLibre iTableDisponible)
         {
             throw new System.NotImplementedException();
         }
 
+        /// <summary>
+        /// Change le State en TableDisponible
+        /// </summary>
         public void PlaceLibere()
         {
             throw new System.NotImplementedException();

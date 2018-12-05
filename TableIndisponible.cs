@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PlatLegeretSain
 {
-    public class TableIndisponible : ITableDisponible
+    public class TableIndisponible : ITableLibre
     {
         public void AccueillirClient(MaitreHotel MH)
         {

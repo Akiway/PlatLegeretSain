@@ -47,5 +47,18 @@ namespace PlatLegeretSain
             {
             }
         }
+
+        public Observateur Observateur
+        {
+            get => default(Observateur);
+            set
+            {
+            }
+        }
+
+        public void NotifierObservateur()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

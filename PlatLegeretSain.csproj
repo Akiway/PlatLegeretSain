@@ -58,9 +58,11 @@
     <Compile Include="Entree.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Ingrédient.cs" />
+    <Compile Include="IObservateur.cs" />
     <Compile Include="ITableDisponible.cs" />
     <Compile Include="MaitreHotel.cs" />
     <Compile Include="Materiel.cs" />
+    <Compile Include="Observateur.cs" />
     <Compile Include="Plat.cs" />
     <Compile Include="Plongeur.cs" />
     <Compile Include="PositionPossible.cs" />
