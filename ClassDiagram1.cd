@@ -15,14 +15,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="PlatLegeretSain.Recette">
-    <Position X="2.75" Y="5.75" Width="1.5" />
+    <Position X="2.75" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAIAAAAAAQAAAAAAIAAAAAAIAAAAAAAEAAAAAAAAAAA=</HashCode>
       <FileName>Recette.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PlatLegeretSain.Ingredient">
-    <Position X="16" Y="7.5" Width="1.5" />
+    <Position X="16" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAEAA=</HashCode>
       <FileName>Ingrédient.cs</FileName>
@@ -79,14 +79,16 @@
       <Path>
         <Point X="7" Y="5.387" />
         <Point X="6.375" Y="5.387" />
-        <Point X="6.375" Y="9" />
-        <Point X="6" Y="9" />
+        <Point X="6.375" Y="9.118" />
+        <Point X="6" Y="9.118" />
       </Path>
     </AssociationLine>
     <AssociationLine Name="Table" Type="PlatLegeretSain.Table" FixedFromPoint="true" FixedToPoint="true">
       <Path>
         <Point X="8.5" Y="5" />
-        <Point X="11.938" Y="5" />
+        <Point X="11" Y="5" />
+        <Point X="11" Y="5.261" />
+        <Point X="11.938" Y="5.261" />
         <Point X="11.938" Y="5.5" />
       </Path>
     </AssociationLine>
@@ -162,7 +164,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="PlatLegeretSain.Cuisine">
-    <Position X="16" Y="9" Width="1.5" />
+    <Position X="16" Y="9.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Cuisine.cs</FileName>
@@ -207,11 +209,11 @@
     <Position X="13.25" Y="8.5" Width="1.5" />
     <AssociationLine Name="Database1" Type="PlatLegeretSain.Database" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="13.782" Y="11.017" />
-        <Point X="13.782" Y="11.392" />
-        <Point X="15.125" Y="11.392" />
-        <Point X="15.125" Y="9.812" />
-        <Point X="14.75" Y="9.812" />
+        <Point X="13.782" Y="11.209" />
+        <Point X="13.782" Y="11.584" />
+        <Point X="15.125" Y="11.584" />
+        <Point X="15.125" Y="9.912" />
+        <Point X="14.75" Y="9.912" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
@@ -247,7 +249,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="PlatLegeretSain.Materiel">
-    <Position X="17.75" Y="7.5" Width="1.5" />
+    <Position X="17.75" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAIBAAAAIAAAAAAAAAAAAAACAAAACAAAAAAAAA=</HashCode>
       <FileName>Materiel.cs</FileName>

@@ -7,6 +7,11 @@ namespace PlatLegeretSain
 {
     public class Plongeur : Employe
     {
+        public Plongeur()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public void nettoyer()
         {
             throw new System.NotImplementedException();

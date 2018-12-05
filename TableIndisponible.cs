@@ -7,6 +7,11 @@ namespace PlatLegeretSain
 {
     public class TableIndisponible : ITableLibre
     {
+        public TableIndisponible()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public void AccueillirClient(MaitreHotel MH)
         {
             throw new System.NotImplementedException();

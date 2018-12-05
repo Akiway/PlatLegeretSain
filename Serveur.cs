@@ -7,6 +7,11 @@ namespace PlatLegeretSain
 {
     public class Serveur : Employe, IObservateur
     {
+        public Serveur()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public List<Repas> repas
         {
             get => default(int);

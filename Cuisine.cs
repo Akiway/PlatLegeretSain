@@ -7,6 +7,11 @@ namespace PlatLegeretSain
 {
     public class Cuisine
     {
+        public Cuisine()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public List<Repas> repas
         {
             get => default(int);

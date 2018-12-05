@@ -7,6 +7,11 @@ namespace PlatLegeretSain
 {
     public class CommisCuisine : Employe
     {
+        public CommisCuisine()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public Commande Commande
         {
             get => default(Commande);

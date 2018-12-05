@@ -7,6 +7,10 @@ namespace PlatLegeretSain
 {
     public class Client
     {
+        public Client()
+        {
+            throw new System.NotImplementedException();
+        }
 
         private int vitesse
         {

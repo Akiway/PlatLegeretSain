@@ -7,6 +7,11 @@ namespace PlatLegeretSain
 {
     public class Materiel
     {
+        public Materiel()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public List<Ustensile> ustensiles
         {
             get => default(int);

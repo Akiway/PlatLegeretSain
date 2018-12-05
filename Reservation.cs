@@ -7,6 +7,11 @@ namespace PlatLegeretSain
 {
     public class Reservation
     {
+        public Reservation()
+        {
+            throw new System.NotImplementedException();
+        }
+
         private Table Table
         {
             get => default(Table);

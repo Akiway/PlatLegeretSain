@@ -7,6 +7,11 @@ namespace PlatLegeretSain
 {
     public class Observateur
     {
+        public Observateur()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public IObservateur IObservateur
         {
             get => default(IObservateur);

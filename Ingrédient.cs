@@ -7,6 +7,11 @@ namespace PlatLegeretSain
 {
     public class Ingredient
     {
+        public Ingredient()
+        {
+            throw new System.NotImplementedException();
+        }
+
         private String nomProduit
         {
             get => default(int);

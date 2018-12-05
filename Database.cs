@@ -7,6 +7,11 @@ namespace PlatLegeretSain
 {
     public class Database
     {
+        public Database()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public Database Database1
         {
             get => default(Database);

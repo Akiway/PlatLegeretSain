@@ -7,6 +7,11 @@ namespace PlatLegeretSain
 {
     public class Recette
     {
+        public Recette()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public List<PlatLegeretSain.Ingredient> ingredients
         {
             get => default(List<PlatLegeretSain.Ingredient>);

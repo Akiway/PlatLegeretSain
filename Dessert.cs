@@ -7,5 +7,9 @@ namespace PlatLegeretSain
 {
     public class Dessert : Repas
     {
+        public Dessert(string nom)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

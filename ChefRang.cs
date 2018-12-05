@@ -7,6 +7,11 @@ namespace PlatLegeretSain
 {
     public class ChefRang : Employe, IObservateur
     {
+        public ChefRang()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public List<Commande> commandes
         {
             get => default(int);

@@ -7,6 +7,11 @@ namespace PlatLegeretSain
 {
     public class ChefCuisine : Employe
     {
+        public ChefCuisine()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public List<Commande> commandes
         {
             get => default(List<Commande>);
