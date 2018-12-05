@@ -1,0 +1,12 @@
+#
+# Sprite sheet data for MonoGame.
+#
+# To learn how to import these sprites into your MonoGame project visit:
+# https://www.codeandweb.com/texturepacker/monogame
+#
+# Sprite sheet: PLSsprites.png (1940 x 1004)
+# $TexturePacker:SmartUpdate:5ba1c7618205e6824de2625b58fa7c50:82e08b458f5c115e06863cbed4e807f0:392bb42978da344af36d8fe9bbfcaedc$
+#
+
+mh;0;1923;1;15;22;15;22;0.5;0.5
+Restaurant;0;1;1;1920;1000;1920;1000;0;0

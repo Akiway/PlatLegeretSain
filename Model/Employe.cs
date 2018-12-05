@@ -7,6 +7,12 @@ namespace PlatLegeretSain.Model
 {
     public abstract class Employe
     {
+        public int X { get; set; }
+
+        public int Y { get; set; }
+
+        public string img;
+
         public string positionActuel
         {
             get => default(string);

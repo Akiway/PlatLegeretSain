@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
+using TexturePackerMonoGameDefinitions;
 
 namespace PlatLegeretSain.View
 {
@@ -9,13 +11,20 @@ namespace PlatLegeretSain.View
     /// </summary>
     public class Game1 : Game
     {
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        
+        SpriteRender spriteRender;
+        SpriteSheet spriteSheet;
+        SpriteSheetLoader loader;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            graphics.PreferredBackBufferWidth = 1920;
+            graphics.PreferredBackBufferHeight = 1000;
         }
 
         /// <summary>
@@ -27,6 +36,7 @@ namespace PlatLegeretSain.View
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+
 
             base.Initialize();
         }
@@ -40,6 +50,10 @@ namespace PlatLegeretSain.View
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            spriteRender = new SpriteRender(this.spriteBatch);
+            loader = new SpriteSheetLoader(Content, GraphicsDevice);
+            spriteSheet = loader.Load("PLSsprites.png");
+            
             // TODO: use this.Content to load your game content here
         }
 
@@ -76,8 +90,25 @@ namespace PlatLegeretSain.View
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            DrawImage(PLSsprites.Restaurant, 0, 0);
+
+            foreach(Model.Employe employe in Model.Restaurant.Employes)
+            {
+                DrawImage(employe.img, employe.X, employe.Y);
+            }
+
+            //Console.WriteLine(Model.Restaurant.MH.X.ToString());
+
+
+            spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        protected void DrawImage(string image, int x, int y)
+        {
+            spriteRender.Draw(spriteSheet.Sprite(PLSsprites.Restaurant), new Vector2(0, 0));
         }
     }
 }

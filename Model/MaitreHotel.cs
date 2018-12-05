@@ -7,9 +7,12 @@ namespace PlatLegeretSain.Model
 {
     public class MaitreHotel : Employe
     {
+
         public MaitreHotel()
         {
-            throw new System.NotImplementedException();
+            this.X = 20;
+            this.Y = 20;
+            this.img = "Mh";
         }
 
         public ITableLibre ITableDisponible

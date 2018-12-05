@@ -13,8 +13,12 @@ namespace PlatLegeretSain.Controller
         [STAThread]
         static void Main()
         {
+            Model.Restaurant resto = new Model.Restaurant();
+
             using (var game = new View.Game1())
+            {
                 game.Run();
+            }
         }
     }
 }
