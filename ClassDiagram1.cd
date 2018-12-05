@@ -7,39 +7,32 @@
       <FileName>Game1.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PlatLegeretSain.Program" Collapsed="true">
-    <Position X="22.75" Y="1.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
-      <FileName>Program.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="PlatLegeretSain.Recette">
+  <Class Name="PlatLegeretSain.Model.Recette">
     <Position X="2.75" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAIAAAAAAQAAAAAAIAAAAAAIAAAAAAAEAAAAAAAAAAA=</HashCode>
-      <FileName>Recette.cs</FileName>
+      <FileName>Model\Recette.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PlatLegeretSain.Ingredient">
+  <Class Name="PlatLegeretSain.Model.Ingredient">
     <Position X="16" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAEAA=</HashCode>
-      <FileName>Ingrédient.cs</FileName>
+      <FileName>Model\Ingrédient.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PlatLegeretSain.Client">
+  <Class Name="PlatLegeretSain.Model.Client">
     <Position X="9" Y="8.5" Width="1.5" />
-    <AssociationLine Name="Commande" Type="PlatLegeretSain.Commande" FixedFromPoint="true" FixedToPoint="true">
+    <AssociationLine Name="Commande" Type="PlatLegeretSain.Model.Commande" FixedFromPoint="true" FixedToPoint="true">
       <Path>
         <Point X="9.523" Y="8.5" />
-        <Point X="9.523" Y="5.375" />
-        <Point X="8.5" Y="5.375" />
+        <Point X="9.523" Y="5.545" />
+        <Point X="8.5" Y="5.545" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
       <HashCode>QAAAAAAAAAAAAAAAEAAAQIAAAAAAAAQAQAAAAAAAIAA=</HashCode>
-      <FileName>Client.cs</FileName>
+      <FileName>Model\Client.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Commande" />
@@ -48,166 +41,158 @@
       <Property Name="Observateur" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="PlatLegeretSain.Repas">
+  <Class Name="PlatLegeretSain.Model.Repas">
     <Position X="4.5" Y="6.25" Width="1.5" />
-    <AssociationLine Name="Commande" Type="PlatLegeretSain.Commande" FixedFromPoint="true" FixedToPoint="true">
+    <AssociationLine Name="Commande" Type="PlatLegeretSain.Model.Commande" FixedFromPoint="true" FixedToPoint="true">
       <Path>
         <Point X="5.125" Y="6.25" />
-        <Point X="5.125" Y="5.25" />
-        <Point X="7" Y="5.25" />
+        <Point X="5.125" Y="5.386" />
+        <Point X="5.729" Y="5.386" Type="JumpStart" />
+        <Point X="5.896" Y="5.386" Type="JumpEnd" />
+        <Point X="7" Y="5.386" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAIAAAIAAAAAAAAAAAAACAAAAAIAA=</HashCode>
-      <FileName>Repas.cs</FileName>
+      <FileName>Model\Repas.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Recette" />
       <Property Name="Commande" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="PlatLegeretSain.Commande">
+  <Class Name="PlatLegeretSain.Model.Commande">
     <Position X="7" Y="4.75" Width="1.5" />
-    <AssociationLine Name="Entree" Type="PlatLegeretSain.Entree" FixedFromPoint="true" FixedToPoint="true">
+    <AssociationLine Name="Entree" Type="PlatLegeretSain.Model.Entree" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="7" Y="5.094" />
-        <Point X="2.5" Y="5.094" />
+        <Point X="7" Y="5.187" />
+        <Point X="5.896" Y="5.187" Type="JumpStart" />
+        <Point X="5.729" Y="5.187" Type="JumpEnd" />
+        <Point X="2.5" Y="5.187" />
         <Point X="2.5" Y="8.5" />
       </Path>
     </AssociationLine>
-    <AssociationLine Name="Plat" Type="PlatLegeretSain.Plat" FixedFromPoint="true" FixedToPoint="true">
+    <AssociationLine Name="Table" Type="PlatLegeretSain.Model.Table" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="7" Y="5.387" />
-        <Point X="6.375" Y="5.387" />
-        <Point X="6.375" Y="9.118" />
-        <Point X="6" Y="9.118" />
-      </Path>
-    </AssociationLine>
-    <AssociationLine Name="Table" Type="PlatLegeretSain.Table" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="8.5" Y="5" />
-        <Point X="11" Y="5" />
-        <Point X="11" Y="5.261" />
-        <Point X="11.938" Y="5.261" />
+        <Point X="8.5" Y="5.068" />
+        <Point X="11.938" Y="5.068" />
         <Point X="11.938" Y="5.5" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAABAAAAQAAAAAAAAAAAAAAEgAAAAAA=</HashCode>
-      <FileName>Commande.cs</FileName>
+      <FileName>Model\Commande.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Entree" />
-      <Property Name="Plat" />
       <Property Name="Dessert" />
       <Property Name="Table" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="PlatLegeretSain.Entree">
+  <Class Name="PlatLegeretSain.Model.Entree">
     <Position X="2.25" Y="8.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Entree.cs</FileName>
+      <FileName>Model\Entree.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PlatLegeretSain.Plat">
+  <Class Name="PlatLegeretSain.Model.Plat">
     <Position X="4.5" Y="8.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Plat.cs</FileName>
+      <FileName>Model\Plat.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PlatLegeretSain.Dessert">
+  <Class Name="PlatLegeretSain.Model.Dessert">
     <Position X="6.75" Y="8.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Dessert.cs</FileName>
+      <FileName>Model\Dessert.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PlatLegeretSain.Reservation">
+  <Class Name="PlatLegeretSain.Model.Reservation">
     <Position X="11.25" Y="8.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAgAAAAAAEAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Reservation.cs</FileName>
+      <FileName>Model\Reservation.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Table" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="PlatLegeretSain.Table">
+  <Class Name="PlatLegeretSain.Model.Table">
     <Position X="11.25" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>gAAAABAAAAAAAAAAAAAAAAAgAAABAAAAAAGAAAAAAAA=</HashCode>
-      <FileName>Table.cs</FileName>
+      <FileName>Model\Table.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PlatLegeretSain.Employe">
+  <Class Name="PlatLegeretSain.Model.Employe">
     <Position X="10.5" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Employe.cs</FileName>
+      <FileName>Model\Employe.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PlatLegeretSain.ChefRang">
+  <Class Name="PlatLegeretSain.Model.ChefRang">
     <Position X="16.25" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAgAAAAAAgAEAgAAA=</HashCode>
-      <FileName>ChefRang.cs</FileName>
+      <FileName>Model\ChefRang.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="PlatLegeretSain.ChefCuisine">
+  <Class Name="PlatLegeretSain.Model.ChefCuisine">
     <Position X="18.5" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
-      <FileName>ChefCuisine.cs</FileName>
+      <FileName>Model\ChefCuisine.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PlatLegeretSain.Cuisine">
+  <Class Name="PlatLegeretSain.Model.Cuisine">
     <Position X="16" Y="9.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Cuisine.cs</FileName>
+      <FileName>Model\Cuisine.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PlatLegeretSain.MaitreHotel">
+  <Class Name="PlatLegeretSain.Model.MaitreHotel">
     <Position X="14" Y="2.75" Width="1.5" />
-    <AssociationLine Name="MaitreHotel1" Type="PlatLegeretSain.MaitreHotel" FixedFromPoint="true" FixedToPoint="true">
+    <AssociationLine Name="MaitreHotel1" Type="PlatLegeretSain.Model.MaitreHotel" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="14" Y="4.5" />
-        <Point X="13.625" Y="4.5" />
-        <Point X="13.625" Y="5.771" />
-        <Point X="14.978" Y="5.771" />
-        <Point X="14.978" Y="5.396" />
+        <Point X="14" Y="4.627" />
+        <Point X="13.625" Y="4.627" />
+        <Point X="13.625" Y="5.963" />
+        <Point X="14.978" Y="5.963" />
+        <Point X="14.978" Y="5.588" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
       <HashCode>ACAAAAAAAAAAAABAEAAAAAAAAgIAAAAEAAAAAQAAAAQ=</HashCode>
-      <FileName>MaitreHotel.cs</FileName>
+      <FileName>Model\MaitreHotel.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="ITableDisponible" />
       <Property Name="MaitreHotel1" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="PlatLegeretSain.Serveur">
+  <Class Name="PlatLegeretSain.Model.Serveur">
     <Position X="11.75" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAAAAAAACAAAAAAAAAgAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
-      <FileName>Serveur.cs</FileName>
+      <FileName>Model\Serveur.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="PlatLegeretSain.Plongeur">
+  <Class Name="PlatLegeretSain.Model.Plongeur">
     <Position X="9.5" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAIAAAAAAAAAAAAAAAAAAAAAgAAEAAAAAAAAAA=</HashCode>
-      <FileName>Plongeur.cs</FileName>
+      <FileName>Model\Plongeur.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PlatLegeretSain.Database">
+  <Class Name="PlatLegeretSain.Model.Database">
     <Position X="13.25" Y="8.5" Width="1.5" />
-    <AssociationLine Name="Database1" Type="PlatLegeretSain.Database" FixedFromPoint="true" FixedToPoint="true">
+    <AssociationLine Name="Database1" Type="PlatLegeretSain.Model.Database" FixedFromPoint="true" FixedToPoint="true">
       <Path>
         <Point X="13.782" Y="11.209" />
         <Point X="13.782" Y="11.584" />
@@ -218,95 +203,102 @@
     </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAEAAAABAAAAAAAEAAAAACAQAQAAAAgAAEAA=</HashCode>
-      <FileName>Database.cs</FileName>
+      <FileName>Model\Database.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Database1" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="PlatLegeretSain.CommisSalle">
+  <Class Name="PlatLegeretSain.Model.CommisSalle">
     <Position X="7.25" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAIAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>CommisSalle.cs</FileName>
+      <FileName>Model\CommisSalle.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PlatLegeretSain.CommisCuisine">
+  <Class Name="PlatLegeretSain.Model.CommisCuisine">
     <Position X="5" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAEAABAAIAA=</HashCode>
-      <FileName>CommisCuisine.cs</FileName>
+      <FileName>Model\CommisCuisine.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Commande" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="PlatLegeretSain.Cuisinier">
+  <Class Name="PlatLegeretSain.Model.Cuisinier">
     <Position X="2.75" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Cuisinier.cs</FileName>
+      <FileName>Model\Cuisinier.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PlatLegeretSain.Materiel">
+  <Class Name="PlatLegeretSain.Model.Materiel">
     <Position X="17.75" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAIBAAAAIAAAAAAAAAAAAAACAAAACAAAAAAAAA=</HashCode>
-      <FileName>Materiel.cs</FileName>
+      <FileName>Model\Materiel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PlatLegeretSain.TableDisponible" BaseTypeListCollapsed="true">
+  <Class Name="PlatLegeretSain.Model.TableDisponible" BaseTypeListCollapsed="true">
     <Position X="17.75" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>TableLibre.cs</FileName>
+      <FileName>Model\TableLibre.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="PlatLegeretSain.TableIndisponible" BaseTypeListCollapsed="true">
+  <Class Name="PlatLegeretSain.Model.TableIndisponible" BaseTypeListCollapsed="true">
     <Position X="16" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>TableIndisponible.cs</FileName>
+      <FileName>Model\TableIndisponible.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="PlatLegeretSain.Observateur">
+  <Class Name="PlatLegeretSain.Model.Observateur">
     <Position X="9" Y="10.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAEAAAAAAAAAgAAAAAAIAAAAAAAAAAAAAAAAAAQAA=</HashCode>
-      <FileName>Observateur.cs</FileName>
+      <FileName>Model\Observateur.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="IObservateur" />
     </ShowAsAssociation>
   </Class>
-  <Interface Name="PlatLegeretSain.ITableLibre">
+  <Class Name="PlatLegeretSain.Program" Collapsed="true">
+    <Position X="22.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="PlatLegeretSain.Model.ITableLibre">
     <Position X="14" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ITableDisponible.cs</FileName>
+      <FileName>Model\ITableDisponible.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="PlatLegeretSain.IObservateur">
+  <Interface Name="PlatLegeretSain.Model.IObservateur">
     <Position X="6.75" Y="10.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>IObservateur.cs</FileName>
+      <FileName>Model\IObservateur.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Enum Name="PlatLegeretSain.PositionPossible" Collapsed="true">
+  <Enum Name="PlatLegeretSain.Model.PositionPossible" Collapsed="true">
     <Position X="21" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>PositionPossible.cs</FileName>
+      <FileName>Model\PositionPossible.cs</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="PlatLegeretSain.Ustensile" Collapsed="true">
+  <Enum Name="PlatLegeretSain.Model.Ustensile" Collapsed="true">
     <Position X="22.75" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Ustensile.cs</FileName>
+      <FileName>Model\Ustensile.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Segoe UI" Size="9" />

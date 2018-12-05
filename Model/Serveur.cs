@@ -1,0 +1,41 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace PlatLegeretSain.Model
+{
+    public class Serveur : Employe, IObservateur
+    {
+        public Serveur()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public List<Repas> repas
+        {
+            get => default(List<Repas>);
+            set
+            {
+            }
+        }
+
+        public Boolean etat
+        {
+            get => default(Boolean);
+            set
+            {
+            }
+        }
+
+        public void debarasser()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void notifier()
+        {
+            throw new System.NotImplementedException();
+        }
+    }
+}
