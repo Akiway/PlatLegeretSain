@@ -20,7 +20,7 @@ namespace PlatLegeretSain.Model
             }
         }
 
-        private int tempsCuisson
+        public int tempsCuisson
         {
             get => default(int);
             set

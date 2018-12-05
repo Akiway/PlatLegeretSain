@@ -7,7 +7,7 @@ namespace PlatLegeretSain.Model
 {
     public class Commande
     {
-        private Entree Entree
+        public Entree Entree
         {
             get => default(Entree);
             set
@@ -15,7 +15,7 @@ namespace PlatLegeretSain.Model
             }
         }
 
-        private Plat Plat
+        public Plat Plat
         {
             get => default(Plat);
             set
@@ -23,7 +23,7 @@ namespace PlatLegeretSain.Model
             }
         }
 
-        private Dessert Dessert
+        public Dessert Dessert
         {
             get => default(Dessert);
             set

@@ -23,7 +23,7 @@ namespace PlatLegeretSain.Model
             }
         }
 
-        private Recette Recette
+        public Recette Recette
         {
             get => default(Recette);
             set
