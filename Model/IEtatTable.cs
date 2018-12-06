@@ -7,6 +7,6 @@ namespace PlatLegeretSain.Model
 {
     public interface IEtatTable
     {
-        void AccueillirClient(IEtatTable etatTable, int numReservation, List<Client> clients);
+        void AccueillirClient(IEtatTable etatTable, int numeroTable, List<Client> clients);
     }
 }

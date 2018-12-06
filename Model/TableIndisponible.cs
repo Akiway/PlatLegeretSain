@@ -12,9 +12,16 @@ namespace PlatLegeretSain.Model
             //throw new System.NotImplementedException();
         }
 
-        public void AccueillirClient(IEtatTable etatTable, int numReservation, List<Client> clients)
+        public void AccueillirClient(IEtatTable etatTable, int numeroTable, List<Client> clients)
         {
-            View.Game1.Print("TestTableInDisponible");
+            if (numeroTable != 0)
+            {
+                Restaurant.GRCT.TableAssignment(numeroTable);
+            }
+            else
+            {
+                View.Game1.Print("TestTableInDisponible");
+            }
         }
     }
 }

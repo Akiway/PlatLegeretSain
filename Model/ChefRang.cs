@@ -29,6 +29,7 @@ namespace PlatLegeretSain.Model
         public void installerClient(int numTable)
         {
             int nbClient = Restaurant.Clients.FindAll(x => x.numTable.Equals(numTable)).Count;
+            View.Game1.Print("----------------------------");
             View.Game1.Print("Je place "+nbClient+" client à la table numéro : "+numTable);
         }
 

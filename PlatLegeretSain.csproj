@@ -46,6 +46,7 @@
     <Compile Include="Model\ChefCuisine.cs" />
     <Compile Include="Model\ChefRang.cs" />
     <Compile Include="Model\DishAlone.cs" />
+    <Compile Include="Model\GestionReservationsClientsTables.cs" />
     <Compile Include="Model\IEtatCommande.cs" />
     <Compile Include="Model\Client.cs" />
     <Compile Include="Model\Commande.cs" />

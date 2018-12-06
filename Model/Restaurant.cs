@@ -17,6 +17,7 @@ namespace PlatLegeretSain.Model
         }
 
         public static MaitreHotel MH;
+        public static GestionReservationsClientsTables GRCT;
         public static List<Employe> Employes = new List<Employe>();
         public static List<Client> Clients = new List<Client>();
         public static List<Reservation> Reservations = new List<Reservation>();
@@ -30,6 +31,7 @@ namespace PlatLegeretSain.Model
         private Restaurant()
         {
             MH = MaitreHotel.Instance();
+            GRCT = GestionReservationsClientsTables.Instance();
             Employes.Add(MH);
             CR1 = new ChefRang(1, 1130, 520);
             CR2 = new ChefRang(2, 1130, 480);
@@ -88,7 +90,7 @@ namespace PlatLegeretSain.Model
                 {
                     if ((res.Heure.Hour + ":" + res.Heure.Minute) == Time)
                     {
-                        View.Game1.Print("ILS ARRIVENT !!!!!!! " + res.NbClient + " clients pour la table n°" + res.Table);
+                        Restaurant.GRCT.CreationClient(res.numTable, res.NbClient);
                         NbReservation--;
                     }
                 }
@@ -102,29 +104,15 @@ namespace PlatLegeretSain.Model
             {
                 //Thread.Sleep(300000); // 5 min
 
-                Thread.Sleep(5000); // 30 sec
+                Thread.Sleep(1000); // 30 sec
                 Random random = new Random();
                 bool boolValue = Convert.ToBoolean(random.Next() % 2);
 
-                if(boolValue == true)
+                if (boolValue == true)
                 {
-                    List<Client> listClient = new List<Client>();
-
                     int nbClient = new Random().Next(1, 10);
-                    int numGroup = groupList.FindLast(n => n < 10000) + 1;
-                    groupList.Add(numGroup);
-                    for (int x = 0; x < nbClient; x++)
-                    {
-                        Clients.Add(new Client(numGroup));
-                        listClient.Add(new Client(numGroup));
-                    }
-
-                    Restaurant.MH.AccueillirClient(0, listClient);
-                    listClient.Clear();
-                    //int test = Clients.FindAll(client => client.groupe.Equals(1)).Count;
+                    GRCT.CreationClient(0, nbClient);
                 }
-
-
             }
         }
 
