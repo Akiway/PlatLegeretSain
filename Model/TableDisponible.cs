@@ -12,7 +12,7 @@ namespace PlatLegeretSain.Model
             throw new System.NotImplementedException();
         }
 
-        public void AccueillirClient(MaitreHotel MH)
+        public void AccueillirClient()
         {
             throw new System.NotImplementedException();
         }

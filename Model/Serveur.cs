@@ -7,9 +7,15 @@ namespace PlatLegeretSain.Model
 {
     public class Serveur : Employe, IObservateur
     {
-        public Serveur()
+        private int Carre { get; set; }
+
+        public Serveur(int carre, int x = 1130, int y = 200)
         {
-            throw new System.NotImplementedException();
+            this.Carre = carre;
+            this.X = x;
+            this.Y = y;
+            this.img = "Serveur_";
+            this.orientation = "left";
         }
 
         public List<Repas> repas

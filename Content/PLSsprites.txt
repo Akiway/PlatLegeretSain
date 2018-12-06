@@ -4,9 +4,21 @@
 # To learn how to import these sprites into your MonoGame project visit:
 # https://www.codeandweb.com/texturepacker/monogame
 #
-# Sprite sheet: PLSsprites.png (1940 x 1004)
-# $TexturePacker:SmartUpdate:5ba1c7618205e6824de2625b58fa7c50:82e08b458f5c115e06863cbed4e807f0:392bb42978da344af36d8fe9bbfcaedc$
+# Sprite sheet: PLSsprites.png (1948 x 1004)
+# $TexturePacker:SmartUpdate:b691d4bbe8ed1c3cfa97347c6dc06444:d0ca4c1aa649d725da5366acddb101de:392bb42978da344af36d8fe9bbfcaedc$
 #
 
-mh;0;1923;1;15;22;15;22;0.5;0.5
+Cr_back;0;1923;1;24;30;24;30;0;0
+Cr_front;0;1923;33;24;30;24;30;0;0
+Cr_left;0;1923;129;23;30;24;30;-0.043478260869565216;0
+Cr_right;0;1923;161;23;30;24;30;-0.043478260869565216;0
+Mh;0;1923;385;20;30;20;30;0;0
+Mh_back;0;1923;193;23;30;24;30;0;0
+Mh_front;0;1923;289;22;30;24;30;-0.045454545454545456;0
+Mh_left;0;1923;321;22;30;24;30;0;0
+Mh_right;0;1923;353;22;30;24;30;0;0
 Restaurant;0;1;1;1920;1000;1920;1000;0;0
+Serveur_back;0;1923;65;24;30;24;30;0;0
+Serveur_front;0;1923;97;24;30;24;30;0;0
+Serveur_left;0;1923;225;23;30;24;30;-0.043478260869565216;0
+Serveur_right;0;1923;257;23;30;24;30;-0.043478260869565216;0

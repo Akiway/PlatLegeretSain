@@ -4,14 +4,26 @@
  * Contains references to each image within the sprite sheet.
  *
  * https://www.codeandweb.com/texturepacker
- * $TexturePacker:SmartUpdate:5ba1c7618205e6824de2625b58fa7c50:82e08b458f5c115e06863cbed4e807f0:392bb42978da344af36d8fe9bbfcaedc$
+ * $TexturePacker:SmartUpdate:ba3be9e89a851bd80266811cff8825c2:9920e66c2bc1e0a8f008be2dee3c9071:392bb42978da344af36d8fe9bbfcaedc$
  *
  */
 namespace TexturePackerMonoGameDefinitions
 {
 	public class PLSsprites
-    {
-		public const string Mh = "mh";
+	{
+		public const string Cr_back = "Cr_back";
+		public const string Cr_front = "Cr_front";
+		public const string Cr_left = "Cr_left";
+		public const string Cr_right = "Cr_right";
+		public const string Mh = "Mh";
+		public const string Mh_back = "Mh_back";
+		public const string Mh_front = "Mh_front";
+		public const string Mh_left = "Mh_left";
+		public const string Mh_right = "Mh_right";
 		public const string Restaurant = "Restaurant";
+		public const string Serveur_back = "Serveur_back";
+		public const string Serveur_front = "Serveur_front";
+		public const string Serveur_left = "Serveur_left";
+		public const string Serveur_right = "Serveur_right";
 	}
 }

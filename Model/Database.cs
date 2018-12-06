@@ -5,22 +5,23 @@ using System.Text;
 
 namespace PlatLegeretSain.Model
 {
-    public class Database
+    sealed class Database
     {
-        public Database()
+        // Singleton
+        private static Database db = null;
+        public static Database Instance()
+        {
+            if (db == null)
+                db = new Database();
+            return db;
+        }
+
+        private Database()
         {
             throw new System.NotImplementedException();
         }
 
-        public Database Database1
-        {
-            get => default(Database);
-            set
-            {
-            }
-        }
-
-        public string serveur
+        public string Serveur
         {
             get => default(string);
             set
@@ -28,7 +29,7 @@ namespace PlatLegeretSain.Model
             }
         }
 
-        public string database
+        public string DatabaseName
         {
             get => default(string);
             set
@@ -36,7 +37,7 @@ namespace PlatLegeretSain.Model
             }
         }
 
-        public string login
+        public string Login
         {
             get => default(string);
             set
@@ -44,7 +45,7 @@ namespace PlatLegeretSain.Model
             }
         }
 
-        public string password
+        public string Password
         {
             get => default(string);
             set
@@ -52,17 +53,17 @@ namespace PlatLegeretSain.Model
             }
         }
 
-        public List<Ingredient> recupererIngredientRecette()
+        public List<Ingredient> RecupererIngredientRecette()
         {
             throw new System.NotImplementedException();
         }
 
-        public Table tableLibre()
+        public Table TableLibre()
         {
             throw new System.NotImplementedException();
         }
 
-        public void statutTable()
+        public void StatutTable()
         {
             throw new System.NotImplementedException();
         }

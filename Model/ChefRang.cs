@@ -7,9 +7,15 @@ namespace PlatLegeretSain.Model
 {
     public class ChefRang : Employe, IObservateur
     {
-        public ChefRang()
+        private int Carre { get; set; }
+
+        public ChefRang(int carre, int x = 1130, int y = 500)
         {
-            throw new System.NotImplementedException();
+            this.Carre = carre;
+            this.X = x;
+            this.Y = y;
+            this.img = "Cr_";
+            this.orientation = "left";
         }
 
         public List<Commande> commandes

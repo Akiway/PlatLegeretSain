@@ -9,22 +9,32 @@ namespace PlatLegeretSain.View
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Game1 : Game
+    sealed class Game1 : Game
     {
+        // Singleton
+        private static Game1 game = null;
+        public static Game1 Instance()
+        {
+            if (game == null)
+                game = new Game1();
+            return game;
+        }
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         SpriteRender spriteRender;
         SpriteSheet spriteSheet;
         SpriteSheetLoader loader;
+        SpriteFont spriteFont;
 
-        public Game1()
+        private Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
             graphics.PreferredBackBufferWidth = 1920;
             graphics.PreferredBackBufferHeight = 1000;
+            this.IsMouseVisible = true;
         }
 
         /// <summary>
@@ -53,7 +63,8 @@ namespace PlatLegeretSain.View
             spriteRender = new SpriteRender(this.spriteBatch);
             loader = new SpriteSheetLoader(Content, GraphicsDevice);
             spriteSheet = loader.Load("PLSsprites.png");
-            
+
+            spriteFont = Content.Load<SpriteFont>("ArialNormal");
             // TODO: use this.Content to load your game content here
         }
 
@@ -73,8 +84,8 @@ namespace PlatLegeretSain.View
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            Controller.Key.CheckKeyboard();
+
 
             // TODO: Add your update logic here
 
@@ -95,20 +106,33 @@ namespace PlatLegeretSain.View
 
             foreach(Model.Employe employe in Model.Restaurant.Employes)
             {
-                DrawImage(employe.img, employe.X, employe.Y);
+                DrawImage(employe.img + employe.orientation, employe.X, employe.Y);
             }
 
-            //Console.WriteLine(Model.Restaurant.MH.X.ToString());
+            if (gameTime.TotalGameTime.TotalSeconds % 2 != 0) // Affiche une fois sur 2
+                Print(Model.Restaurant.Clients.Count.ToString());
 
+
+            DrawText(Math.Round(gameTime.TotalGameTime.TotalMinutes+10) + "h" + Math.Round(gameTime.TotalGameTime.TotalSeconds), 0, 0);
 
             spriteBatch.End();
 
             base.Draw(gameTime);
         }
 
-        protected void DrawImage(string image, int x, int y)
+        public void DrawImage(string image, int x, int y)
         {
-            spriteRender.Draw(spriteSheet.Sprite(PLSsprites.Restaurant), new Vector2(0, 0));
+            spriteRender.Draw(spriteSheet.Sprite(image), new Vector2(x, y));
+        }
+
+        public void DrawText(string text, int x, int y)
+        {
+            spriteBatch.DrawString(spriteFont, text, new Vector2(x, y), Color.Black);
+        }
+
+        public static void Print(string text)
+        {
+            Console.WriteLine(text);
         }
     }
 }

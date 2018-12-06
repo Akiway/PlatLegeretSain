@@ -42,6 +42,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Controller\Key.cs" />
     <Compile Include="Model\ChefCuisine.cs" />
     <Compile Include="Model\ChefRang.cs" />
     <Compile Include="Model\DishAlone.cs" />
@@ -56,13 +57,14 @@
     <Compile Include="Model\Dessert.cs" />
     <Compile Include="Model\Employe.cs" />
     <Compile Include="Model\Entree.cs" />
+    <Compile Include="Model\IMovable.cs" />
     <Compile Include="Model\Restaurant.cs" />
     <Compile Include="Model\StarterAndDish.cs" />
     <Compile Include="Model\StarterWithoutDish.cs" />
     <Compile Include="View\Game1.cs" />
     <Compile Include="Model\Ingrédient.cs" />
     <Compile Include="Model\IObservateur.cs" />
-    <Compile Include="Model\ITableDisponible.cs" />
+    <Compile Include="Model\ITableLibre.cs" />
     <Compile Include="Model\MaitreHotel.cs" />
     <Compile Include="Model\Materiel.cs" />
     <Compile Include="Model\Observateur.cs" />
@@ -77,7 +79,7 @@
     <Compile Include="Model\Serveur.cs" />
     <Compile Include="Model\Table.cs" />
     <Compile Include="Model\TableIndisponible.cs" />
-    <Compile Include="Model\TableLibre.cs" />
+    <Compile Include="Model\TableDisponible.cs" />
     <Compile Include="Model\Ustensile.cs" />
     <Compile Include="View\PLSsprites.cs" />
     <Compile Include="View\SpriteFrame.cs" />

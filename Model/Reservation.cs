@@ -9,10 +9,13 @@ namespace PlatLegeretSain.Model
     {
         public Reservation()
         {
-            throw new System.NotImplementedException();
+            this.nbClient = new Random().Next(1, 10);
+            // Necessite de vérifier les tables disponibles
+            //this.Table = new Random().Next(1, 30);
+            this.heure = new DateTime(0001, 1, 1, new Random().Next(0, 24), new Random().Next(0, 60), 0);
         }
 
-        private Table Table
+        public Table Table
         {
             get => default(Table);
             set
@@ -20,7 +23,7 @@ namespace PlatLegeretSain.Model
             }
         }
 
-        private DateTime heure
+        public DateTime heure
         {
             get => default(DateTime);
             set
@@ -28,7 +31,7 @@ namespace PlatLegeretSain.Model
             }
         }
 
-        private int nbClient
+        public int nbClient
         {
             get => default(int);
             set

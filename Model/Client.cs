@@ -7,9 +7,28 @@ namespace PlatLegeretSain.Model
 {
     public class Client
     {
+        public int X { get; set; }
+        public int Y { get; set; }
+
         public Client()
         {
-            throw new System.NotImplementedException();
+
+        }
+
+        public void MoveUp(int distance)
+        {
+        }
+
+        public void MoveDown(int distance)
+        {
+        }
+
+        public void MoveLeft(int distance)
+        {
+        }
+
+        public void MoveRight(int distance)
+        {
         }
 
         private int vitesse

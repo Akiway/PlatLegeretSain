@@ -7,6 +7,6 @@ namespace PlatLegeretSain.Model
 {
     public interface ITableLibre
     {
-        void AccueillirClient(MaitreHotel MH);
+        void AccueillirClient();
     }
 }
