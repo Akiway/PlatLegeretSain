@@ -22,7 +22,7 @@ CREATE TABLE Client(
 CREATE TABLE Emplacement(
         ID_Table  int identity  NOT NULL ,
         Nb_chaise Int ,
-        Carre     Date ,
+        Carre     Int ,
         Rang      Int ,
         Etat      Bit ,
         ID_Client Int ,
