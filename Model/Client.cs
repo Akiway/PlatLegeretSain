@@ -10,9 +10,9 @@ namespace PlatLegeretSain.Model
         public int X { get; set; }
         public int Y { get; set; }
 
-        public Client()
+        public Client(int numGroup)
         {
-
+            this.groupe = numGroup;
         }
 
         public void MoveUp(int distance)
@@ -31,53 +31,17 @@ namespace PlatLegeretSain.Model
         {
         }
 
-        private int vitesse
-        {
-            get => default(int);
-            set
-            {
-            }
-        }
+        private int vitesse { get; set; }
 
-        private int groupe
-        {
-            get => default(int);
-            set
-            {
-            }
-        }
+        public int groupe { get; set; }
 
-        public Commande Commande
-        {
-            get => default(Commande);
-            set
-            {
-            }
-        }
+        public int numTable = 0;
 
-        private Reservation Reservation
-        {
-            get => default(Reservation);
-            set
-            {
-            }
-        }
+        public Commande Commande { get; set; }
 
-        private Table Table
-        {
-            get => default(Table);
-            set
-            {
-            }
-        }
+        private Reservation Reservation { get; set; }
 
-        public Observateur Observateur
-        {
-            get => default(Observateur);
-            set
-            {
-            }
-        }
+        public Observateur Observateur { get; set; }
 
         public void NotifierObservateur()
         {

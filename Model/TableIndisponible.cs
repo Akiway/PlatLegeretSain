@@ -5,16 +5,16 @@ using System.Text;
 
 namespace PlatLegeretSain.Model
 {
-    public class TableIndisponible : ITableLibre
+    public class TableIndisponible : IEtatTable
     {
         public TableIndisponible()
         {
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
         }
 
-        public void AccueillirClient()
+        public void AccueillirClient(IEtatTable etatTable, int numReservation, List<Client> clients)
         {
-            throw new System.NotImplementedException();
+            View.Game1.Print("TestTableInDisponible");
         }
     }
 }

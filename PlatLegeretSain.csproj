@@ -64,7 +64,7 @@
     <Compile Include="View\Game1.cs" />
     <Compile Include="Model\Ingrédient.cs" />
     <Compile Include="Model\IObservateur.cs" />
-    <Compile Include="Model\ITableLibre.cs" />
+    <Compile Include="Model\IEtatTable.cs" />
     <Compile Include="Model\MaitreHotel.cs" />
     <Compile Include="Model\Materiel.cs" />
     <Compile Include="Model\Observateur.cs" />

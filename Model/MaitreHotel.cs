@@ -22,35 +22,17 @@ namespace PlatLegeretSain.Model
             this.Y = 770;
             this.img = "Mh_";
             this.orientation = "front";
+            this.etatTable = new TableDisponible();
         }
 
-        public ITableLibre ITableDisponible
-        {
-            get => default(ITableLibre);
-            set
-            {
-            }
-        }
+        public int table { get; set; }
+        private IEtatTable etatTable { get; set; }
 
-        public int table
-        {
-            get => default(int);
-            set
-            {
-            }
-        }
+        public MaitreHotel MaitreHotel1 { get; set; }
 
-        public MaitreHotel MaitreHotel1
+        public void AccueillirClient(int numReservation, List<Client> clients)
         {
-            get => default(MaitreHotel);
-            set
-            {
-            }
-        }
-
-        public Table attribuerTable()
-        {
-            throw new System.NotImplementedException();
+            etatTable.AccueillirClient(this.etatTable, numReservation, clients);
         }
 
         public void appelerChefRang()
@@ -60,9 +42,9 @@ namespace PlatLegeretSain.Model
             Restaurant.CR1.MoveRight(100);
         }
 
-        public void setState(ITableLibre iTableDisponible)
+        public void setState(IEtatTable newEtat)
         {
-            throw new System.NotImplementedException();
+            this.etatTable = newEtat;
         }
 
         /// <summary>

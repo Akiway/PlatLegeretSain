@@ -110,7 +110,7 @@ namespace PlatLegeretSain.View
             }
 
             if (gameTime.TotalGameTime.TotalSeconds % 2 != 0) // Affiche une fois sur 2
-                Print(Model.Restaurant.Clients.Count.ToString());
+                //Print(Model.Restaurant.Clients.Count.ToString());
 
 
             DrawText(Math.Round(gameTime.TotalGameTime.TotalMinutes+10) + "h" + Math.Round(gameTime.TotalGameTime.TotalSeconds), 0, 0);
