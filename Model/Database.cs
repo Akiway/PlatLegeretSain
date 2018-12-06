@@ -16,41 +16,14 @@ namespace PlatLegeretSain.Model
             return db;
         }
 
+        public string Serveur { get; set; }
+        public string DatabaseName { get; set; }
+        public string Login { get; set; }
+        public string Password { get; set; }
+
         private Database()
         {
-            throw new System.NotImplementedException();
-        }
 
-        public string Serveur
-        {
-            get => default(string);
-            set
-            {
-            }
-        }
-
-        public string DatabaseName
-        {
-            get => default(string);
-            set
-            {
-            }
-        }
-
-        public string Login
-        {
-            get => default(string);
-            set
-            {
-            }
-        }
-
-        public string Password
-        {
-            get => default(string);
-            set
-            {
-            }
         }
 
         public List<Ingredient> RecupererIngredientRecette()
@@ -66,6 +39,11 @@ namespace PlatLegeretSain.Model
         public void StatutTable()
         {
             throw new System.NotImplementedException();
+        }
+
+        public void ReserverTable(int table)
+        {
+
         }
     }
 }

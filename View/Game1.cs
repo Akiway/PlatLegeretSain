@@ -26,6 +26,11 @@ namespace PlatLegeretSain.View
         SpriteSheet spriteSheet;
         SpriteSheetLoader loader;
         SpriteFont spriteFont;
+        GameTime GT;
+
+        public GameTime GetGameTime() => GT;
+
+        public void SetGameTime(GameTime gt) => GT = gt;
 
         private Game1()
         {
@@ -85,7 +90,7 @@ namespace PlatLegeretSain.View
         protected override void Update(GameTime gameTime)
         {
             Controller.Key.CheckKeyboard();
-
+            Model.Restaurant.Time = (gameTime.TotalGameTime.Minutes+10) + ":" + gameTime.TotalGameTime.Seconds;
 
             // TODO: Add your update logic here
 

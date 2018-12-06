@@ -23,6 +23,7 @@ namespace PlatLegeretSain.Model
         public static List<Table> Tables = new List<Table>();
         public static ChefRang CR1, CR2;
         public static Serveur Serveur1, Serveur2;
+        public static string Time { get; set; }
 
         public static List<int> groupList = new List<int>();
 
@@ -62,25 +63,36 @@ namespace PlatLegeretSain.Model
 
             GenererReservation();
 
+            View.Game1.Print(Reservations.Count.ToString());
             foreach (var res in Reservations)
             {
-                View.Game1.Print(res.nbClient.ToString());
-                View.Game1.Print(res.heure.ToString());
+                View.Game1.Print("Res : " + res.NbClient + " clients à " + res.Heure);
             }
+
+            //View.Game1.Print(Reservations.Find(x => x.Table.Equals("front")).GetType().Name.ToString());
 
             Thread threadReservation = new Thread(new ThreadStart(ThreadReservation));
             Thread threadClientAleatoire = new Thread(new ThreadStart(ThreadClientAleatoire));
-            //threadReservation.Start();
             threadClientAleatoire.Start();
 
+            threadReservation.Start();
         }
+
 
         public static void ThreadReservation()
         {
-            while(true)
+            int NbReservation = Reservations.Count;
+            while(NbReservation > 0)
             {
-                //Clients.Add(new Client());
-                Thread.Sleep(500);
+                foreach (Reservation res in Reservations)
+                {
+                    if ((res.Heure.Hour + ":" + res.Heure.Minute) == Time)
+                    {
+                        View.Game1.Print("ILS ARRIVENT !!!!!!! " + res.NbClient + " clients pour la table n°" + res.Table);
+                        NbReservation--;
+                    }
+                }
+                Thread.Sleep(1000);
             }
         }
 
@@ -118,8 +130,7 @@ namespace PlatLegeretSain.Model
 
         private static void GenererReservation()
         {
-            int nbReservation = new Random().Next(1, 3);
-            for (int i = 0; i < nbReservation; i++)
+            for (int i = 0; i < new Random().Next(1, 5); i++)
             {
                 Reservations.Add(new Reservation());
             }
