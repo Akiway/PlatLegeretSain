@@ -1,140 +1,280 @@
+
 CREATE TABLE Recette(
+
         Titre_Recette  Varchar (255) ,
-        ID_Recette     int (11) Identity  NOT NULL ,
+
+        ID_Recette     int  Identity  NOT NULL ,
+
         Categorie      Varchar (255) ,
+
         Tps_Prep       Int ,
+
         Portion        Int ,
+
         Nb_Personnes   Int ,
+
         Tps_Repos      Int ,
+
         Tps_Cuisson    Int ,
+
         Accompagnement Varchar (25) ,
+
         PRIMARY KEY (ID_Recette )
+
 );
+
+
+
+
 
 
 
 CREATE TABLE Client(
-        ID_Client  int (11) Identity  NOT NULL ,
+
+        ID_Client  int  Identity  NOT NULL ,
+
         Nom_Client Varchar (255) ,
+
         PRIMARY KEY (ID_Client )
+
 );
+
+
+
+
 
 
 
 CREATE TABLE Emplacement(
-        ID_Table    int (11) Identity  NOT NULL ,
+
+        ID_Table    int  Identity  NOT NULL ,
+
         Nb_chaise   Int ,
+
         Carre       Date ,
+
         Rang        Int ,
+
         Etat        Bit ,
+
         X           Int ,
+
         Y           Int ,
+
         Orientation Bit ,
+
         PRIMARY KEY (ID_Table )
+
 );
+
+
+
+
 
 
 
 CREATE TABLE Outils(
-        ID_Outils   int (11) Identity  NOT NULL ,
+
+        ID_Outils   int  Identity  NOT NULL ,
+
         Type_Outils Varchar (25) ,
+
         PRIMARY KEY (ID_Outils )
+
 );
+
+
+
+
 
 
 
 CREATE TABLE Ingredient(
-        ID_Ingredient  int (11) Identity  NOT NULL ,
+
+        ID_Ingredient  int  Identity  NOT NULL ,
+
         Nom_Ingredient Varchar (25) ,
+
         PRIMARY KEY (ID_Ingredient )
+
 );
+
+
+
+
+
 
 
 
 
 CREATE TABLE Chambre_Froide(
-        ID_Frigo         int (11) Identity  NOT NULL ,
+
+        ID_Frigo         int  Identity  NOT NULL ,
+
         Date_Ajout_Frigo Date ,
+
         Quantite_Frigo   Int ,
+
         ID_Ingredient    Int NOT NULL ,
+
         PRIMARY KEY (ID_Frigo ,ID_Ingredient )
+
 );
+
+
+
+
 
 
 
 CREATE TABLE Congelateur(
-        ID_Congelateur         int (11) Identity  NOT NULL ,
+
+        ID_Congelateur         int  Identity  NOT NULL ,
+
         Date_Ajout_Congelateur Date ,
+
         Quantite_Congelateur   Int ,
+
         ID_Ingredient          Int NOT NULL ,
+
         PRIMARY KEY (ID_Congelateur ,ID_Ingredient )
+
 );
+
+
+
+
 
 
 
 CREATE TABLE Reserve(
-        ID_Reserve         int (11) Identity  NOT NULL ,
+
+        ID_Reserve         int  Identity  NOT NULL ,
+
         Date_Ajout_Reserve Date ,
+
         Quantite_Reserve   Int ,
+
         ID_Ingredient      Int NOT NULL ,
+
         PRIMARY KEY (ID_Reserve ,ID_Ingredient )
+
 );
+
+
+
+
 
 
 
 CREATE TABLE Stock_Outils(
-        ID_Stock         int (11) Identity  NOT NULL ,
+
+        ID_Stock         int  Identity  NOT NULL ,
+
         Quantite_Propre  Int ,
+
         Quantite_Lavage  Int ,
+
         Quantite_Sale    Int ,
+
         Quantite_Utilise Int ,
+
         ID_Outils        Int ,
+
         PRIMARY KEY (ID_Stock )
+
 );
+
+
+
+
 
 
 
 CREATE TABLE Commande(
+
         ID_Recette Int NOT NULL ,
+
         ID_Client  Int NOT NULL ,
+
         PRIMARY KEY (ID_Recette ,ID_Client )
+
 );
+
+
+
+
 
 
 
 CREATE TABLE Concerner(
+
         ID_Client Int NOT NULL ,
+
         ID_Table  Int NOT NULL ,
+
         PRIMARY KEY (ID_Client ,ID_Table )
+
 );
+
+
+
+
 
 
 
 CREATE TABLE Composer(
+
         Quantite_Ingredient_Recette Int ,
+
         ID_Recette                  Int NOT NULL ,
+
         ID_Ingredient               Int NOT NULL ,
+
         PRIMARY KEY (ID_Recette ,ID_Ingredient )
+
 );
+
+
+
+
 
 
 
 CREATE TABLE Utilise(
+
         Quantite_Outils_Recette Int ,
+
         ID_Recette              Int NOT NULL ,
+
         ID_Outils               Int NOT NULL ,
+
         PRIMARY KEY (ID_Recette ,ID_Outils )
+
 );
 
+
+
 ALTER TABLE Chambre_Froide ADD CONSTRAINT FK_Chambre_Froide_ID_Ingredient FOREIGN KEY (ID_Ingredient) REFERENCES Ingredient(ID_Ingredient);
+
 ALTER TABLE Congelateur ADD CONSTRAINT FK_Congelateur_ID_Ingredient FOREIGN KEY (ID_Ingredient) REFERENCES Ingredient(ID_Ingredient);
+
 ALTER TABLE Reserve ADD CONSTRAINT FK_Reserve_ID_Ingredient FOREIGN KEY (ID_Ingredient) REFERENCES Ingredient(ID_Ingredient);
+
 ALTER TABLE Stock_Outils ADD CONSTRAINT FK_Stock_Outils_ID_Outils FOREIGN KEY (ID_Outils) REFERENCES Outils(ID_Outils);
+
 ALTER TABLE Commande ADD CONSTRAINT FK_Commande_ID_Recette FOREIGN KEY (ID_Recette) REFERENCES Recette(ID_Recette);
+
 ALTER TABLE Commande ADD CONSTRAINT FK_Commande_ID_Client FOREIGN KEY (ID_Client) REFERENCES Client(ID_Client);
+
 ALTER TABLE Concerner ADD CONSTRAINT FK_Concerner_ID_Client FOREIGN KEY (ID_Client) REFERENCES Client(ID_Client);
+
 ALTER TABLE Concerner ADD CONSTRAINT FK_Concerner_ID_Table FOREIGN KEY (ID_Table) REFERENCES Emplacement(ID_Table);
+
 ALTER TABLE Composer ADD CONSTRAINT FK_Composer_ID_Recette FOREIGN KEY (ID_Recette) REFERENCES Recette(ID_Recette);
+
 ALTER TABLE Composer ADD CONSTRAINT FK_Composer_ID_Ingredient FOREIGN KEY (ID_Ingredient) REFERENCES Ingredient(ID_Ingredient);
+
 ALTER TABLE Utilise ADD CONSTRAINT FK_Utilise_ID_Recette FOREIGN KEY (ID_Recette) REFERENCES Recette(ID_Recette);
+
 ALTER TABLE Utilise ADD CONSTRAINT FK_Utilise_ID_Outils FOREIGN KEY (ID_Outils) REFERENCES Outils(ID_Outils);
