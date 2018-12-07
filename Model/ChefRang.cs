@@ -56,9 +56,10 @@ namespace PlatLegeretSain.Model
                 
             if (table.OrientationHorizontale) // Horizontal
             {
-                int ecart = 46, decalage = -12;
+                int ecart = 46;
                 if (haut % 2 != 0) // 2, 6, 10 places
                 {
+                    int ecart2 = 12, decalage = -12;
                     while (tour < haut && nbClientAPlacer > 0)
                     {
                         cly = cy - ecart;
@@ -73,7 +74,7 @@ namespace PlatLegeretSain.Model
                     tour = 0;
                     while (tour < bas && nbClientAPlacer > 0)
                     {
-                        cly = cy + decalage;
+                        cly = cy + ecart2;
                         clx = cx - (ecart * bas / 2 + decalage) + ecart * tour;
                         clients[clientActuel].X = clx;
                         clients[clientActuel].Y = cly;
@@ -85,7 +86,7 @@ namespace PlatLegeretSain.Model
 
                 } else // 4, 8 places
                 {
-                    int ecart2 = 14;
+                    int ecart2 = 14, decalage = 12;
                     while (tour < haut && nbClientAPlacer > 0)
                     {
                         cly = cy - ecart;

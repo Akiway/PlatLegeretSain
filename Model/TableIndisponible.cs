@@ -20,7 +20,11 @@ namespace PlatLegeretSain.Model
             }
             else
             {
-                View.Game1.Print("TestTableInDisponible");
+                foreach (Client client in clients)
+                {
+                    client.QuitterRestaurant();
+                }
+                View.Game1.Print("TableIndisponible");
             }
         }
     }

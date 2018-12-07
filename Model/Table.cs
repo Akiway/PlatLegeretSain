@@ -7,7 +7,7 @@ namespace PlatLegeretSain.Model
 {
     public class Table
     {
-        public Table(int numero, int rang, int carre, int nbPlace, int x, int y, bool orientation, bool etat)
+        public Table(int numero, int rang, int carre, int nbPlace, int x, int y, bool orientation, bool disponibilite)
         {
             this.Numero = numero;
             this.Rang = rang;
@@ -16,7 +16,7 @@ namespace PlatLegeretSain.Model
             this.X = x;
             this.Y = y;
             this.OrientationHorizontale = orientation;
-            this.Etat = etat;
+            this.Disponible = disponibilite;
         }
 
         public int Carre { get; set; }
@@ -26,7 +26,7 @@ namespace PlatLegeretSain.Model
         public int X { get; set; }
         public int Y { get; set; }
         public bool OrientationHorizontale { get; set; }
-        public bool Etat { get; set; }
+        public bool Disponible { get; set; }
 
         public bool DessertApres { get; set; }
 

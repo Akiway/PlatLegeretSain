@@ -43,33 +43,13 @@ namespace PlatLegeretSain.Model
             Serveur2 = new Serveur(2, 1130, 200);
             Employes.Add(Serveur1);
             Employes.Add(Serveur2);
-            /*
-            for(int x = 1; x < 11; x++)
-            {
-                Tables.Add(new Table(2, x, "disponible"));
-            }
-            for (int x = 11; x < 21; x++)
-            {
-                Tables.Add(new Table(4, x, "disponible"));
-            }
-            for (int x = 21; x < 26; x++)
-            {
-                Tables.Add(new Table(6, x, "disponible"));
-            }
-            for (int x = 26; x < 31; x++)
-            {
-                Tables.Add(new Table(8, x, "disponible"));
-            }
-            Tables.Add(new Table(10, 31, "disponible"));
-            Tables.Add(new Table(10, 32, "disponible"));*/
 
             Tables = Database.Instance().GetTables();
-            View.Game1.Print(Tables.Count.ToString());
+
             MH.appelerChefRang();
 
             GenererReservation();
-
-            View.Game1.Print(Reservations.Count.ToString());
+            
             foreach (var res in Reservations)
             {
                 View.Game1.Print("Res : " + res.NbClient + " clients à " + res.Heure);
@@ -78,10 +58,9 @@ namespace PlatLegeretSain.Model
             //View.Game1.Print(Reservations.Find(x => x.Table.Equals("front")).GetType().Name.ToString());
 
             Thread threadReservation = new Thread(new ThreadStart(ThreadReservation));
+            threadReservation.Start();
             Thread threadClientAleatoire = new Thread(new ThreadStart(ThreadClientAleatoire));
             threadClientAleatoire.Start();
-
-            threadReservation.Start();
         }
 
 
@@ -94,7 +73,7 @@ namespace PlatLegeretSain.Model
                 {
                     if ((res.Heure.Hour + ":" + res.Heure.Minute) == Time)
                     {
-                        Restaurant.GRCT.CreationClient(res.numTable, res.NbClient);
+                        Restaurant.GRCT.CreationClient(res.numTable, res.NbClient, Thread.CurrentThread);
                         NbReservation--;
                     }
                 }
@@ -108,14 +87,14 @@ namespace PlatLegeretSain.Model
             {
                 //Thread.Sleep(300000); // 5 min
 
-                Thread.Sleep(1000); // 30 sec
+                Thread.Sleep(1000); // 1 sec
                 Random random = new Random();
                 bool boolValue = Convert.ToBoolean(random.Next() % 2);
 
                 if (boolValue == true)
                 {
                     int nbClient = new Random().Next(1, 10);
-                    GRCT.CreationClient(0, nbClient);
+                    GRCT.CreationClient(0, nbClient, Thread.CurrentThread);
                 }
             }
         }

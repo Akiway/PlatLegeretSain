@@ -4,7 +4,7 @@
  * Contains references to each image within the sprite sheet.
  *
  * https://www.codeandweb.com/texturepacker
- * $TexturePacker:SmartUpdate:dd8901be44074168b05becf940320ef5:2989c4f83fc51eb2b4a0be79d84d45a2:392bb42978da344af36d8fe9bbfcaedc$
+ * $TexturePacker:SmartUpdate:abfdf6c5bf4b20c12ba8b775c69af5a7:65238f68b03627550ecc7ccdc8669641:392bb42978da344af36d8fe9bbfcaedc$
  *
  */
 namespace TexturePackerMonoGameDefinitions
@@ -24,6 +24,7 @@ namespace TexturePackerMonoGameDefinitions
 		public const string Mh_front = "Mh_front";
 		public const string Mh_left = "Mh_left";
 		public const string Mh_right = "Mh_right";
+		public const string Nyancat = "nyancat";
 		public const string Restaurant = "Restaurant";
 		public const string Serveur_back = "Serveur_back";
 		public const string Serveur_front = "Serveur_front";
