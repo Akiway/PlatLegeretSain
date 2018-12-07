@@ -31,16 +31,20 @@ namespace PlatLegeretSain.Model
             int nbClient = Restaurant.Clients.FindAll(x => x.numTable.Equals(numTable)).Count;
             View.Game1.Print("----------------------------");
             View.Game1.Print("Je place "+nbClient+" client à la table numéro : "+numTable);
+            donnerCarte();
         }
 
         public void donnerCarte()
         {
-            throw new System.NotImplementedException();
+            View.Game1.Print("Donne la carte aux clients");
+            // Après 5 min :
+            prendreCommande();
         }
 
         public void prendreCommande()
         {
-            throw new System.NotImplementedException();
+            View.Game1.Print("Prend la commande");
+
         }
 
         public void notifier()
