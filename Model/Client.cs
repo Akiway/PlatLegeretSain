@@ -32,7 +32,7 @@ namespace PlatLegeretSain.Model
             this.clientState = new WaitForTable();
         }
 
-        public void MangageClient()
+        public void ManageClient()
         {
             clientState.ManageClient(this);
         }
@@ -40,6 +40,7 @@ namespace PlatLegeretSain.Model
         public void setState(IClientState newState)
         {
             this.clientState = newState;
+            ManageClient();
         }
 
         public void MoveUp(int distance)

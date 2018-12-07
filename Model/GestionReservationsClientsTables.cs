@@ -29,10 +29,13 @@ namespace PlatLegeretSain.Model
 
             int numGroup = Restaurant.groupList.FindLast(n => n < 10000) + 1;
             Restaurant.groupList.Add(numGroup);
+
             for (int x = 0; x < nbClient; x++)
             {
-                Restaurant.Clients.Add(new Client(numGroup));
-                listClient.Add(new Client(numGroup));
+                Client newClient = new Client(numGroup);
+                Restaurant.Clients.Add(newClient);
+                listClient.Add(newClient);
+
             }
 
             // Déplace les nouveaux clients jusqu'à l'accueil
@@ -79,7 +82,7 @@ namespace PlatLegeretSain.Model
             foreach (Client element in Restaurant.Clients.FindAll(x => x.numTable.Equals(0)))
             {
                 element.numTable = numTable;
-                element.clientState = new WaitForTable();
+                element.setState(new WaitForTable());
             }
 
             //Vérifie s'il reste toujours des places

@@ -10,7 +10,7 @@ namespace PlatLegeretSain.Model
     {
         public void ManageClient(Client context)
         {
-            // Client where state = attentetable
+            Restaurant.CR1.installerClient(context.numTable);
         }
     }
 }

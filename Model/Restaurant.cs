@@ -58,7 +58,7 @@ namespace PlatLegeretSain.Model
             //View.Game1.Print(Reservations.Find(x => x.Table.Equals("front")).GetType().Name.ToString());
 
             Thread threadReservation = new Thread(new ThreadStart(ThreadReservation));
-            threadReservation.Start();
+            //threadReservation.Start();
             Thread threadClientAleatoire = new Thread(new ThreadStart(ThreadClientAleatoire));
             threadClientAleatoire.Start();
         }

@@ -22,6 +22,7 @@ namespace PlatLegeretSain.Controller
 
             Controller.Key keyController = new Controller.Key();
 
+            
             Model.Restaurant.Tables[0].GererCommande();
             View.Game1.Print("-------------------------------");
             View.Game1.Print("Commande 1 -> e : " + Model.Restaurant.commandes[0].e + " / p : " + Model.Restaurant.commandes[0].p + " / d :" + Model.Restaurant.commandes[0].d);
