@@ -114,6 +114,11 @@ namespace PlatLegeretSain.View
                 DrawImage(employe.img + employe.orientation, employe.X, employe.Y);
             }
 
+            foreach(Model.Client client in Model.Restaurant.Clients)
+            {
+                DrawImage(client.img + client.orientation, client.X, client.Y);
+            }
+
             if (gameTime.TotalGameTime.TotalSeconds % 2 != 0) // Affiche une fois sur 2
                 //Print(Model.Restaurant.Clients.Count.ToString());
 
