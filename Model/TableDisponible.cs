@@ -7,11 +7,6 @@ namespace PlatLegeretSain.Model
 {
     public class TableDisponible : IFreeTable
     {
-        public TableDisponible()
-        {
-            //throw new System.NotImplementedException();
-        }
-
         public void AccueillirClient(IFreeTable etatTable, int numeroTable, List<Client> clients)
         {
             if (numeroTable != 0)

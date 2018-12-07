@@ -10,7 +10,14 @@ namespace PlatLegeretSain.Model
     {
         public void ManageClient(Client context)
         {
-            throw new NotImplementedException();
+            if (context.numTable <= Restaurant.Tables.Count / 2)
+            {
+                Restaurant.CR1.prendreCommande(context.numTable);
+            }
+            else
+            {
+                Restaurant.CR2.prendreCommande(context.numTable);
+            }
         }
     }
 }

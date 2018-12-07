@@ -67,11 +67,9 @@
     <Compile Include="Model\WaitForTable.cs" />
     <Compile Include="View\Game1.cs" />
     <Compile Include="Model\Ingrédient.cs" />
-    <Compile Include="Model\IObservateur.cs" />
     <Compile Include="Model\IFreeTable.cs" />
     <Compile Include="Model\MaitreHotel.cs" />
     <Compile Include="Model\Materiel.cs" />
-    <Compile Include="Model\Observateur.cs" />
     <Compile Include="Model\Plat.cs" />
     <Compile Include="Model\Plongeur.cs" />
     <Compile Include="Model\PositionPossible.cs" />

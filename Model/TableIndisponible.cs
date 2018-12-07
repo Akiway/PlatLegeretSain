@@ -7,11 +7,6 @@ namespace PlatLegeretSain.Model
 {
     public class TableIndisponible : IFreeTable
     {
-        public TableIndisponible()
-        {
-            //throw new System.NotImplementedException();
-        }
-
         public void AccueillirClient(IFreeTable etatTable, int numeroTable, List<Client> clients)
         {
             if (numeroTable != 0)
@@ -24,7 +19,6 @@ namespace PlatLegeretSain.Model
                 {
                     client.QuitterRestaurant();
                 }
-                View.Game1.Print("TableIndisponible");
             }
         }
     }

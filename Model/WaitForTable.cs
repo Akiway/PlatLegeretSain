@@ -10,7 +10,14 @@ namespace PlatLegeretSain.Model
     {
         public void ManageClient(Client context)
         {
-            Restaurant.CR1.installerClient(context.numTable);
+            if(context.numTable <= Restaurant.Tables.Count / 2)
+            {
+                Restaurant.CR1.installerClient(context.numTable);
+            }
+            else
+            {
+                Restaurant.CR2.installerClient(context.numTable);
+            }
         }
     }
 }

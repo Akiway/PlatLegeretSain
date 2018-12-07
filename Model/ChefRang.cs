@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PlatLegeretSain.Model
 {
-    public class ChefRang : Employe, IObservateur
+    public class ChefRang : Employe
     {
         private int Carre { get; set; }
 
@@ -29,8 +29,8 @@ namespace PlatLegeretSain.Model
         public void installerClient(int numTable)
         {
             int nbClient = Restaurant.Clients.FindAll(x => x.numTable.Equals(numTable)).Count;
-            View.Game1.Print("----------------------------");
-            View.Game1.Print("Je place "+nbClient+" client à la table numéro : "+numTable);
+            //View.Game1.Print("----------------------------");
+            //View.Game1.Print("Je place "+nbClient+" client à la table numéro : "+numTable);
 
             DeplacerClient(Restaurant.Tables.Find(x => x.Numero.Equals(numTable)), nbClient);
             foreach (Client client in Restaurant.Clients.FindAll(x => x.numTable.Equals(numTable)))
@@ -176,20 +176,14 @@ namespace PlatLegeretSain.Model
 
         public void donnerCarte()
         {
-            View.Game1.Print("Donne la carte aux clients");
+            // img du client a modifier 
             // Après 5 min :
-            prendreCommande();
+            // Etat du client = pret pour la commande
         }
 
-        public void prendreCommande()
+        public void prendreCommande(int numTable)
         {
-            View.Game1.Print("Prend la commande");
-
-        }
-
-        public void notifier()
-        {
-            throw new System.NotImplementedException();
+            //View.Game1.Print("Prend la commande");
         }
     }
 }

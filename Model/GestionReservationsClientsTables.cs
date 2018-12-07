@@ -59,14 +59,16 @@ namespace PlatLegeretSain.Model
             bool findTable = false;
             int numTable = 0;
             // Tant que toutes les tables sont pas vérifiées ou qu'une table n'est pas trouvéé :
+
             for (int i = nbClient; i < 11 && findTable == false; i++)
             {
                 List<Table> listTables = new List<Table>();
                 listTables = Restaurant.Tables.FindAll(x => x.NbPlace.Equals(i));
                 if (listTables.FindAll(x => x.Disponible.Equals(true)).Count != 0)
                 {
+                    listTables = listTables.FindAll(x => x.Disponible.Equals(true));
                     // Récupération de l'objet Table de la table disponible
-                    Table table = listTables.Find(x => x.Disponible.Equals(true));
+                    Table table = listTables[0];
                     // Indique que la table n'est plus disponible
                     table.Disponible = false;
                     findTable = true;

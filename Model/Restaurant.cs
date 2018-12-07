@@ -85,8 +85,6 @@ namespace PlatLegeretSain.Model
         {
             while (true)
             {
-                //Thread.Sleep(300000); // 5 min
-
                 Thread.Sleep(1000); // 1 sec
                 Random random = new Random();
                 bool boolValue = Convert.ToBoolean(random.Next() % 2);
