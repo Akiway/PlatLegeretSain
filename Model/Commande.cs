@@ -7,29 +7,22 @@ namespace PlatLegeretSain.Model
 {
     public class Commande
     {
-        public Entree Entree
+        public Commande(String entree, String plat, String dessert)
         {
-            get => default(Entree);
-            set
-            {
-            }
+            this.e = entree;
+            this.p = plat;
+            this.d = dessert;
         }
 
-        public Plat Plat
-        {
-            get => default(Plat);
-            set
-            {
-            }
-        }
+        public string e;
+        public string p;
+        public string d;
 
-        public Dessert Dessert
-        {
-            get => default(Dessert);
-            set
-            {
-            }
-        }
+        public Entree Entree { get; set; }
+
+        public Plat Plat { get; set; }
+
+        public Dessert Dessert { get; set; }
 
         private Table Table
         {
