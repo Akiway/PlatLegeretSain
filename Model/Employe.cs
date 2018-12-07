@@ -24,24 +24,28 @@ namespace PlatLegeretSain.Model
         {
             this.orientation = "back";
             this.Y -= distance;
+            Console.WriteLine("x: " + this.X + "y: " + this.Y);
         }
 
         public void MoveDown(int distance)
         {
             this.orientation = "front";
             this.Y += distance;
+            Console.WriteLine("x: " + this.X + "y: " + this.Y);
         }
 
         public void MoveLeft(int distance)
         {
             this.orientation = "left";
             this.X -= distance;
+            Console.WriteLine("x: " + this.X + "y: " + this.Y);
         }
 
         public void MoveRight(int distance)
         {
             this.orientation = "right";
             this.X += distance;
+            Console.WriteLine("x: " + this.X + "y: " + this.Y);
         }
 
         public List<PositionPossible> positionsPossibles

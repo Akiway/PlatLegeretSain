@@ -21,7 +21,7 @@ namespace PlatLegeretSain.Model
             else
             {
                 // S'il reste des places
-                if (Restaurant.Tables.FindAll(x => x.etat.Equals("disponible")).Count != 0)
+                if (Restaurant.Tables.FindAll(x => x.Etat.Equals("disponible")).Count != 0)
                 {
                     int nbClient = clients.Count;
                     int numTable = Restaurant.GRCT.CheckTableDisponibility(nbClient);

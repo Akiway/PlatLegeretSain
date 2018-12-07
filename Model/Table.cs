@@ -7,23 +7,27 @@ namespace PlatLegeretSain.Model
 {
     public class Table
     {
-        public Table(int nbPlace, int numero, String etat)
+        public Table(int numero, int rang, int carre, int nbPlace, int x, int y, bool orientation, bool etat)
         {
-            this.numero = numero;
-            this.etat = etat;
-            this.nbPlace = nbPlace;
+            this.Numero = numero;
+            this.Rang = rang;
+            this.Carre = carre;
+            this.NbPlace = nbPlace;
+            this.X = x;
+            this.Y = y;
+            this.OrientationHorizontale = orientation;
+            this.Etat = etat;
         }
 
-        private int carre { get; set; }
+        public int Carre { get; set; }
+        public int Rang { get; set; }
+        public int NbPlace { get; set; }
+        public int Numero { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
+        public bool OrientationHorizontale { get; set; }
+        public bool Etat { get; set; }
 
-        private int rang { get; set; }
-
-        public int nbPlace { get; set; }
-
-        public int numero { get; set; }
-
-        public string etat { get; set; }
-
-        private List<Client> clients { get; set; }
+        private List<Client> Clients { get; set; }
     }
 }

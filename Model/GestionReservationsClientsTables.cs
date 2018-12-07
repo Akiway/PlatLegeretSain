@@ -48,15 +48,15 @@ namespace PlatLegeretSain.Model
             for (int i = nbClient; i < 11 && findTable == false; i++)
             {
                 List<Table> listTables = new List<Table>();
-                listTables = Restaurant.Tables.FindAll(x => x.nbPlace.Equals(i));
-                if (listTables.FindAll(x => x.etat.Equals("disponible")).Count != 0)
+                listTables = Restaurant.Tables.FindAll(x => x.NbPlace.Equals(i));
+                if (listTables.FindAll(x => x.Etat.Equals(true)).Count != 0)
                 {
                     // Récupération de l'objet Table de la table disponible
-                    Table table = listTables.Find(x => x.etat.Equals("disponible"));
+                    Table table = listTables.Find(x => x.Etat.Equals(true));
                     // Indique que la table n'est plus disponible
-                    table.etat = "indisponible";
+                    table.Etat = false;
                     findTable = true;
-                    numTable = table.numero;
+                    numTable = table.Numero;
                 }
             }
             return numTable;
@@ -81,7 +81,7 @@ namespace PlatLegeretSain.Model
             }
 
             //Vérifie s'il reste toujours des places
-            if (Restaurant.Tables.FindAll(x => x.etat.Equals("disponible")).Count == 0)
+            if (Restaurant.Tables.FindAll(x => x.Etat.Equals("disponible")).Count == 0)
             {
                 Restaurant.MH.setState(new TableIndisponible());
             }

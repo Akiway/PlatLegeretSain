@@ -4,13 +4,17 @@
  * Contains references to each image within the sprite sheet.
  *
  * https://www.codeandweb.com/texturepacker
- * $TexturePacker:SmartUpdate:ba3be9e89a851bd80266811cff8825c2:9920e66c2bc1e0a8f008be2dee3c9071:392bb42978da344af36d8fe9bbfcaedc$
+ * $TexturePacker:SmartUpdate:dd8901be44074168b05becf940320ef5:2989c4f83fc51eb2b4a0be79d84d45a2:392bb42978da344af36d8fe9bbfcaedc$
  *
  */
 namespace TexturePackerMonoGameDefinitions
 {
 	public class PLSsprites
 	{
+		public const string Client_back = "Client_back";
+		public const string Client_front = "Client_front";
+		public const string Client_left = "Client_left";
+		public const string Client_right = "Client_right";
 		public const string Cr_back = "Cr_back";
 		public const string Cr_front = "Cr_front";
 		public const string Cr_left = "Cr_left";

@@ -21,7 +21,7 @@ namespace PlatLegeretSain.Model
         public static List<Employe> Employes = new List<Employe>();
         public static List<Client> Clients = new List<Client>();
         public static List<Reservation> Reservations = new List<Reservation>();
-        public static List<Table> Tables = new List<Table>();
+        public static List<Table> Tables = null;
         public static ChefRang CR1, CR2;
         public static Serveur Serveur1, Serveur2;
         public static string Time { get; set; }
@@ -41,7 +41,7 @@ namespace PlatLegeretSain.Model
             Serveur2 = new Serveur(2, 1130, 200);
             Employes.Add(Serveur1);
             Employes.Add(Serveur2);
-
+            /*
             for(int x = 1; x < 11; x++)
             {
                 Tables.Add(new Table(2, x, "disponible"));
@@ -59,8 +59,10 @@ namespace PlatLegeretSain.Model
                 Tables.Add(new Table(8, x, "disponible"));
             }
             Tables.Add(new Table(10, 31, "disponible"));
-            Tables.Add(new Table(10, 32, "disponible"));
+            Tables.Add(new Table(10, 32, "disponible"));*/
 
+            Tables = Database.Instance().GetTables();
+            View.Game1.Print(Tables.Count.ToString());
             MH.appelerChefRang();
 
             GenererReservation();
@@ -126,7 +128,7 @@ namespace PlatLegeretSain.Model
 
         public static Table GetTable(int numTable)
         {
-            Table table = Restaurant.Tables.Find(x => x.numero.Equals(numTable));
+            Table table = Restaurant.Tables.Find(x => x.Numero.Equals(numTable));
             return table;
         }
     }
