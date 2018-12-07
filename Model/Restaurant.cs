@@ -26,6 +26,8 @@ namespace PlatLegeretSain.Model
         public static Serveur Serveur1, Serveur2;
         public static string Time { get; set; }
 
+        public static List<Commande> commandes = new List<Commande>();
+
         public static List<int> groupList = new List<int>();
 
         private Restaurant()
