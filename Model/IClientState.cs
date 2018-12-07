@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
 namespace PlatLegeretSain.Model
 {
-    public interface IEtatTable
+    public interface IClientState
     {
-        void AccueillirClient(IEtatTable etatTable, int numeroTable, List<Client> clients);
+        void ManageClient(Client context);
     }
 }

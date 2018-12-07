@@ -73,7 +73,7 @@ namespace PlatLegeretSain.Model
                 {
                     if ((res.Heure.Hour + ":" + res.Heure.Minute) == Time)
                     {
-                        Restaurant.GRCT.CreationClient(res.numTable, res.NbClient, Thread.CurrentThread);
+                        GRCT.CreationClient(res.numTable, res.NbClient, Thread.CurrentThread);
                         NbReservation--;
                     }
                 }

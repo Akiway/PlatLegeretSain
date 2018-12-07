@@ -26,7 +26,7 @@ namespace PlatLegeretSain.Model
         }
 
         public int table { get; set; }
-        private IEtatTable etatTable { get; set; }
+        private IFreeTable etatTable { get; set; }
 
         public MaitreHotel MaitreHotel1 { get; set; }
 
@@ -42,7 +42,7 @@ namespace PlatLegeretSain.Model
             Restaurant.CR1.MoveRight(100);
         }
 
-        public void setState(IEtatTable newEtat)
+        public void setState(IFreeTable newEtat)
         {
             this.etatTable = newEtat;
         }

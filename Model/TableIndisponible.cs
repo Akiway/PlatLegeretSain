@@ -5,14 +5,14 @@ using System.Text;
 
 namespace PlatLegeretSain.Model
 {
-    public class TableIndisponible : IEtatTable
+    public class TableIndisponible : IFreeTable
     {
         public TableIndisponible()
         {
             //throw new System.NotImplementedException();
         }
 
-        public void AccueillirClient(IEtatTable etatTable, int numeroTable, List<Client> clients)
+        public void AccueillirClient(IFreeTable etatTable, int numeroTable, List<Client> clients)
         {
             if (numeroTable != 0)
             {

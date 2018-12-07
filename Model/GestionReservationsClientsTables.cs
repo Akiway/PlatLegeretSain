@@ -50,7 +50,6 @@ namespace PlatLegeretSain.Model
             listClient.Clear();
         }
 
-
         //Vérifie si une table est disponible et renvoi son numéro
         public int CheckTableDisponibility(int nbClient)
         {
@@ -76,20 +75,11 @@ namespace PlatLegeretSain.Model
 
         public void TableAssignment(int numTable)
         {
-            // Affection du numéro de la table aux clients
+            // Affection du numéro de la table aux clients et mofication de leur état en "AttenteTable"
             foreach (Client element in Restaurant.Clients.FindAll(x => x.numTable.Equals(0)))
             {
                 element.numTable = numTable;
-            }
-
-            // Appelle le bon Chef de rang
-            if (numTable <= (Restaurant.Tables.Count) / 2)
-            {
-                Restaurant.CR1.installerClient(numTable);
-            }
-            else
-            {
-                Restaurant.CR2.installerClient(numTable);
+                element.clientState = new WaitForTable();
             }
 
             //Vérifie s'il reste toujours des places
