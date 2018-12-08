@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PlatLegeretSain.Model
 {
-    public class Serveur : Employe, IObservateur
+    public class Serveur : Employe
     {
         private int Carre { get; set; }
 

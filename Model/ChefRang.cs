@@ -6,7 +6,7 @@ using System.Threading;
 
 namespace PlatLegeretSain.Model
 {
-    public class ChefRang : Employe, IObservateur
+    public class ChefRang : Employe
     {
         private int Carre { get; set; }
 
@@ -30,8 +30,8 @@ namespace PlatLegeretSain.Model
         public void installerClient(int numTable)
         {
             int nbClient = Restaurant.Clients.FindAll(x => x.numTable.Equals(numTable)).Count;
-            View.Game1.Print("----------------------------");
-            View.Game1.Print("Je place "+nbClient+" client à la table numéro : "+numTable);
+            //View.Game1.Print("----------------------------");
+            //View.Game1.Print("Je place "+nbClient+" client à la table numéro : "+numTable);
 
             DeplacerClient(Restaurant.Tables.Find(x => x.Numero.Equals(numTable)), nbClient);
         }
@@ -182,18 +182,13 @@ namespace PlatLegeretSain.Model
             {
                 client.imgEtat = "table_";
             }
-            prendreCommande();
+            // Etat du client = pret pour la commande
+            //prendreCommande();
         }
 
-        public void prendreCommande()
+        public void prendreCommande(int numTable)
         {
-            View.Game1.Print("Prend la commande");
-
-        }
-
-        public void notifier()
-        {
-            throw new System.NotImplementedException();
+            //View.Game1.Print("Prend la commande");
         }
     }
 }

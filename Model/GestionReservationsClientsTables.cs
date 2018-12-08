@@ -29,11 +29,13 @@ namespace PlatLegeretSain.Model
 
             int numGroup = Restaurant.groupList.FindLast(n => n < 10000) + 1;
             Restaurant.groupList.Add(numGroup);
+
             for (int x = 0; x < nbClient; x++)
             {
-                Client NewClient = new Client(numGroup);
-                Restaurant.Clients.Add(NewClient);
-                listClient.Add(NewClient);
+                Client newClient = new Client(numGroup);
+                Restaurant.Clients.Add(newClient);
+                listClient.Add(newClient);
+
             }
 
             // Déplace les nouveaux clients jusqu'à l'accueil
@@ -51,7 +53,6 @@ namespace PlatLegeretSain.Model
             listClient.Clear();
         }
 
-
         //Vérifie si une table est disponible et renvoi son numéro
         public int CheckTableDisponibility(int nbClient)
         {
@@ -64,8 +65,9 @@ namespace PlatLegeretSain.Model
                 listTables = Restaurant.Tables.FindAll(x => x.NbPlace.Equals(i));
                 if (listTables.FindAll(x => x.Disponible.Equals(true)).Count != 0)
                 {
+                    listTables = listTables.FindAll(x => x.Disponible.Equals(true));
                     // Récupération de l'objet Table de la table disponible
-                    Table table = listTables.Find(x => x.Disponible.Equals(true));
+                    Table table = listTables[0];
                     // Indique que la table n'est plus disponible
                     table.Disponible = false;
                     findTable = true;
@@ -77,20 +79,11 @@ namespace PlatLegeretSain.Model
 
         public void TableAssignment(int numTable)
         {
-            // Affection du numéro de la table aux clients
+            // Affection du numéro de la table aux clients et mofication de leur état en "AttenteTable"
             foreach (Client element in Restaurant.Clients.FindAll(x => x.numTable.Equals(0)))
             {
                 element.numTable = numTable;
-            }
-
-            // Appelle le bon Chef de rang
-            if (numTable <= (Restaurant.Tables.Count) / 2)
-            {
-                Restaurant.CR1.installerClient(numTable);
-            }
-            else
-            {
-                Restaurant.CR2.installerClient(numTable);
+                element.setState(new WaitForTable());
             }
 
             //Vérifie s'il reste toujours des places

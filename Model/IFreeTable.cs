@@ -5,8 +5,8 @@ using System.Text;
 
 namespace PlatLegeretSain.Model
 {
-    public interface IEtatTable
+    public interface IFreeTable
     {
-        void AccueillirClient(IEtatTable etatTable, int numeroTable, List<Client> clients);
+        void AccueillirClient(IFreeTable etatTable, int numeroTable, List<Client> clients);
     }
 }

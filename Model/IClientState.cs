@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
 namespace PlatLegeretSain.Model
 {
-    public interface IObservateur
+    public interface IClientState
     {
-        void notifier();
+        void ManageClient(Client context);
     }
 }

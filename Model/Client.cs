@@ -13,12 +13,14 @@ namespace PlatLegeretSain.Model
         public string img { get; set; }
         public string imgEtat { get; set; }
         public string orientation { get; set; }
-        public Client client;
         private int vitesse { get; set; }
         public int groupe { get; set; }
         public int numTable = 0;
         public Commande Commande { get; set; }
         private Reservation Reservation { get; set; }
+        public Observateur Observateur { get; set; }
+        public Client client;
+        public IClientState clientState { get; set; }
 
         public Client(int numGroup)
         {
@@ -29,6 +31,18 @@ namespace PlatLegeretSain.Model
             this.imgEtat = "";
             this.orientation = "back";
             this.client = this;
+            this.clientState = new WaitForTable();
+        }
+
+        public void ManageClient()
+        {
+            clientState.ManageClient(this);
+        }
+
+        public void setState(IClientState newState)
+        {
+            this.clientState = newState;
+            ManageClient();
         }
 
         public void MoveUp(int distance)
@@ -54,9 +68,6 @@ namespace PlatLegeretSain.Model
             this.X += distance;
             this.orientation = "right";
         }
-
-
-        public Observateur Observateur { get; set; }
 
         public void NotifierObservateur()
         {
