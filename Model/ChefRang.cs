@@ -171,7 +171,7 @@ namespace PlatLegeretSain.Model
         {
             List<Client> clients = (List<Client>) args;
 
-            View.Game1.Print("Donne la carte aux clients");
+            //View.Game1.Print("Donne la carte aux clients");
             foreach (Client client in clients)
             {
                 client.imgEtat = "carte_";

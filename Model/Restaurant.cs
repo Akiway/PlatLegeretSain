@@ -60,21 +60,24 @@ namespace PlatLegeretSain.Model
             //View.Game1.Print(Reservations.Find(x => x.Table.Equals("front")).GetType().Name.ToString());
 
             Thread threadReservation = new Thread(new ThreadStart(ThreadReservation));
-            //threadReservation.Start();
+            threadReservation.Start();
             Thread threadClientAleatoire = new Thread(new ThreadStart(ThreadClientAleatoire));
             threadClientAleatoire.Start();
         }
+        //View.Game1.Print(res.NbClient + "clients pour la table " + res.numTable);
 
 
         public static void ThreadReservation()
         {
             int NbReservation = Reservations.Count;
-            while(NbReservation > 0)
+            // Tant qu'il reste des réservations et que le thread actuel est vivant
+            while(NbReservation > 0 && Thread.CurrentThread.IsAlive)
             {
                 foreach (Reservation res in Reservations)
                 {
                     if ((res.Heure.Hour + ":" + res.Heure.Minute) == Time)
                     {
+                        View.Game1.Print("La réservation de la table " + res.numTable + " pour " + res.NbClient + " personnes vient d'arriver");
                         GRCT.CreationClient(res.numTable, res.NbClient, Thread.CurrentThread);
                         NbReservation--;
                     }
@@ -85,7 +88,8 @@ namespace PlatLegeretSain.Model
 
         public static void ThreadClientAleatoire()
         {
-            while (true)
+            // Tant que le thread actuel est vivant
+            while (Thread.CurrentThread.IsAlive)
             {
                 Thread.Sleep(1000); // 1 sec
                 Random random = new Random();
@@ -101,7 +105,7 @@ namespace PlatLegeretSain.Model
 
         private static void GenererReservation()
         {
-            for (int i = 0; i < new Random().Next(1, 5); i++)
+            for (int i = 0; i < new Random().Next(4, 10); i++)
             {
                 Reservations.Add(new Reservation());
             }

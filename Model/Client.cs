@@ -75,8 +75,8 @@ namespace PlatLegeretSain.Model
 
         public void QuitterRestaurant()
         {
-            Thread threadClientAleatoire = new Thread(new ThreadStart(Sortir));
-            threadClientAleatoire.Start();
+            Thread threadQuitterRestaurant = new Thread(new ThreadStart(Sortir));
+            threadQuitterRestaurant.Start();
         }
 
         public void Sortir()
