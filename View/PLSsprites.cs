@@ -4,7 +4,7 @@
  * Contains references to each image within the sprite sheet.
  *
  * https://www.codeandweb.com/texturepacker
- * $TexturePacker:SmartUpdate:abfdf6c5bf4b20c12ba8b775c69af5a7:65238f68b03627550ecc7ccdc8669641:392bb42978da344af36d8fe9bbfcaedc$
+ * $TexturePacker:SmartUpdate:68689dbc002f5292c351827f43ef9da3:6d442e87b76cf7a901d4a9529280e765:392bb42978da344af36d8fe9bbfcaedc$
  *
  */
 namespace TexturePackerMonoGameDefinitions
@@ -12,9 +12,17 @@ namespace TexturePackerMonoGameDefinitions
 	public class PLSsprites
 	{
 		public const string Client_back = "Client_back";
+		public const string Client_carte_back = "Client_carte_back";
+		public const string Client_carte_front = "Client_carte_front";
+		public const string Client_carte_left = "Client_carte_left";
+		public const string Client_carte_right = "Client_carte_right";
 		public const string Client_front = "Client_front";
 		public const string Client_left = "Client_left";
 		public const string Client_right = "Client_right";
+		public const string Client_table_back = "Client_table_back";
+		public const string Client_table_front = "Client_table_front";
+		public const string Client_table_left = "Client_table_left";
+		public const string Client_table_right = "Client_table_right";
 		public const string Cr_back = "Cr_back";
 		public const string Cr_front = "Cr_front";
 		public const string Cr_left = "Cr_left";
@@ -24,7 +32,10 @@ namespace TexturePackerMonoGameDefinitions
 		public const string Mh_front = "Mh_front";
 		public const string Mh_left = "Mh_left";
 		public const string Mh_right = "Mh_right";
-		public const string Nyancat = "nyancat";
+		public const string Nyancat_back = "Nyancat_back";
+		public const string Nyancat_front = "Nyancat_front";
+		public const string Nyancat_left = "Nyancat_left";
+		public const string Nyancat_right = "Nyancat_right";
 		public const string Restaurant = "Restaurant";
 		public const string Serveur_back = "Serveur_back";
 		public const string Serveur_front = "Serveur_front";

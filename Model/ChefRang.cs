@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace PlatLegeretSain.Model
 {
@@ -33,37 +34,32 @@ namespace PlatLegeretSain.Model
             View.Game1.Print("Je place "+nbClient+" client à la table numéro : "+numTable);
 
             DeplacerClient(Restaurant.Tables.Find(x => x.Numero.Equals(numTable)), nbClient);
-            foreach (Client client in Restaurant.Clients.FindAll(x => x.numTable.Equals(numTable)))
-            {
-                //Restaurant.Tables.Find(x => x.Numero.Equals(numTable));
-            }
         }
 
         private void DeplacerClient(Table table, int nbClientAPlacer)
         {
             List<Client> clients = Restaurant.Clients.FindAll(x => x.numTable.Equals(table.Numero));
-            //foreach (Client client in Restaurant.Clients.FindAll(x => x.numTable.Equals(table.Numero)))
-            //{
+            foreach (Client client in Restaurant.Clients.FindAll(x => x.numTable.Equals(table.Numero)))
+            {
+                client.imgEtat = "table_";
+            }
             int nbPlaces = table.NbPlace;
-            int haut = nbPlaces / 2;
-            int bas = nbPlaces / 2;
+            int half = nbPlaces / 2;
             int cx = table.X;
             int cy = table.Y;
             int clx, cly;
             int tour = 0;
             int clientActuel = 0;
+            int ecart = 46, decalage = ecart / 2;
 
-                
             if (table.OrientationHorizontale) // Horizontal
             {
-                int ecart = 46;
-                if (haut % 2 != 0) // 2, 6, 10 places
+                if (half % 2 != 0) // 2, 6, 10 places
                 {
-                    int ecart2 = 12, decalage = -12;
-                    while (tour < haut && nbClientAPlacer > 0)
+                    while (tour < half && nbClientAPlacer > 0)
                     {
-                        cly = cy - ecart;
-                        clx = cx - (ecart * haut / 2 + decalage) + ecart * tour;
+                        cly = cy - decalage;
+                        clx = cx - (ecart * half / 2 - decalage) + ecart * tour;
                         clients[clientActuel].X = clx;
                         clients[clientActuel].Y = cly;
                         clients[clientActuel].orientation = "front";
@@ -72,10 +68,10 @@ namespace PlatLegeretSain.Model
                         clientActuel++;
                     }
                     tour = 0;
-                    while (tour < bas && nbClientAPlacer > 0)
+                    while (tour < half && nbClientAPlacer > 0)
                     {
-                        cly = cy + ecart2;
-                        clx = cx - (ecart * bas / 2 + decalage) + ecart * tour;
+                        cly = cy + decalage;
+                        clx = cx - (ecart * half / 2 - decalage) + ecart * tour;
                         clients[clientActuel].X = clx;
                         clients[clientActuel].Y = cly;
                         clients[clientActuel].orientation = "back";
@@ -86,11 +82,10 @@ namespace PlatLegeretSain.Model
 
                 } else // 4, 8 places
                 {
-                    int ecart2 = 14, decalage = 12;
-                    while (tour < haut && nbClientAPlacer > 0)
+                    while (tour < half && nbClientAPlacer > 0)
                     {
-                        cly = cy - ecart;
-                        clx = cx + ecart2 + (tour - haut / 2) * ecart;
+                        cly = cy - decalage;
+                        clx = cx + decalage + (tour - half / 2) * ecart;
                         clients[clientActuel].X = clx;
                         clients[clientActuel].Y = cly;
                         clients[clientActuel].orientation = "front";
@@ -99,10 +94,10 @@ namespace PlatLegeretSain.Model
                         clientActuel++;
                     }
                     tour = 0;
-                    while (tour < bas && nbClientAPlacer > 0)
+                    while (tour < half && nbClientAPlacer > 0)
                     {
                         cly = cy + decalage;
-                        clx = cx + ecart2 + (tour - bas / 2) * ecart;
+                        clx = cx + decalage + (tour - half / 2) * ecart;
                         clients[clientActuel].X = clx;
                         clients[clientActuel].Y = cly;
                         clients[clientActuel].orientation = "back";
@@ -114,14 +109,12 @@ namespace PlatLegeretSain.Model
 
             } else // Vertical
             {
-                int ecart = 46, decalageX = 14, decalageX2 = 38;
-                if (haut % 2 != 0) // 2, 6, 10 places
+                if (half % 2 != 0) // 2, 6, 10 places
                 {
-                    int decalage = 14;
-                    while (tour < haut && nbClientAPlacer > 0)
+                    while (tour < half && nbClientAPlacer > 0)
                     {
-                        clx = cx + decalageX;
-                        cly = cy - decalage - (tour - (haut - 1) / 2) * ecart;
+                        clx = cx + decalage;
+                        cly = cy - (tour - (half - 1) / 2) * ecart;
                         clients[clientActuel].X = clx;
                         clients[clientActuel].Y = cly;
                         clients[clientActuel].orientation = "left";
@@ -130,10 +123,10 @@ namespace PlatLegeretSain.Model
                         clientActuel++;
                     }
                     tour = 0;
-                    while (tour < bas && nbClientAPlacer > 0)
+                    while (tour < half && nbClientAPlacer > 0)
                     {
-                        clx = cx - decalageX2;
-                        cly = cy - decalage - (tour - (bas - 1) / 2) * ecart;
+                        clx = cx - decalage;
+                        cly = cy - (tour - (half - 1) / 2) * ecart;
                         clients[clientActuel].X = clx;
                         clients[clientActuel].Y = cly;
                         clients[clientActuel].orientation = "right";
@@ -144,11 +137,10 @@ namespace PlatLegeretSain.Model
                 }
                 else // 4, 8 places
                 {
-                    int decalage = 4;
-                    while (tour < haut && nbClientAPlacer > 0)
+                    while (tour < half && nbClientAPlacer > 0)
                     {
-                        clx = cx + decalageX;
-                        cly = cy + decalage + (tour - bas / 2) * ecart;
+                        clx = cx + decalage;
+                        cly = cy + decalage + (tour - half / 2) * ecart;
                         clients[clientActuel].X = clx;
                         clients[clientActuel].Y = cly;
                         clients[clientActuel].orientation = "left";
@@ -157,10 +149,10 @@ namespace PlatLegeretSain.Model
                         clientActuel++;
                     }
                     tour = 0;
-                    while (tour < bas && nbClientAPlacer > 0)
+                    while (tour < half && nbClientAPlacer > 0)
                     {
-                        clx = cx - decalageX2;
-                        cly = cy + decalage + (tour - bas / 2) * ecart;
+                        clx = cx - decalage;
+                        cly = cy + decalage + (tour - half / 2) * ecart;
                         clients[clientActuel].X = clx;
                         clients[clientActuel].Y = cly;
                         clients[clientActuel].orientation = "right";
@@ -170,14 +162,26 @@ namespace PlatLegeretSain.Model
                     }
                 }
             }
-            //}
-            donnerCarte();
+
+            Thread threadCarte = new Thread(DonnerCarte);
+            threadCarte.Start(clients);
         }
 
-        public void donnerCarte()
+        public void DonnerCarte(object args)
         {
+            List<Client> clients = (List<Client>) args;
+
             View.Game1.Print("Donne la carte aux clients");
+            foreach (Client client in clients)
+            {
+                client.imgEtat = "carte_";
+            }
             // Après 5 min :
+            Thread.Sleep(5000);
+            foreach (Client client in clients)
+            {
+                client.imgEtat = "table_";
+            }
             prendreCommande();
         }
 

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
-using MH = PlatLegeretSain.Model.MaitreHotel;
+using Nyancat = PlatLegeretSain.Model.Nyancat;
 
 namespace PlatLegeretSain.Controller
 {
@@ -19,22 +19,22 @@ namespace PlatLegeretSain.Controller
 
             if (keyboard.IsKeyDown(Keys.Z))
             {
-                MH.Instance().MoveUp(2);
+                Nyancat.Instance().MoveUp(2);
             }
 
             if (keyboard.IsKeyDown(Keys.S))
             {
-                MH.Instance().MoveDown(2);
+                Nyancat.Instance().MoveDown(2);
             }
 
             if (keyboard.IsKeyDown(Keys.Q))
             {
-                MH.Instance().MoveLeft(2);
+                Nyancat.Instance().MoveLeft(2);
             }
 
             if (keyboard.IsKeyDown(Keys.D))
             {
-                MH.Instance().MoveRight(2);
+                Nyancat.Instance().MoveRight(2);
             }
         }
     }

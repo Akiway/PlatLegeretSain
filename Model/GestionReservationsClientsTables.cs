@@ -31,8 +31,9 @@ namespace PlatLegeretSain.Model
             Restaurant.groupList.Add(numGroup);
             for (int x = 0; x < nbClient; x++)
             {
-                Restaurant.Clients.Add(new Client(numGroup));
-                listClient.Add(new Client(numGroup));
+                Client NewClient = new Client(numGroup);
+                Restaurant.Clients.Add(NewClient);
+                listClient.Add(NewClient);
             }
 
             // Déplace les nouveaux clients jusqu'à l'accueil
@@ -56,7 +57,7 @@ namespace PlatLegeretSain.Model
         {
             bool findTable = false;
             int numTable = 0;
-            // Tant que toutes les tables sont pas vérifiées ou qu'une table n'est pas trouvéé :
+            // Tant que toutes les tables sont pas vérifiées ou qu'une table n'est pas trouvée :
             for (int i = nbClient; i < 11 && findTable == false; i++)
             {
                 List<Table> listTables = new List<Table>();

@@ -116,11 +116,10 @@ namespace PlatLegeretSain.View
 
             foreach(Model.Client client in Model.Restaurant.Clients)
             {
-                DrawImage(client.img + client.orientation, client.X, client.Y);
+                DrawImage(client.img + client.imgEtat + client.orientation, client.X, client.Y);
             }
 
-            if (gameTime.TotalGameTime.TotalSeconds % 2 != 0) // Affiche une fois sur 2
-                //Print(Model.Restaurant.Clients.Count.ToString());
+                DrawText("Nombre de clients dans le restaurant : " + Model.Restaurant.Clients.Count, 1330, 760);
 
 
             DrawText(Math.Round(gameTime.TotalGameTime.TotalMinutes+10) + "h" + Math.Round(gameTime.TotalGameTime.TotalSeconds), 0, 0);

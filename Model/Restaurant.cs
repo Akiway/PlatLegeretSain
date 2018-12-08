@@ -32,9 +32,11 @@ namespace PlatLegeretSain.Model
 
         private Restaurant()
         {
+            Nyancat nyancat = Nyancat.Instance();
+            Employes.Add(nyancat);
             MH = MaitreHotel.Instance();
-            GRCT = GestionReservationsClientsTables.Instance();
             Employes.Add(MH);
+            GRCT = GestionReservationsClientsTables.Instance();
             CR1 = new ChefRang(1, 1130, 520);
             CR2 = new ChefRang(2, 1130, 480);
             Employes.Add(CR1);
@@ -87,7 +89,7 @@ namespace PlatLegeretSain.Model
             {
                 //Thread.Sleep(300000); // 5 min
 
-                Thread.Sleep(1000); // 1 sec
+                Thread.Sleep(100); // 0.1 sec
                 Random random = new Random();
                 bool boolValue = Convert.ToBoolean(random.Next() % 2);
 
