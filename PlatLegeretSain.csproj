@@ -46,9 +46,7 @@
     <Compile Include="Model\ChefCuisine.cs" />
     <Compile Include="Model\ChefRang.cs" />
     <Compile Include="Model\Nyancat.cs" />
-    <Compile Include="Model\DishAlone.cs" />
     <Compile Include="Model\GestionReservationsClientsTables.cs" />
-    <Compile Include="Model\IEtatCommande.cs" />
     <Compile Include="Model\Client.cs" />
     <Compile Include="Model\Commande.cs" />
     <Compile Include="Model\CommisCuisine.cs" />
@@ -62,8 +60,6 @@
     <Compile Include="Model\IMovable.cs" />
     <Compile Include="Model\IClientState.cs" />
     <Compile Include="Model\Restaurant.cs" />
-    <Compile Include="Model\StarterAndDish.cs" />
-    <Compile Include="Model\StarterWithoutDish.cs" />
     <Compile Include="Model\CheckOrder.cs" />
     <Compile Include="Model\WaitForTable.cs" />
     <Compile Include="View\Game1.cs" />

@@ -90,7 +90,7 @@ namespace PlatLegeretSain.Model
             client = null;
         }
 
-        public Commande ChoixCommande(int vitesseManger, int UnDeuxFois, List<String> listEntree, List<String> listPlat, List<String> listDessert, int random1, int random2, int random3)
+        public Commande ChoixCommande(int vitesseManger, int UnDeuxFois, int random1, int random2, int random3)
         {
             List<String> listChoix = new List<string>(new String[] { "Entree", "Plat", "Dessert" });
 
@@ -110,15 +110,15 @@ namespace PlatLegeretSain.Model
                 switch (randomResult)
                 {
                     case "Entree":
-                        entree = listEntree[random1];
+                        entree = Restaurant.listEntrees[random1];
                         listChoix.Remove("Entree");
                         break;
                     case "Plat":
-                        plat = listPlat[random2];
+                        plat =  Restaurant.listPlats[random2];
                         listChoix.Remove("Plat");
                         break;
                     case "Dessert":
-                        dessert = listDessert[random3];
+                        dessert = Restaurant.listDesserts[random3];
                         listChoix.Remove("Dessert");
                         break;
                 }

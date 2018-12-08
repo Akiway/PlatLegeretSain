@@ -105,35 +105,5 @@ namespace PlatLegeretSain.Model
             }
             reader.Close();
         }
-
-        //public List<String> GetPlats()
-        //{
-        //    List<String> plats = new List<String>();
-        //    command = new SqlCommand("SELECT [Titre_Recette] FROM[ProjetPLS].[dbo].[Recette] WHERE[Categorie] = 'plat'");
-        //    command.Connection = connection;
-        //    reader = command.ExecuteReader();
-        //    while (reader.Read())
-        //    {
-        //        plats.Add(reader.GetString(0));
-        //    }
-        //    reader.Close();
-
-        //    return plats;
-        //}
-
-        //public List<String> GetDesserts()
-        //{
-        //    List<String> desserts = new List<String>();
-        //    command = new SqlCommand("SELECT [Titre_Recette] FROM[ProjetPLS].[dbo].[Recette] WHERE[Categorie] = 'dessert'");
-        //    command.Connection = connection;
-        //    reader = command.ExecuteReader();
-        //    while (reader.Read())
-        //    {
-        //        desserts.Add(reader.GetString(0));
-        //    }
-        //    reader.Close();
-
-        //    return desserts;
-        //}
     }
 }
