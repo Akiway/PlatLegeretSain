@@ -14,15 +14,9 @@ namespace PlatLegeretSain.Model
             this.d = dessert;
         }
 
-        public string e;
-        public string p;
-        public string d;
-
-        public Entree Entree { get; set; }
-
-        public Plat Plat { get; set; }
-
-        public Dessert Dessert { get; set; }
+        public string e { get; set; }
+        public string p { get; set; }
+        public string d { get; set; }
 
         private Table Table
         {

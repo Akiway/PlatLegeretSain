@@ -184,12 +184,44 @@ namespace PlatLegeretSain.Model
                 client.imgEtat = "table_";
             }
             // Etat du client = pret pour la commande
-            //prendreCommande();
+            int numTable = clients[0].numTable;
+            prendreCommande(numTable);
         }
 
         public void prendreCommande(int numTable)
         {
-            //View.Game1.Print("Prend la commande");
+            List<Commande> commandes = new List<Commande>();
+            List<Client> clients = new List<Client>();
+
+            Random r = new Random();
+
+            clients = Restaurant.Clients.FindAll(x => x.numTable.Equals(numTable));
+
+            int vitesseManger = new Random().Next(1, 4); // (1, 4) pour chiffre compris entre 1 et 3
+            int UnDeuxFois = new Random().Next(1, 3); // (1, 3) pour chiffre compris entre 1 et 2
+
+            View.Game1.Print("============= Commandes de la table "+ numTable +" =============");
+
+            foreach (Client element in clients)
+            {
+                Commande commande = element.ChoixCommande(vitesseManger, UnDeuxFois, r.Next(0, Restaurant.listEntrees.Count), r.Next(0, Restaurant.listPlats.Count), r.Next(0, Restaurant.listDesserts.Count));
+                commandes.Add(commande);
+            }
+
+            if(UnDeuxFois == 2)
+            {
+                Restaurant.Tables.Find(x => x.Numero.Equals(numTable)).DessertApres = true;
+            }
+            else
+            {
+                Restaurant.Tables.Find(x => x.Numero.Equals(numTable)).DessertApres = false;
+            }
+
+            View.Game1.Print("vitesseManger : " + vitesseManger + " / UnDeuxFois : " + UnDeuxFois);
+            foreach (Commande element in commandes)
+            {
+                View.Game1.Print(element.e+" / "+ element.p+" / "+ element.d);
+            }
         }
     }
 }

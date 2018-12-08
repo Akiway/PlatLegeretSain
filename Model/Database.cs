@@ -23,7 +23,7 @@ namespace PlatLegeretSain.Model
 
         private Database()
         {
-            this.Serveur = "localhost";
+            this.Serveur = "localhost\\SQLEXPRESS01";
             this.DatabaseName = "ProjetPLS";
 
             string connetionString = "Data Source=" + this.Serveur + ";Initial Catalog=" + this.DatabaseName + ";Integrated Security=true";
@@ -74,6 +74,36 @@ namespace PlatLegeretSain.Model
             reader.Close();
 
             return tables;
+        }
+
+        public void GetRecettes()
+        {
+            command = new SqlCommand("SELECT [Titre_Recette] FROM[ProjetPLS].[dbo].[Recette] WHERE[Categorie] = 'entree'");
+            command.Connection = connection;
+            reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                Restaurant.listEntrees.Add(reader.GetString(0));
+            }
+            reader.Close();
+
+            command = new SqlCommand("SELECT [Titre_Recette] FROM[ProjetPLS].[dbo].[Recette] WHERE[Categorie] = 'plat'");
+            command.Connection = connection;
+            reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                Restaurant.listPlats.Add(reader.GetString(0));
+            }
+            reader.Close();
+
+            command = new SqlCommand("SELECT [Titre_Recette] FROM[ProjetPLS].[dbo].[Recette] WHERE[Categorie] = 'dessert'");
+            command.Connection = connection;
+            reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                Restaurant.listDesserts.Add(reader.GetString(0));
+            }
+            reader.Close();
         }
     }
 }

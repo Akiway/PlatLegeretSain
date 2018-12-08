@@ -40,7 +40,6 @@ namespace PlatLegeretSain.Model
 
         public void setState(IClientState newState)
         {
-            this.clientState = newState;
             ManageClient();
         }
 
@@ -68,11 +67,6 @@ namespace PlatLegeretSain.Model
             this.orientation = "right";
         }
 
-        public void NotifierObservateur()
-        {
-            throw new System.NotImplementedException();
-        }
-
         public void QuitterRestaurant()
         {
             ThreadPool.QueueUserWorkItem(Sortir);
@@ -96,5 +90,41 @@ namespace PlatLegeretSain.Model
             client = null;
         }
 
+        public Commande ChoixCommande(int vitesseManger, int UnDeuxFois, int random1, int random2, int random3)
+        {
+            List<String> listChoix = new List<string>(new String[] { "Entree", "Plat", "Dessert" });
+
+            if (UnDeuxFois == 2)
+            {
+                listChoix.Remove("Dessert");
+                vitesseManger -= 1;
+            }
+
+            String entree = "", plat = "", dessert = "";
+
+            for (int i = 0; i < vitesseManger; i++)
+            {
+                int index = new Random().Next(listChoix.Count);
+                string randomResult = listChoix[index];
+
+                switch (randomResult)
+                {
+                    case "Entree":
+                        entree = Restaurant.listEntrees[random1];
+                        listChoix.Remove("Entree");
+                        break;
+                    case "Plat":
+                        plat =  Restaurant.listPlats[random2];
+                        listChoix.Remove("Plat");
+                        break;
+                    case "Dessert":
+                        dessert = Restaurant.listDesserts[random3];
+                        listChoix.Remove("Dessert");
+                        break;
+                }
+            }
+            Commande commande = new Commande(entree, plat, dessert);
+            return commande;
+        }
     }
 }

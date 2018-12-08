@@ -22,6 +22,9 @@ namespace PlatLegeretSain.Model
         public static List<Client> Clients = new List<Client>();
         public static List<Reservation> Reservations = new List<Reservation>();
         public static List<Table> Tables = null;
+        public static List<String> listEntrees = new List<string>();
+        public static List<String> listPlats = new List<string>();
+        public static List<String> listDesserts = new List<string>();
         public static ChefRang CR1, CR2;
         public static Serveur Serveur1, Serveur2;
         public static string Time { get; set; }
@@ -45,6 +48,8 @@ namespace PlatLegeretSain.Model
             Serveur2 = new Serveur(2, 1130, 200);
             Employes.Add(Serveur1);
             Employes.Add(Serveur2);
+
+            Database.Instance().GetRecettes();
 
             Tables = Database.Instance().GetTables();
 
@@ -100,7 +105,7 @@ namespace PlatLegeretSain.Model
 
                 if (boolValue == true)
                 {
-                    int nbClient = new Random().Next(1, 10);
+                    int nbClient = new Random().Next(1, 11);
                     GRCT.CreationClient(0, nbClient, Thread.CurrentThread);
                 }
             }
