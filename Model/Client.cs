@@ -18,7 +18,6 @@ namespace PlatLegeretSain.Model
         public int numTable = 0;
         public Commande Commande { get; set; }
         private Reservation Reservation { get; set; }
-        public Observateur Observateur { get; set; }
         public Client client;
         public IClientState clientState { get; set; }
 
