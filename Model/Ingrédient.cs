@@ -7,9 +7,10 @@ namespace PlatLegeretSain.Model
 {
     public class Ingredient
     {
-        public Ingredient()
+        public Ingredient(String nomProduit, int quantite)
         {
-            throw new System.NotImplementedException();
+            this.nomProduit = nomProduit;
+            this.quantite = quantite;
         }
 
         private string nomProduit

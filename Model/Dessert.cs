@@ -7,9 +7,10 @@ namespace PlatLegeretSain.Model
 {
     public class Dessert : Repas
     {
-        public Dessert(string nom)
+        public Dessert(string nom, Recette recette)
         {
-            throw new System.NotImplementedException();
+            this.nom = nom;
+            this.recette = recette;
         }
     }
 }
