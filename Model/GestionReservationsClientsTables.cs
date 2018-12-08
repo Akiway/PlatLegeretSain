@@ -81,11 +81,14 @@ namespace PlatLegeretSain.Model
         public void TableAssignment(int numTable)
         {
             // Affection du numéro de la table aux clients et mofication de leur état en "AttenteTable"
+            Client client = Restaurant.Clients.Find(x => x.numTable.Equals(0));
             foreach (Client element in Restaurant.Clients.FindAll(x => x.numTable.Equals(0)))
             {
                 element.numTable = numTable;
-                element.setState(new WaitForTable());
+                client = element;
+                
             }
+            client.setState(new WaitForTable());
 
             //Vérifie s'il reste toujours des places
             if (Restaurant.Tables.FindAll(x => x.Disponible.Equals(true)).Count == 0)

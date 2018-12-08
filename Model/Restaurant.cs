@@ -91,7 +91,7 @@ namespace PlatLegeretSain.Model
 
                 if (boolValue == true)
                 {
-                    int nbClient = new Random().Next(1, 10);
+                    int nbClient = new Random().Next(1, 11);
                     GRCT.CreationClient(0, nbClient, Thread.CurrentThread);
                 }
             }

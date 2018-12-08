@@ -171,19 +171,56 @@ namespace PlatLegeretSain.Model
                 }
             }
             //}
-            donnerCarte();
+            donnerCarte(table.Numero);
         }
 
-        public void donnerCarte()
+        public void donnerCarte(int numTable)
         {
             // img du client a modifier 
             // Après 5 min :
             // Etat du client = pret pour la commande
+            prendreCommande(numTable);
         }
 
         public void prendreCommande(int numTable)
         {
-            //View.Game1.Print("Prend la commande");
+            List<Commande> commandes = new List<Commande>();
+            List<Client> clients = new List<Client>();
+
+            List<String> listEntree = Database.Instance().GetEntrees();
+            List<String> listPlat = Database.Instance().GetPlats();
+            List<String> listDessert = Database.Instance().GetDesserts();
+
+            Random r = new Random();
+
+            clients = Restaurant.Clients.FindAll(x => x.numTable.Equals(numTable));
+
+            int vitesseManger = new Random().Next(1, 4); // (1, 4) pour chiffre compris entre 1 et 3
+            int UnDeuxFois = new Random().Next(1, 3); // (1, 4) pour chiffre compris entre 1 et 2
+
+            View.Game1.Print("============= Commandes de la table "+ numTable +" =============");
+
+            foreach (Client element in clients)
+            {
+                Commande commande = element.ChoixCommande(vitesseManger, UnDeuxFois, listEntree, listPlat, listDessert, r.Next(0, listEntree.Count), r.Next(0, listPlat.Count), r.Next(0, listDessert.Count));
+                commandes.Add(commande);
+            }
+
+            if(UnDeuxFois == 2)
+            {
+                Restaurant.Tables.Find(x => x.Numero.Equals(numTable)).DessertApres = true;
+            }
+            else
+            {
+                Restaurant.Tables.Find(x => x.Numero.Equals(numTable)).DessertApres = false;
+            }
+
+            
+            View.Game1.Print("vitesseManger : " + vitesseManger + " / UnDeuxFois : " + UnDeuxFois);
+            foreach (Commande element in commandes)
+            {
+                View.Game1.Print(element.e+" / "+ element.p+" / "+ element.d);
+            }
         }
     }
 }

@@ -17,7 +17,6 @@ namespace PlatLegeretSain.Model
         public int numTable = 0;
         public Commande Commande { get; set; }
         private Reservation Reservation { get; set; }
-        public Observateur Observateur { get; set; }
         public Client client;
         public IClientState clientState { get; set; }
 
@@ -39,7 +38,6 @@ namespace PlatLegeretSain.Model
 
         public void setState(IClientState newState)
         {
-            this.clientState = newState;
             ManageClient();
         }
 
@@ -67,11 +65,6 @@ namespace PlatLegeretSain.Model
             this.orientation = "right";
         }
 
-        public void NotifierObservateur()
-        {
-            throw new System.NotImplementedException();
-        }
-
         public void QuitterRestaurant()
         {
             Thread threadClientAleatoire = new Thread(new ThreadStart(Sortir));
@@ -93,5 +86,41 @@ namespace PlatLegeretSain.Model
             client = null;
         }
 
+        public Commande ChoixCommande(int vitesseManger, int UnDeuxFois, List<String> listEntree, List<String> listPlat, List<String> listDessert, int random1, int random2, int random3)
+        {
+            List<String> listChoix = new List<string>(new String[] { "Entree", "Plat", "Dessert" });
+
+            if (UnDeuxFois == 2)
+            {
+                listChoix.Remove("Dessert");
+                vitesseManger -= 1;
+            }
+
+            String entree = "", plat = "", dessert = "";
+
+            for (int i = 0; i < vitesseManger; i++)
+            {
+                int index = new Random().Next(listChoix.Count);
+                string randomResult = listChoix[index];
+
+                switch (randomResult)
+                {
+                    case "Entree":
+                        entree = listEntree[random1];
+                        listChoix.Remove("Entree");
+                        break;
+                    case "Plat":
+                        plat = listPlat[random2];
+                        listChoix.Remove("Plat");
+                        break;
+                    case "Dessert":
+                        dessert = listDessert[random3];
+                        listChoix.Remove("Dessert");
+                        break;
+                }
+            }
+            Commande commande = new Commande(entree, plat, dessert);
+            return commande;
+        }
     }
 }
