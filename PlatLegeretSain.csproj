@@ -146,6 +146,7 @@
     </None>
     <None Include="app.manifest" />
     <None Include="ClassDiagram1.cd" />
+    <None Include="Content\digital_display.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\PLSsprites.png">
