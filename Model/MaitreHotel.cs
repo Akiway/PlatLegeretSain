@@ -19,7 +19,7 @@ namespace PlatLegeretSain.Model
         private MaitreHotel()
         {
             this.X = 1220;
-            this.Y = 770;
+            this.Y = 765;
             this.img = "Mh_";
             this.orientation = "front";
             this.etatTable = new TableDisponible();
@@ -27,8 +27,6 @@ namespace PlatLegeretSain.Model
 
         public int table { get; set; }
         private IFreeTable etatTable { get; set; }
-
-        public MaitreHotel MaitreHotel1 { get; set; }
 
         public void AccueillirClient(int numReservation, List<Client> clients)
         {

@@ -9,9 +9,10 @@ namespace PlatLegeretSain.Model
     {
         public void AccueillirClient(IFreeTable etatTable, int numeroTable, List<Client> clients)
         {
+            // Si le groupe a une réservation
             if (numeroTable != 0)
             {
-                Restaurant.GRCT.TableAssignment(numeroTable);
+                Restaurant.GRCT.TableAssignment(numeroTable, clients);
             }
             else
             {
@@ -19,11 +20,12 @@ namespace PlatLegeretSain.Model
                 if (Restaurant.Tables.FindAll(x => x.Disponible.Equals(true)).Count != 0)
                 {
                     int nbClient = clients.Count;
-                    int numTable = Restaurant.GRCT.CheckTableDisponibility(nbClient);
+                    numeroTable = Restaurant.GRCT.CheckTableDisponibility(nbClient);
 
-                    if (numTable != 0)
+                    // Si une table libre adaptée a été trouvé
+                    if (numeroTable != 0)
                     {
-                        Restaurant.GRCT.TableAssignment(numTable);
+                        Restaurant.GRCT.TableAssignment(numeroTable, clients);
                     }
                     else
                     {

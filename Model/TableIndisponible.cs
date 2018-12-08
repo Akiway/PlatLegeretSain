@@ -11,7 +11,7 @@ namespace PlatLegeretSain.Model
         {
             if (numeroTable != 0)
             {
-                Restaurant.GRCT.TableAssignment(numeroTable);
+                Restaurant.GRCT.TableAssignment(numeroTable, clients);
             }
             else
             {

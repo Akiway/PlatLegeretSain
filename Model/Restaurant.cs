@@ -32,9 +32,11 @@ namespace PlatLegeretSain.Model
 
         private Restaurant()
         {
+            Nyancat nyancat = Nyancat.Instance();
+            Employes.Add(nyancat);
             MH = MaitreHotel.Instance();
-            GRCT = GestionReservationsClientsTables.Instance();
             Employes.Add(MH);
+            GRCT = GestionReservationsClientsTables.Instance();
             CR1 = new ChefRang(1, 1130, 520);
             CR2 = new ChefRang(2, 1130, 480);
             Employes.Add(CR1);
@@ -57,22 +59,28 @@ namespace PlatLegeretSain.Model
 
             //View.Game1.Print(Reservations.Find(x => x.Table.Equals("front")).GetType().Name.ToString());
 
-            Thread threadReservation = new Thread(new ThreadStart(ThreadReservation));
+            ThreadPool.QueueUserWorkItem(ThreadReservation);
+            //Thread threadReservation = new Thread(new ThreadStart(ThreadReservation));
             //threadReservation.Start();
-            Thread threadClientAleatoire = new Thread(new ThreadStart(ThreadClientAleatoire));
-            threadClientAleatoire.Start();
+            ThreadPool.QueueUserWorkItem(ThreadClientAleatoire);
+            //Thread threadClientAleatoire = new Thread(new ThreadStart(ThreadClientAleatoire));
+            //threadClientAleatoire.Start();
+
         }
+        //View.Game1.Print(res.NbClient + "clients pour la table " + res.numTable);
+        
 
-
-        public static void ThreadReservation()
+        public static void ThreadReservation(object args)
         {
             int NbReservation = Reservations.Count;
-            while(NbReservation > 0)
+            // Tant qu'il reste des réservations et que le thread actuel est vivant
+            while(NbReservation > 0 && Thread.CurrentThread.IsAlive)
             {
                 foreach (Reservation res in Reservations)
                 {
                     if ((res.Heure.Hour + ":" + res.Heure.Minute) == Time)
                     {
+                        View.Game1.Print("La réservation de la table " + res.numTable + " pour " + res.NbClient + " personnes vient d'arriver");
                         GRCT.CreationClient(res.numTable, res.NbClient, Thread.CurrentThread);
                         NbReservation--;
                     }
@@ -81,9 +89,10 @@ namespace PlatLegeretSain.Model
             }
         }
 
-        public static void ThreadClientAleatoire()
+        public static void ThreadClientAleatoire(object args)
         {
-            while (true)
+            // Tant que le thread actuel est vivant
+            while (Thread.CurrentThread.IsAlive)
             {
                 Thread.Sleep(1000); // 1 sec
                 Random random = new Random();
@@ -99,7 +108,7 @@ namespace PlatLegeretSain.Model
 
         private static void GenererReservation()
         {
-            for (int i = 0; i < new Random().Next(1, 5); i++)
+            for (int i = 0; i < new Random().Next(4, 10); i++)
             {
                 Reservations.Add(new Reservation());
             }

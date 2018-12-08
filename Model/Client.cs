@@ -11,6 +11,7 @@ namespace PlatLegeretSain.Model
         public int X { get; set; }
         public int Y { get; set; }
         public string img { get; set; }
+        public string imgEtat { get; set; }
         public string orientation { get; set; }
         private int vitesse { get; set; }
         public int groupe { get; set; }
@@ -23,9 +24,10 @@ namespace PlatLegeretSain.Model
         public Client(int numGroup)
         {
             this.groupe = numGroup;
-            this.X = 1220;
+            this.X = 1240;
             this.Y = 1000;
             this.img = "Client_";
+            this.imgEtat = "";
             this.orientation = "back";
             this.client = this;
             this.clientState = new WaitForTable();
@@ -67,22 +69,24 @@ namespace PlatLegeretSain.Model
 
         public void QuitterRestaurant()
         {
-            Thread threadClientAleatoire = new Thread(new ThreadStart(Sortir));
-            threadClientAleatoire.Start();
+            ThreadPool.QueueUserWorkItem(Sortir);
+            //Thread threadQuitterRestaurant = new Thread(new ThreadStart(Sortir));
+            //threadQuitterRestaurant.Start();
         }
 
-        public void Sortir()
+        public void Sortir(object args)
         {
-            while (client.X > 1200)
+            while (client.X > 1220)
             {
                 client.MoveLeft(1);
                 Thread.Sleep(20);
             }
-            while (client.Y < 1000)
+            while (client.Y < 1020)
             {
                 client.MoveDown(1);
                 Thread.Sleep(20);
             }
+            Restaurant.Clients.Remove(client);
             client = null;
         }
 

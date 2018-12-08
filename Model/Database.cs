@@ -23,7 +23,7 @@ namespace PlatLegeretSain.Model
 
         private Database()
         {
-            this.Serveur = "localhost\\SQLEXPRESS01";
+            this.Serveur = "localhost";
             this.DatabaseName = "ProjetPLS";
 
             string connetionString = "Data Source=" + this.Serveur + ";Initial Catalog=" + this.DatabaseName + ";Integrated Security=true";

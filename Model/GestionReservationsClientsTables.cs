@@ -35,7 +35,6 @@ namespace PlatLegeretSain.Model
                 Client newClient = new Client(numGroup);
                 Restaurant.Clients.Add(newClient);
                 listClient.Add(newClient);
-
             }
 
             // Déplace les nouveaux clients jusqu'à l'accueil
@@ -58,8 +57,7 @@ namespace PlatLegeretSain.Model
         {
             bool findTable = false;
             int numTable = 0;
-            // Tant que toutes les tables sont pas vérifiées ou qu'une table n'est pas trouvéé :
-
+            // Tant que toutes les tables sont pas vérifiées ou qu'une table n'est pas trouvée :
             for (int i = nbClient; i < 11 && findTable == false; i++)
             {
                 List<Table> listTables = new List<Table>();
@@ -78,19 +76,18 @@ namespace PlatLegeretSain.Model
             return numTable;
         }
 
-        public void TableAssignment(int numTable)
+        public void TableAssignment(int numTable, List<Client> clients)
         {
-            // Affection du numéro de la table aux clients et mofication de leur état en "AttenteTable"
+            // Affectation du numéro de la table aux clients et mofication de leur état en "AttenteTable"
             Client client = Restaurant.Clients.Find(x => x.numTable.Equals(0));
-            foreach (Client element in Restaurant.Clients.FindAll(x => x.numTable.Equals(0)))
-            {
-                element.numTable = numTable;
-                client = element;
-                
+            foreach (Client client in clients)
+
+                client.numTable = numTable;
+                client.setState(new WaitForTable());
             }
             client.setState(new WaitForTable());
 
-            //Vérifie s'il reste toujours des places
+            // Vérifie s'il reste toujours des places
             if (Restaurant.Tables.FindAll(x => x.Disponible.Equals(true)).Count == 0)
             {
                 Restaurant.MH.setState(new TableIndisponible());

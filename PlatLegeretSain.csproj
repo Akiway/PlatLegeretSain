@@ -45,6 +45,7 @@
     <Compile Include="Controller\Key.cs" />
     <Compile Include="Model\ChefCuisine.cs" />
     <Compile Include="Model\ChefRang.cs" />
+    <Compile Include="Model\Nyancat.cs" />
     <Compile Include="Model\DishAlone.cs" />
     <Compile Include="Model\GestionReservationsClientsTables.cs" />
     <Compile Include="Model\IEtatCommande.cs" />
