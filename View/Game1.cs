@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Threading;
 using TexturePackerMonoGameDefinitions;
 
 namespace PlatLegeretSain.View
@@ -25,8 +26,10 @@ namespace PlatLegeretSain.View
         SpriteRender spriteRender;
         SpriteSheet spriteSheet;
         SpriteSheetLoader loader;
-        SpriteFont spriteFont;
+        SpriteFont spriteFont, spriteFontClock;
         GameTime GT;
+        int availableThreads, maxThreads, io;
+        int nbClientATable, nbClientCarte, nbClientCarre1, nbClientCarre2, nbTableLibre;
 
         public GameTime GetGameTime() => GT;
 
@@ -70,6 +73,7 @@ namespace PlatLegeretSain.View
             spriteSheet = loader.Load("PLSsprites.png");
 
             spriteFont = Content.Load<SpriteFont>("ArialNormal");
+            spriteFontClock = Content.Load<SpriteFont>("Digital");
             // TODO: use this.Content to load your game content here
         }
 
@@ -91,6 +95,26 @@ namespace PlatLegeretSain.View
         {
             Controller.Key.CheckKeyboard();
             Model.Restaurant.Time = (gameTime.TotalGameTime.Minutes+10) + ":" + gameTime.TotalGameTime.Seconds;
+            ThreadPool.GetAvailableThreads(out availableThreads, out io);
+            ThreadPool.GetMaxThreads(out maxThreads, out io);
+            nbClientATable = Model.Restaurant.Clients.FindAll(x => x.imgEtat != "").Count;
+            nbClientCarte = Model.Restaurant.Clients.FindAll(x => x.imgEtat == "carte_").Count;
+            nbClientCarre1 = nbClientCarre2 = 0;
+            foreach (Model.Client client in Model.Restaurant.Clients)
+            {
+                if (client.numTable != 0)
+                {
+                    if (Model.Restaurant.Tables.Find(x => x.Numero == client.numTable).Carre == 1)
+                    {
+                        nbClientCarre1++;
+                    }
+                    else if (Model.Restaurant.Tables.Find(x => x.Numero == client.numTable).Carre == 2)
+                    {
+                        nbClientCarre2++;
+                    }
+                }
+            }
+            nbTableLibre = Model.Restaurant.Tables.FindAll(x => x.Disponible == true).Count;
 
             // TODO: Add your update logic here
 
@@ -109,39 +133,42 @@ namespace PlatLegeretSain.View
             spriteBatch.Begin();
             DrawImage(PLSsprites.Restaurant, 0, 0);
 
+
+            // Affichage des employés
             foreach(Model.Employe employe in Model.Restaurant.Employes)
             {
                 DrawImage(employe.img + employe.orientation, employe.X, employe.Y);
             }
 
+            // Affichage des clients
             foreach(Model.Client client in Model.Restaurant.Clients)
             {
                 DrawImage(client.img + client.imgEtat + client.orientation, client.X, client.Y);
             }
 
-                DrawText("Nombre de clients dans le restaurant : " + Model.Restaurant.Clients.Count, 1330, 760);
+            // Affichage des stats
+            spriteBatch.DrawString(spriteFontClock,
+                (gameTime.TotalGameTime.Minutes + 10) + ":" + (gameTime.TotalGameTime.Seconds < 10 ? "0" : null) + gameTime.TotalGameTime.Seconds,
+                new Vector2(60, 65), Color.Red);
 
+            DrawText("Threads : " + (maxThreads - availableThreads), 1350, 765);
+            DrawText("Clients dans le restaurant : " + Model.Restaurant.Clients.Count, 1350, 795);
+            DrawText("a table : " + nbClientATable, 1415, 825);
+            DrawText("lisant la carte : " + nbClientCarte, 1415, 855);
+            DrawText("dans le carre 1 : " + nbClientCarre1, 1415, 885);
+            DrawText("dans le carre 2 : " + nbClientCarre2, 1415, 915);
+            DrawText("Tables libres : " + nbTableLibre, 1350, 945);
 
-            DrawText(Math.Round(gameTime.TotalGameTime.TotalMinutes+10) + "h" + Math.Round(gameTime.TotalGameTime.TotalSeconds), 0, 0);
 
             spriteBatch.End();
 
             base.Draw(gameTime);
         }
 
-        public void DrawImage(string image, int x, int y)
-        {
-            spriteRender.Draw(spriteSheet.Sprite(image), new Vector2(x, y));
-        }
+        public void DrawImage(string image, int x, int y) => spriteRender.Draw(spriteSheet.Sprite(image), new Vector2(x, y));
 
-        public void DrawText(string text, int x, int y)
-        {
-            spriteBatch.DrawString(spriteFont, text, new Vector2(x, y), Color.Black);
-        }
+        public void DrawText(string text, int x, int y) => spriteBatch.DrawString(spriteFont, text, new Vector2(x, y), Color.White);
 
-        public static void Print(string text)
-        {
-            Console.WriteLine(text);
-        }
+        public static void Print(string text) => Console.WriteLine(text);
     }
 }
