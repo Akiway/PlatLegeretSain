@@ -163,8 +163,9 @@ namespace PlatLegeretSain.Model
                 }
             }
 
-            Thread threadCarte = new Thread(DonnerCarte);
-            threadCarte.Start(clients);
+            ThreadPool.QueueUserWorkItem(DonnerCarte, clients);
+            //Thread threadCarte = new Thread(DonnerCarte);
+            //threadCarte.Start(clients);
         }
 
         public void DonnerCarte(object args)

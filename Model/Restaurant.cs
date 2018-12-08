@@ -59,15 +59,18 @@ namespace PlatLegeretSain.Model
 
             //View.Game1.Print(Reservations.Find(x => x.Table.Equals("front")).GetType().Name.ToString());
 
-            Thread threadReservation = new Thread(new ThreadStart(ThreadReservation));
-            threadReservation.Start();
-            Thread threadClientAleatoire = new Thread(new ThreadStart(ThreadClientAleatoire));
-            threadClientAleatoire.Start();
+            ThreadPool.QueueUserWorkItem(ThreadReservation);
+            //Thread threadReservation = new Thread(new ThreadStart(ThreadReservation));
+            //threadReservation.Start();
+            ThreadPool.QueueUserWorkItem(ThreadClientAleatoire);
+            //Thread threadClientAleatoire = new Thread(new ThreadStart(ThreadClientAleatoire));
+            //threadClientAleatoire.Start();
+
         }
         //View.Game1.Print(res.NbClient + "clients pour la table " + res.numTable);
+        
 
-
-        public static void ThreadReservation()
+        public static void ThreadReservation(object args)
         {
             int NbReservation = Reservations.Count;
             // Tant qu'il reste des réservations et que le thread actuel est vivant
@@ -86,7 +89,7 @@ namespace PlatLegeretSain.Model
             }
         }
 
-        public static void ThreadClientAleatoire()
+        public static void ThreadClientAleatoire(object args)
         {
             // Tant que le thread actuel est vivant
             while (Thread.CurrentThread.IsAlive)

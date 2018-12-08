@@ -75,11 +75,12 @@ namespace PlatLegeretSain.Model
 
         public void QuitterRestaurant()
         {
-            Thread threadQuitterRestaurant = new Thread(new ThreadStart(Sortir));
-            threadQuitterRestaurant.Start();
+            ThreadPool.QueueUserWorkItem(Sortir);
+            //Thread threadQuitterRestaurant = new Thread(new ThreadStart(Sortir));
+            //threadQuitterRestaurant.Start();
         }
 
-        public void Sortir()
+        public void Sortir(object args)
         {
             while (client.X > 1220)
             {
