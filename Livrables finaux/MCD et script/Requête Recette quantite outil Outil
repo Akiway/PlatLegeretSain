@@ -1,0 +1,3 @@
+Select Titre_Recette, Quantite_Outils_Recette,Type_Outils  From Utilise AS U 
+INNER JOIN Recette AS R ON U.ID_Recette = R.ID_Recette
+INNER JOIN Outils AS O ON O.ID_Outils = U.ID_Outils
