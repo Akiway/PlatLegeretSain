@@ -184,6 +184,7 @@ namespace PlatLegeretSain.Model
                 client.imgEtat = "table_";
             }
             // Etat du client = pret pour la commande
+            int numTable = clients[0].numTable;
             prendreCommande(numTable);
         }
 
@@ -192,9 +193,9 @@ namespace PlatLegeretSain.Model
             List<Commande> commandes = new List<Commande>();
             List<Client> clients = new List<Client>();
 
-            List<String> listEntree = Database.Instance().GetEntrees();
-            List<String> listPlat = Database.Instance().GetPlats();
-            List<String> listDessert = Database.Instance().GetDesserts();
+            List<String> listEntree = Restaurant.listEntrees;
+            List<String> listPlat = Restaurant.listPlats;
+            List<String> listDessert = Restaurant.listDesserts;
 
             Random r = new Random();
 

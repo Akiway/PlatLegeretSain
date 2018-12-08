@@ -23,7 +23,7 @@ namespace PlatLegeretSain.Model
 
         private Database()
         {
-            this.Serveur = "localhost";
+            this.Serveur = "localhost\\SQLEXPRESS01";
             this.DatabaseName = "ProjetPLS";
 
             string connetionString = "Data Source=" + this.Serveur + ";Initial Catalog=" + this.DatabaseName + ";Integrated Security=true";
@@ -76,49 +76,64 @@ namespace PlatLegeretSain.Model
             return tables;
         }
 
-        public List<String> GetEntrees()
+        public void GetRecettes()
         {
-            List<String> entrees = new List<String>();
             command = new SqlCommand("SELECT [Titre_Recette] FROM[ProjetPLS].[dbo].[Recette] WHERE[Categorie] = 'entree'");
             command.Connection = connection;
             reader = command.ExecuteReader();
             while (reader.Read())
             {
-                entrees.Add(reader.GetString(0));
+                Restaurant.listEntrees.Add(reader.GetString(0));
             }
             reader.Close();
 
-            return entrees;
-        }
-
-        public List<String> GetPlats()
-        {
-            List<String> plats = new List<String>();
             command = new SqlCommand("SELECT [Titre_Recette] FROM[ProjetPLS].[dbo].[Recette] WHERE[Categorie] = 'plat'");
             command.Connection = connection;
             reader = command.ExecuteReader();
             while (reader.Read())
             {
-                plats.Add(reader.GetString(0));
+                Restaurant.listPlats.Add(reader.GetString(0));
             }
             reader.Close();
 
-            return plats;
-        }
-
-        public List<String> GetDesserts()
-        {
-            List<String> desserts = new List<String>();
             command = new SqlCommand("SELECT [Titre_Recette] FROM[ProjetPLS].[dbo].[Recette] WHERE[Categorie] = 'dessert'");
             command.Connection = connection;
             reader = command.ExecuteReader();
             while (reader.Read())
             {
-                desserts.Add(reader.GetString(0));
+                Restaurant.listDesserts.Add(reader.GetString(0));
             }
             reader.Close();
-
-            return desserts;
         }
+
+        //public List<String> GetPlats()
+        //{
+        //    List<String> plats = new List<String>();
+        //    command = new SqlCommand("SELECT [Titre_Recette] FROM[ProjetPLS].[dbo].[Recette] WHERE[Categorie] = 'plat'");
+        //    command.Connection = connection;
+        //    reader = command.ExecuteReader();
+        //    while (reader.Read())
+        //    {
+        //        plats.Add(reader.GetString(0));
+        //    }
+        //    reader.Close();
+
+        //    return plats;
+        //}
+
+        //public List<String> GetDesserts()
+        //{
+        //    List<String> desserts = new List<String>();
+        //    command = new SqlCommand("SELECT [Titre_Recette] FROM[ProjetPLS].[dbo].[Recette] WHERE[Categorie] = 'dessert'");
+        //    command.Connection = connection;
+        //    reader = command.ExecuteReader();
+        //    while (reader.Read())
+        //    {
+        //        desserts.Add(reader.GetString(0));
+        //    }
+        //    reader.Close();
+
+        //    return desserts;
+        //}
     }
 }
