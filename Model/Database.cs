@@ -23,7 +23,7 @@ namespace PlatLegeretSain.Model
 
         private Database()
         {
-            this.Serveur = "localhost";
+            this.Serveur = "localhost\\SQLEXPRESS02";
             this.DatabaseName = "ProjetPLS";
 
             string connetionString = "Data Source=" + this.Serveur + ";Initial Catalog=" + this.DatabaseName + ";Integrated Security=true";
@@ -69,14 +69,14 @@ namespace PlatLegeretSain.Model
             reader = command.ExecuteReader();
             while (reader.Read())
             {
-                tables.Add(new Table(reader.GetInt32(0), reader.GetInt32(2), reader.GetInt32(4), reader.GetInt32(1), reader.GetInt32(5), reader.GetInt32(6), reader.GetBoolean(7), reader.GetBoolean(3)));
+                tables.Add(new Table(reader.GetInt32(0), reader.GetInt32(2), reader.GetInt32(7), reader.GetInt32(1), reader.GetInt32(4), reader.GetInt32(5), reader.GetBoolean(6), reader.GetBoolean(3)));
             }
             reader.Close();
 
             return tables;
         }
 
-        public void GetRecettes()
+        public void GetRecettesNames()
         {
             command = new SqlCommand("SELECT [Titre_Recette] FROM[ProjetPLS].[dbo].[Recette] WHERE[Categorie] = 'entree'");
             command.Connection = connection;
@@ -104,6 +104,42 @@ namespace PlatLegeretSain.Model
                 Restaurant.listDesserts.Add(reader.GetString(0));
             }
             reader.Close();
+        }
+
+        public Repas GetRecette(String recetteName)
+        {
+            List<Ingredient> ingredients = new List<Ingredient>();
+            String type = "";
+            int nbPersonne = 0, tempsPreparation = 0, tempsRepos = 0, tempsCuisson = 0;
+            command = new SqlCommand("SELECT [Ingredient].Nom_Ingredient,[Composer].Quantite_Ingredient_Recette,[Nb_Personnes],[Tps_Prep],[Tps_Repos],[Tps_Cuisson],[Categorie] FROM[ProjetPLS].[dbo].[Recette] INNER JOIN[Composer] ON[Composer].ID_Recette = [Recette].ID_Recette INNER JOIN[Ingredient] ON[Composer].ID_Ingredient = [Ingredient].ID_Ingredient WHERE[Recette].Titre_Recette = '"+recetteName+"'");
+            command.Connection = connection;
+            reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                ingredients.Add(new Ingredient(reader.GetString(0), reader.GetInt32(1)));
+                nbPersonne = reader.GetInt32(2);
+                tempsPreparation = reader.GetInt32(3);
+                tempsRepos = reader.GetInt32(4);
+                tempsCuisson = reader.GetInt32(5);
+                type = reader.GetString(6);
+            }
+            Recette recette = new Recette(nbPersonne, tempsPreparation, tempsRepos, tempsCuisson, ingredients);
+            reader.Close();
+
+            if(type == "entree")
+            {
+                Entree entree = new Entree(recetteName, recette);
+                return entree;
+            }
+            else if(type == "plat"){
+                Plat plat = new Plat(recetteName, recette);
+                return plat;
+            }
+            else
+            {
+                Dessert dessert = new Dessert(recetteName, recette);
+                return dessert;
+            }
         }
     }
 }

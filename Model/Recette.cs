@@ -7,49 +7,23 @@ namespace PlatLegeretSain.Model
 {
     public class Recette
     {
-        public Recette()
+        public Recette(int nbPersonne, int tempsPreparation, int tempsRepos, int tempsCuisson, List<Ingredient> ingredients)
         {
-            throw new System.NotImplementedException();
+            this.nbPersonne = nbPersonne;
+            this.tempsPreparation = tempsPreparation;
+            this.tempsRepos = tempsRepos;
+            this.tempsCuisson = tempsCuisson;
+            this.ingredients = ingredients;
         }
 
-        public List<Ingredient> ingredients
-        {
-            get => default(List<Ingredient>);
-            set
-            {
-            }
-        }
+        public List<Ingredient> ingredients;
 
-        public int tempsCuisson
-        {
-            get => default(int);
-            set
-            {
-            }
-        }
+        public int tempsCuisson;
 
-        private int tempsRepos
-        {
-            get => default(int);
-            set
-            {
-            }
-        }
+        public int tempsRepos;
 
-        private int tempsPreparation
-        {
-            get => default(int);
-            set
-            {
-            }
-        }
+        public int tempsPreparation;
 
-        private int nbPersonne
-        {
-            get => default(int);
-            set
-            {
-            }
-        }
+        public int nbPersonne;
     }
 }

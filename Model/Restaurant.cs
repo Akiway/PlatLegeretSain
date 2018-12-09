@@ -18,6 +18,7 @@ namespace PlatLegeretSain.Model
         }
 
         public static MaitreHotel MH;
+        public static ChefCuisine CC;
         public static GestionReservationsClientsTables GRCT;
         public static List<Employe> Employes = new List<Employe>();
         public static List<Client> Clients = new List<Client>();
@@ -39,6 +40,7 @@ namespace PlatLegeretSain.Model
             Nyancat nyancat = Nyancat.Instance();
             Employes.Add(nyancat);
             MH = MaitreHotel.Instance();
+            CC = ChefCuisine.Instance();
             Employes.Add(MH);
             GRCT = GestionReservationsClientsTables.Instance();
             CR1 = new ChefRang(1, 1130, 520);
@@ -50,7 +52,7 @@ namespace PlatLegeretSain.Model
             Employes.Add(Serveur1);
             Employes.Add(Serveur2);
 
-            Database.Instance().GetRecettes();
+            Database.Instance().GetRecettesNames();
 
             Tables = Database.Instance().GetTables();
 

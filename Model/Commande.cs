@@ -9,14 +9,14 @@ namespace PlatLegeretSain.Model
     {
         public Commande(String entree, String plat, String dessert)
         {
-            this.e = entree;
-            this.p = plat;
-            this.d = dessert;
+            this.entree = entree;
+            this.plat = plat;
+            this.dessert = dessert;
         }
 
-        public string e { get; set; }
-        public string p { get; set; }
-        public string d { get; set; }
+        public string entree { get; set; }
+        public string plat { get; set; }
+        public string dessert { get; set; }
 
         private Table Table
         {

@@ -197,7 +197,8 @@ namespace PlatLegeretSain.Model
 
             clients = Restaurant.Clients.FindAll(x => x.numTable.Equals(numTable));
 
-            int vitesseManger = new Random().Next(1, 4); // (1, 4) pour chiffre compris entre 1 et 3
+            //int vitesseManger = new Random().Next(1, 4); // (1, 4) pour chiffre compris entre 1 et 3
+            int vitesseManger = 3;
             int UnDeuxFois = new Random().Next(1, 3); // (1, 3) pour chiffre compris entre 1 et 2
 
             View.Game1.Print("============= Commandes de la table "+ numTable +" =============");
@@ -220,8 +221,14 @@ namespace PlatLegeretSain.Model
             View.Game1.Print("vitesseManger : " + vitesseManger + " / UnDeuxFois : " + UnDeuxFois);
             foreach (Commande element in commandes)
             {
-                View.Game1.Print(element.e+" / "+ element.p+" / "+ element.d);
+                View.Game1.Print(element.entree+" / "+ element.plat+" / "+ element.dessert);
             }
+            donnerCommande(commandes);
+        }
+
+        public void donnerCommande(List<Commande> commandes)
+        {
+            Restaurant.CC.NewCommande(commandes);
         }
     }
 }

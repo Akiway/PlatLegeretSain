@@ -7,36 +7,8 @@ namespace PlatLegeretSain.Model
 {
     public abstract class Repas
     {
-        public string nom
-        {
-            get => default(string);
-            set
-            {
-            }
-        }
+        public string nom;
 
-        private string etat
-        {
-            get => default(string);
-            set
-            {
-            }
-        }
-
-        public Recette Recette
-        {
-            get => default(Recette);
-            set
-            {
-            }
-        }
-
-        public Commande Commande
-        {
-            get => default(Commande);
-            set
-            {
-            }
-        }
+        public Recette recette;
     }
 }
