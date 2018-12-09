@@ -20,9 +20,12 @@ namespace PlatLegeretSain.Model
         public static MaitreHotel MH;
         public static ChefCuisine CC;
         public static Cuisinier C1, C2;
+        public static CommisCuisine commisCuisine;
+        public static ComptoirPlatsChauds CPC;
         public static GestionReservationsClientsTables GRCT;
         public static List<Employe> Employes = new List<Employe>();
         public static List<Client> Clients = new List<Client>();
+        public static ConsoleTable console;
         public static List<Reservation> Reservations = new List<Reservation>();
         public static List<Table> Tables = null;
         public static List<String> listEntrees = new List<string>();
@@ -42,10 +45,13 @@ namespace PlatLegeretSain.Model
             Employes.Add(nyancat);
             MH = MaitreHotel.Instance();
             CC = ChefCuisine.Instance();
-            C1 = new Cuisinier();
-            C2 = new Cuisinier();
+            console = ConsoleTable.Instance();
+            C1 = new Cuisinier("C1");
+            C2 = new Cuisinier("C2");
+            commisCuisine = new CommisCuisine();
             Employes.Add(MH);
             GRCT = GestionReservationsClientsTables.Instance();
+            CPC = ComptoirPlatsChauds.Instance();
             CR1 = new ChefRang(1, 1130, 520);
             CR2 = new ChefRang(2, 1130, 480);
             Employes.Add(CR1);

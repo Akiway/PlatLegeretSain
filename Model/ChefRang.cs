@@ -167,22 +167,22 @@ namespace PlatLegeretSain.Model
             List<Client> clients = (List<Client>) args;
             int numTable = clients[0].numTable;
 
-            //View.Game1.Print("Donne la carte aux clients");
             foreach (Client client in clients)
             {
                 client.imgEtat = "carte_";
             }
+            clients[0].setState(new LookMenu());
             // Après 5 min :
             Thread.Sleep(Clock.STime(5000));
+
+            clients[0].setState(new ReadyToOrder());
             foreach (Client client in clients)
             {
                 client.imgEtat = "table_";
             }
-            // Etat du client = pret pour la commande
-            prendreCommande(numTable);
         }
 
-        public void prendreCommande(int numTable)
+        public void takeOrder(int numTable)
         {
             List<Commande> commandes = new List<Commande>();
             List<Client> clients = new List<Client>();
@@ -192,8 +192,9 @@ namespace PlatLegeretSain.Model
             clients = Restaurant.Clients.FindAll(x => x.numTable.Equals(numTable));
 
             //int vitesseManger = new Random().Next(1, 4); // (1, 4) pour chiffre compris entre 1 et 3
-            int vitesseManger = 3;
-            int UnDeuxFois = new Random().Next(1, 3); // (1, 3) pour chiffre compris entre 1 et 2
+            int vitesseManger = 1;
+            //int UnDeuxFois = new Random().Next(1, 3); // (1, 3) pour chiffre compris entre 1 et 2
+            int UnDeuxFois = 1;
 
             View.Game1.Print("============= Commandes de la table "+ numTable +" =============");
 

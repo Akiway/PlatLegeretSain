@@ -9,30 +9,32 @@ namespace PlatLegeretSain.Model
     {
         public CommisCuisine()
         {
-            throw new System.NotImplementedException();
-        }
-
-        public Commande Commande
-        {
-            get => default(Commande);
-            set
-            {
-            }
+            
         }
 
         public void eplucher()
         {
-            throw new System.NotImplementedException();
+            
         }
 
         public void chercher()
         {
-            throw new System.NotImplementedException();
+            
         }
 
-        public void emmerner()
+        public void EmmenerPlatComptoir(Repas repas)
         {
-            throw new System.NotImplementedException();
+            Restaurant.CPC.NewDishReady(repas);
+        }
+
+        public void EmmenerPlatEtuve(Repas repas)
+        {
+
+        }
+
+        public void callWaiter()
+        {
+            // Appeler le serveur
         }
     }
 }
