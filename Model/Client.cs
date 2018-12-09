@@ -123,7 +123,7 @@ namespace PlatLegeretSain.Model
                         break;
                 }
             }
-            Commande commande = new Commande(entree, plat, dessert);
+            Commande commande = new Commande(entree, plat, dessert, this.numTable);
             return commande;
         }
     }

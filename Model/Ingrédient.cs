@@ -13,20 +13,9 @@ namespace PlatLegeretSain.Model
             this.quantite = quantite;
         }
 
-        private string nomProduit
-        {
-            get => default(string);
-            set
-            {
-            }
-        }
-
-        private int quantite
-        {
-            get => default(int);
-            set
-            {
-            }
-        }
+        public string nomProduit;
+        public int quantite;
+        public String etat;
+        
     }
 }

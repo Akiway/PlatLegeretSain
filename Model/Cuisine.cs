@@ -9,7 +9,7 @@ namespace PlatLegeretSain.Model
     {
         public Cuisine()
         {
-            throw new System.NotImplementedException();
+            
         }
 
         public List<Repas> repas

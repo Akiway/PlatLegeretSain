@@ -7,23 +7,17 @@ namespace PlatLegeretSain.Model
 {
     public class Commande
     {
-        public Commande(String entree, String plat, String dessert)
+        public Commande(String entree, String plat, String dessert, int numTable)
         {
             this.entree = entree;
             this.plat = plat;
             this.dessert = dessert;
+            this.numTable = numTable;
         }
 
         public string entree { get; set; }
         public string plat { get; set; }
         public string dessert { get; set; }
-
-        private Table Table
-        {
-            get => default(Table);
-            set
-            {
-            }
-        }
+        public int numTable { get; set; }
     }
 }

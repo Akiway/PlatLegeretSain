@@ -23,7 +23,7 @@ namespace PlatLegeretSain.Model
 
         private Database()
         {
-            this.Serveur = "localhost";
+            this.Serveur = "localhost\\SQLEXPRESS02";
             this.DatabaseName = "ProjetPLS";
 
             string connetionString = "Data Source=" + this.Serveur + ";Initial Catalog=" + this.DatabaseName + ";Integrated Security=true";
@@ -106,7 +106,7 @@ namespace PlatLegeretSain.Model
             reader.Close();
         }
 
-        public Repas GetRecette(String recetteName)
+        public Repas GetRecette(String recetteName, int numTable)
         {
             List<Ingredient> ingredients = new List<Ingredient>();
             String type = "";
@@ -128,16 +128,16 @@ namespace PlatLegeretSain.Model
 
             if(type == "entree")
             {
-                Entree entree = new Entree(recetteName, recette);
+                Entree entree = new Entree(recetteName, recette, numTable);
                 return entree;
             }
             else if(type == "plat"){
-                Plat plat = new Plat(recetteName, recette);
+                Plat plat = new Plat(recetteName, recette, numTable);
                 return plat;
             }
             else
             {
-                Dessert dessert = new Dessert(recetteName, recette);
+                Dessert dessert = new Dessert(recetteName, recette, numTable);
                 return dessert;
             }
         }

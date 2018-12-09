@@ -9,20 +9,10 @@ namespace PlatLegeretSain.Model
     {
         public Cuisinier()
         {
-            throw new System.NotImplementedException();
+            this.Occuped = false;
         }
 
-        public List<Repas> repas
-        {
-            get => default(List<Repas>);
-            set
-            {
-            }
-        }
-
-        public void cuisiner()
-        {
-            throw new System.NotImplementedException();
-        }
+        public bool Occuped;
+        public List<Repas> repas;
     }
 }
