@@ -7,12 +7,15 @@ namespace PlatLegeretSain.Controller
     /// </summary>
     public static class Program
     {
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main()
         {
+            Model.Clock.Instance();
+
             Model.Restaurant resto = Model.Restaurant.Instance();
             var game = View.Game1.Instance();
             using (game)

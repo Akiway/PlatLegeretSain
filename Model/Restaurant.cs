@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Threading;
 using System;
+using Clock = PlatLegeretSain.Model.Clock;
 
 namespace PlatLegeretSain.Model
 {
@@ -83,14 +84,14 @@ namespace PlatLegeretSain.Model
             {
                 foreach (Reservation res in Reservations)
                 {
-                    if ((res.Heure.Hour + ":" + res.Heure.Minute) == Time)
+                    if (res.Heure.Hour == (Clock.Minutes + 10) && res.Heure.Minute == Clock.Seconds)
                     {
                         View.Game1.Print("La réservation de la table " + res.numTable + " pour " + res.NbClient + " personnes vient d'arriver");
                         GRCT.CreationClient(res.numTable, res.NbClient, Thread.CurrentThread);
                         NbReservation--;
                     }
                 }
-                Thread.Sleep(1000);
+                Thread.Sleep(Clock.STime(1000));
             }
         }
 
@@ -99,7 +100,7 @@ namespace PlatLegeretSain.Model
             // Tant que le thread actuel est vivant
             while (Thread.CurrentThread.IsAlive)
             {
-                Thread.Sleep(1000); // 1 sec
+                Thread.Sleep(Clock.STime(1000)); // 1 sec
                 Random random = new Random();
                 bool boolValue = Convert.ToBoolean(random.Next() % 2);
 

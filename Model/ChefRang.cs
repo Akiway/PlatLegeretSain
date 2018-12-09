@@ -178,7 +178,7 @@ namespace PlatLegeretSain.Model
                 client.imgEtat = "carte_";
             }
             // Après 5 min :
-            Thread.Sleep(5000);
+            Thread.Sleep(Clock.STime(5000));
             foreach (Client client in clients)
             {
                 client.imgEtat = "table_";

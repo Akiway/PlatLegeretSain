@@ -44,9 +44,9 @@ namespace PlatLegeretSain.Model
                 {
                     client.MoveUp(1);
                 }
-                Thread.Sleep(20); // 0.02sec
+                Thread.Sleep(Clock.STime(20)); // 0.02sec
             }
-            Thread.Sleep(2000); // 2sec
+            Thread.Sleep(Clock.STime(2000)); // 2sec
 
             Restaurant.MH.AccueillirClient(numTable, listClient);
             listClient.Clear();
@@ -78,13 +78,11 @@ namespace PlatLegeretSain.Model
 
         public void TableAssignment(int numTable, List<Client> clients)
         {
-            // Affectation du numéro de la table aux clients et mofication de leur état en "AttenteTable"
-            Client listClient = Restaurant.Clients.Find(x => x.numTable.Equals(0));
+            // Affectation du numéro de la table aux clients et modification de leur état en "AttenteTable"
             foreach (Client client in clients) {
-
                 client.numTable = numTable;
             }
-            listClient.setState(new WaitForTable());
+            clients[0].setState(new WaitForTable());
 
             // Vérifie s'il reste toujours des places
             if (Restaurant.Tables.FindAll(x => x.Disponible.Equals(true)).Count == 0)

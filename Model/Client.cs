@@ -79,12 +79,12 @@ namespace PlatLegeretSain.Model
             while (client.X > 1220)
             {
                 client.MoveLeft(1);
-                Thread.Sleep(20);
+                Thread.Sleep(Clock.STime(20));
             }
             while (client.Y < 1020)
             {
                 client.MoveDown(1);
-                Thread.Sleep(20);
+                Thread.Sleep(Clock.STime(20));
             }
             Restaurant.Clients.Remove(client);
             client = null;

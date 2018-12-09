@@ -43,6 +43,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Controller\Key.cs" />
+    <Compile Include="Controller\Mousse.cs" />
+    <Compile Include="Model\Clock.cs" />
+    <Compile Include="View\Button.cs" />
     <Compile Include="Model\ChefCuisine.cs" />
     <Compile Include="Model\ChefRang.cs" />
     <Compile Include="Model\Nyancat.cs" />

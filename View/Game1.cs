@@ -2,8 +2,10 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using TexturePackerMonoGameDefinitions;
+using Clock = PlatLegeretSain.Model.Clock;
 
 namespace PlatLegeretSain.View
 {
@@ -27,13 +29,9 @@ namespace PlatLegeretSain.View
         SpriteSheet spriteSheet;
         SpriteSheetLoader loader;
         SpriteFont spriteFont, spriteFontClock;
-        GameTime GT;
         int availableThreads, maxThreads, io;
         int nbClientATable, nbClientCarte, nbClientCarre1, nbClientCarre2, nbTableLibre;
-
-        public GameTime GetGameTime() => GT;
-
-        public void SetGameTime(GameTime gt) => GT = gt;
+        List<Button> Buttons;
 
         private Game1()
         {
@@ -67,6 +65,7 @@ namespace PlatLegeretSain.View
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            var buttonTexture = Content.Load<Texture2D>("button");
 
             spriteRender = new SpriteRender(this.spriteBatch);
             loader = new SpriteSheetLoader(Content, GraphicsDevice);
@@ -75,6 +74,12 @@ namespace PlatLegeretSain.View
             spriteFont = Content.Load<SpriteFont>("ArialNormal");
             spriteFontClock = Content.Load<SpriteFont>("Digital");
             // TODO: use this.Content to load your game content here
+
+            // Buttons of the interface
+            Button speedBtn = new Button(1750, 755, 60, 40, "", spriteFont, buttonTexture);
+            speedBtn.Click += Controller.Mousse.ChangeSpeed;
+
+            Buttons = new List<Button>() { speedBtn };
         }
 
         /// <summary>
@@ -94,7 +99,11 @@ namespace PlatLegeretSain.View
         protected override void Update(GameTime gameTime)
         {
             Controller.Key.CheckKeyboard();
-            Model.Restaurant.Time = (gameTime.TotalGameTime.Minutes+10) + ":" + gameTime.TotalGameTime.Seconds;
+            foreach (Button button in Buttons)
+            {
+                button.Update(gameTime);
+            }
+
             ThreadPool.GetAvailableThreads(out availableThreads, out io);
             ThreadPool.GetMaxThreads(out maxThreads, out io);
             nbClientATable = Model.Restaurant.Clients.FindAll(x => x.imgEtat != "").Count;
@@ -148,7 +157,7 @@ namespace PlatLegeretSain.View
 
             // Affichage des stats
             spriteBatch.DrawString(spriteFontClock,
-                (gameTime.TotalGameTime.Minutes + 10) + ":" + (gameTime.TotalGameTime.Seconds < 10 ? "0" : null) + gameTime.TotalGameTime.Seconds,
+                (Clock.Minutes + 10) + ":" + (Clock.Seconds < 10 ? "0" : null) + Clock.Seconds,
                 new Vector2(60, 65), Color.Red);
 
             DrawText("Threads : " + (maxThreads - availableThreads), 1350, 765);
@@ -158,7 +167,12 @@ namespace PlatLegeretSain.View
             DrawText("dans le carre 1 : " + nbClientCarre1, 1415, 885);
             DrawText("dans le carre 2 : " + nbClientCarre2, 1415, 915);
             DrawText("Tables libres : " + nbTableLibre, 1350, 945);
+            DrawText("Vitesse : x" + Clock.Speed, 1650, 765);
 
+            foreach (Button button in Buttons)
+            {
+                button.Draw(gameTime, spriteBatch);
+            }
 
             spriteBatch.End();
 
