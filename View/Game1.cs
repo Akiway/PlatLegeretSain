@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -32,6 +34,8 @@ namespace PlatLegeretSain.View
         int availableThreads, maxThreads, io;
         int nbClientATable, nbClientCarte, nbClientCarre1, nbClientCarre2, nbTableLibre;
         List<Button> Buttons;
+        Song Musique;
+        SoundEffect Ambiance;
 
         private Game1()
         {
@@ -74,6 +78,14 @@ namespace PlatLegeretSain.View
             spriteFont = Content.Load<SpriteFont>("ArialNormal");
             spriteFontClock = Content.Load<SpriteFont>("Digital");
             // TODO: use this.Content to load your game content here
+
+            // Musique
+            Musique = Content.Load<Song>("Musique");
+            Ambiance = Content.Load<SoundEffect>("Ambiance");
+            MediaPlayer.Play(Musique);
+            MediaPlayer.IsRepeating = true;
+            MediaPlayer.Volume = 0.5f;
+            Ambiance.Play();
 
             // Buttons of the interface
             Button speedBtn = new Button(1765, 755, 60, 40, "", spriteFont, buttonTexture);

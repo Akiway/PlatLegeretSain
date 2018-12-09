@@ -9,6 +9,7 @@ namespace PlatLegeretSain.Model
     public class ChefRang : Employe
     {
         private int Carre { get; set; }
+        public List<Commande> commandes { get; set; }
 
         public ChefRang(int carre, int x = 1130, int y = 500)
         {
@@ -19,13 +20,6 @@ namespace PlatLegeretSain.Model
             this.orientation = "left";
         }
 
-        public List<Commande> commandes
-        {
-            get => default(List<Commande>);
-            set
-            {
-            }
-        }
 
         public void installerClient(int numTable)
         {
