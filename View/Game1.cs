@@ -76,7 +76,7 @@ namespace PlatLegeretSain.View
             // TODO: use this.Content to load your game content here
 
             // Buttons of the interface
-            Button speedBtn = new Button(1750, 755, 60, 40, "", spriteFont, buttonTexture);
+            Button speedBtn = new Button(1765, 755, 60, 40, "", spriteFont, buttonTexture);
             speedBtn.Click += Controller.Mousse.ChangeSpeed;
 
             Buttons = new List<Button>() { speedBtn };
