@@ -10,6 +10,7 @@ namespace PlatLegeretSain.Model
     {
         private int Carre { get; set; }
         public List<Commande> commandes { get; set; }
+        public bool Occuped;
 
         public ChefRang(int carre, int x = 1130, int y = 500)
         {
@@ -18,6 +19,7 @@ namespace PlatLegeretSain.Model
             this.Y = y;
             this.img = "Cr_";
             this.orientation = "left";
+            this.Occuped = false;
         }
 
 
@@ -74,7 +76,8 @@ namespace PlatLegeretSain.Model
                         clientActuel++;
                     }
 
-                } else // 4, 8 places
+                }
+                else // 4, 8 places
                 {
                     while (tour < half && nbClientAPlacer > 0)
                     {
@@ -101,7 +104,8 @@ namespace PlatLegeretSain.Model
                     }
                 }
 
-            } else // Vertical
+            }
+            else // Vertical
             {
                 if (half % 2 != 0) // 2, 6, 10 places
                 {
@@ -158,28 +162,35 @@ namespace PlatLegeretSain.Model
             }
 
             //ThreadPool.QueueUserWorkItem(DonnerCarte, clients);
-            Thread threadCarte = new Thread(DonnerCarte);
-            threadCarte.Start(clients);
+            if (this.Occuped == false)
+            {
+                Thread threadCarte = new Thread(new ParameterizedThreadStart(DonnerCarte));
+                threadCarte.Start(clients);
+                View.Game1.Print("---------------------------------------------------------------- ici ");
+            }
         }
 
         public void DonnerCarte(object args)
         {
-            List<Client> clients = (List<Client>) args;
-            int numTable = clients[0].numTable;
+            this.Occuped = true;
+            List<Client> listClients = (List<Client>) args;
+            int numTable = listClients[0].numTable;
 
-            foreach (Client client in clients)
+            foreach (Client client in listClients)
             {
                 client.imgEtat = "carte_";
             }
-            clients[0].setState(new LookMenu());
-            // Après 5 min :
+            listClients[0].setState(new LookMenu());
+            // After 5 min :
+            View.Game1.Print("Avant time");
             Thread.Sleep(Clock.STime(5000));
-
-            clients[0].setState(new ReadyToOrder());
-            foreach (Client client in clients)
+            View.Game1.Print("Apres time");
+            listClients[0].setState(new ReadyToOrder());
+            foreach (Client client in listClients)
             {
                 client.imgEtat = "table_";
             }
+            this.Occuped = false;
         }
 
         public void takeOrder(int numTable)

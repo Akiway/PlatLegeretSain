@@ -44,5 +44,12 @@ namespace PlatLegeretSain.Model
         {
            
         }
+
+        public void BringDish(int numTable)
+        {
+            this.Occuped = true;
+            List<Repas> listRepas = new List<Repas>();
+            listRepas = ComptoirPlatsChauds.Instance().GetDish();
+        }
     }
 }
