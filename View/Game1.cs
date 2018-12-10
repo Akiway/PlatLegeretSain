@@ -34,7 +34,7 @@ namespace PlatLegeretSain.View
         int availableThreads, maxThreads, io;
         int nbClientATable, nbClientCarte, nbClientCarre1, nbClientCarre2, nbTableLibre;
         List<Button> Buttons;
-        Song Musique;
+        public static Song Musique, Nyancat;
         SoundEffect Ambiance;
         Model.Statistique stats;
 
@@ -82,6 +82,7 @@ namespace PlatLegeretSain.View
 
             // Musique
             Musique = Content.Load<Song>("Musique");
+            Nyancat = Content.Load<Song>("Nyancat");
             Ambiance = Content.Load<SoundEffect>("Ambiance");
             MediaPlayer.Play(Musique);
             MediaPlayer.IsRepeating = true;

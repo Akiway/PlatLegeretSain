@@ -33,7 +33,9 @@ namespace PlatLegeretSain.Model
         private void DeplacerClient(Table table, int nbClientAPlacer)
         {
             List<Client> clients = Restaurant.Clients.FindAll(x => x.numTable.Equals(table.Numero));
-            foreach (Client client in Restaurant.Clients.FindAll(x => x.numTable.Equals(table.Numero)))
+            Console.WriteLine("nbClientAPlacer " + nbClientAPlacer);
+            Console.WriteLine("before before " + clients.Count);
+            foreach (Client client in clients)
             {
                 client.imgEtat = "table_";
             }
@@ -156,17 +158,17 @@ namespace PlatLegeretSain.Model
                     }
                 }
             }
-
-            //ThreadPool.QueueUserWorkItem(DonnerCarte, clients);
-            Thread threadCarte = new Thread(DonnerCarte);
-            threadCarte.Start(clients);
+            Console.WriteLine("before " + clients.Count);
+            ThreadPool.QueueUserWorkItem(DonnerCarte, clients);
+            //Thread threadCarte = new Thread(DonnerCarte);
+            //threadCarte.Start(clients);
         }
 
         public void DonnerCarte(object args)
         {
             List<Client> clients = (List<Client>) args;
             int numTable = clients[0].numTable;
-
+            Console.WriteLine("after " + clients.Count);
             foreach (Client client in clients)
             {
                 client.imgEtat = "carte_";

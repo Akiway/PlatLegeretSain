@@ -17,7 +17,7 @@ namespace PlatLegeretSain.Controller
         {
             Model.Clock.Instance();
             stats = new Model.Statistique();
-            Model.SocketServer.Instance();
+            //Model.SocketServer.Instance();
 
             Model.Restaurant resto = Model.Restaurant.Instance();
             var game = View.Game1.Instance();
