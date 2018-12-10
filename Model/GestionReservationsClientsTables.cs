@@ -38,6 +38,7 @@ namespace PlatLegeretSain.Model
             }
 
             // Déplace les nouveaux clients jusqu'à l'accueil
+            // A FAIRE : Dupliquer la liste en locale pour éviter le platage du a une modification de la liste
             while (Restaurant.Clients.Find(x => x.groupe == numGroup).Y > 850)
             {
                 foreach (Client client in Restaurant.Clients.FindAll(x => x.groupe == numGroup))
@@ -88,10 +89,6 @@ namespace PlatLegeretSain.Model
             if (Restaurant.Tables.FindAll(x => x.Disponible.Equals(true)).Count == 0)
             {
                 Restaurant.MH.setState(new TableIndisponible());
-            }
-            else // A présent, il n'y a plus de places
-            {
-
             }
         }
     }

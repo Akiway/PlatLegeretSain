@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
 using Nyancat = PlatLegeretSain.Model.Nyancat;
+using Microsoft.Xna.Framework.Media;
+using System;
 
 namespace PlatLegeretSain.Controller
 {
