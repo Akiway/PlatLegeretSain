@@ -32,7 +32,7 @@ namespace PlatLegeretSain.Model
         public static List<String> listPlats = new List<string>();
         public static List<String> listDesserts = new List<string>();
         public static ChefRang CR1, CR2;
-        public static Serveur Serveur1, Serveur2;
+        public static Serveur Serveur1, Serveur2, Serveur3, Serveur4;
         public static string Time { get; set; }
 
         public static List<Commande> commandes = new List<Commande>();
@@ -56,10 +56,14 @@ namespace PlatLegeretSain.Model
             CR2 = new ChefRang(2, 1130, 480);
             Employes.Add(CR1);
             Employes.Add(CR2);
-            Serveur1 = new Serveur(1, 1130, 240);
-            Serveur2 = new Serveur(2, 1130, 200);
+            Serveur1 = new Serveur(1, 1130, 320);
+            Serveur2 = new Serveur(1, 1130, 280);
+            Serveur3 = new Serveur(2, 1130, 240);
+            Serveur4 = new Serveur(2, 1130, 200);
             Employes.Add(Serveur1);
             Employes.Add(Serveur2);
+            Employes.Add(Serveur3);
+            Employes.Add(Serveur4);
 
             Database.Instance().GetRecettesNames();
 
