@@ -23,5 +23,11 @@ namespace PlatLegeretSain.Model
         {
             this.dishReady.Add(repas);
         }
+
+        public List<Repas> GetDish()
+        {
+            // Copier la liste en local puis la vider
+            return this.dishReady;
+        }
     }
 }
