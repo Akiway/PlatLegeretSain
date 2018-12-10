@@ -9,8 +9,10 @@ namespace PlatLegeretSain.Model
     {
         public CommisSalle()
         {
-            throw new System.NotImplementedException();
+            this.Occuped = false;
         }
+
+        public bool Occuped;
 
         public void servir()
         {

@@ -180,10 +180,8 @@ namespace PlatLegeretSain.Model
                 client.imgEtat = "carte_";
             }
             listClients[0].setState(new LookMenu());
-
             // After 5 min :
             Thread.Sleep(Clock.STime(5000));
-            
             listClients[0].setState(new ReadyToOrder());
             foreach (Client client in listClients)
             {
