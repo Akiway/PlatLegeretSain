@@ -21,5 +21,22 @@ namespace PlatLegeretSain.Model
         {
             throw new System.NotImplementedException();
         }
+
+        public void BringBread(int numTable)
+        {
+            this.Occuped = true;
+            // Apporter le pain et l'eau à la table numTable
+            if (Restaurant.Tables.Find(x => x.Numero.Equals(numTable)).NbPlace > 6)
+            {
+                Restaurant.console.nbBouteilleEau -= 2;
+                Restaurant.console.nbCorbeillePain -= 2;
+            }
+            else
+            {
+                Restaurant.console.nbBouteilleEau -= 1;
+                Restaurant.console.nbCorbeillePain -= 1;
+            }
+            this.Occuped = false;
+        }
     }
 }

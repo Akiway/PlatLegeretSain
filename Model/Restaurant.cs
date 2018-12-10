@@ -20,6 +20,7 @@ namespace PlatLegeretSain.Model
         public static MaitreHotel MH;
         public static ChefCuisine CC;
         public static Cuisinier C1, C2;
+        public static CommisSalle commisSalle;
         public static CommisCuisine commisCuisine;
         public static ComptoirPlatsChauds CPC;
         public static GestionReservationsClientsTables GRCT;
@@ -45,6 +46,7 @@ namespace PlatLegeretSain.Model
             Employes.Add(nyancat);
             MH = MaitreHotel.Instance();
             CC = ChefCuisine.Instance();
+            commisSalle = new CommisSalle();
             console = ConsoleTable.Instance();
             C1 = new Cuisinier("C1");
             C2 = new Cuisinier("C2");
