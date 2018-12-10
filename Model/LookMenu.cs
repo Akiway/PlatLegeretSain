@@ -11,15 +11,8 @@ namespace PlatLegeretSain.Model
         public void ManageClient(Client context)
         {
             int numTable = context.numTable;
-
-            if(numTable <= Restaurant.Tables.Count / 2)
-            {
-                Restaurant.Serveur1.BringBread(numTable);
-            }
-            else
-            {
-                Restaurant.Serveur2.BringBread(numTable);
-            }
+            Restaurant.commisSalle.BringBread(numTable);
+            View.Game1.Print("Le commis de salle apporte le pain et l'eau aux clients");
         }
     }
 }

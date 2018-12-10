@@ -166,7 +166,6 @@ namespace PlatLegeretSain.Model
             {
                 Thread threadCarte = new Thread(new ParameterizedThreadStart(DonnerCarte));
                 threadCarte.Start(clients);
-                View.Game1.Print("---------------------------------------------------------------- ici ");
             }
         }
 
@@ -181,10 +180,10 @@ namespace PlatLegeretSain.Model
                 client.imgEtat = "carte_";
             }
             listClients[0].setState(new LookMenu());
+
             // After 5 min :
-            View.Game1.Print("Avant time");
             Thread.Sleep(Clock.STime(5000));
-            View.Game1.Print("Apres time");
+            
             listClients[0].setState(new ReadyToOrder());
             foreach (Client client in listClients)
             {
