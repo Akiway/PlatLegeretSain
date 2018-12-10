@@ -71,10 +71,10 @@ namespace PlatLegeretSain.Model
             //View.Game1.Print(Reservations.Find(x => x.Table.Equals("front")).GetType().Name.ToString());
 
             ThreadPool.QueueUserWorkItem(ThreadReservation);
-            //Thread threadReservation = new Thread(new ThreadStart(ThreadReservation));
+            //Thread threadReservation = new Thread(ThreadReservation);
             //threadReservation.Start();
             ThreadPool.QueueUserWorkItem(ThreadClientAleatoire);
-            //Thread threadClientAleatoire = new Thread(new ThreadStart(ThreadClientAleatoire));
+            //Thread threadClientAleatoire = new Thread(ThreadClientAleatoire);
             //threadClientAleatoire.Start();
 
         }
@@ -119,7 +119,7 @@ namespace PlatLegeretSain.Model
 
         private static void GenererReservation()
         {
-            for (int i = 0; i < new Random().Next(4, 10); i++)
+            for (int i = 0; i < new Random().Next(1, 5); i++)
             {
                 Reservations.Add(new Reservation());
             }

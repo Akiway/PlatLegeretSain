@@ -157,9 +157,9 @@ namespace PlatLegeretSain.Model
                 }
             }
 
-            ThreadPool.QueueUserWorkItem(DonnerCarte, clients);
-            //Thread threadCarte = new Thread(DonnerCarte);
-            //threadCarte.Start(clients);
+            //ThreadPool.QueueUserWorkItem(DonnerCarte, clients);
+            Thread threadCarte = new Thread(DonnerCarte);
+            threadCarte.Start(clients);
         }
 
         public void DonnerCarte(object args)
@@ -179,7 +179,7 @@ namespace PlatLegeretSain.Model
                 client.imgEtat = "table_";
             }
             // Etat du client = pret pour la commande
-            prendreCommande(numTable);
+            //prendreCommande(numTable);
         }
 
         public void prendreCommande(int numTable)

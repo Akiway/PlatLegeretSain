@@ -12,6 +12,7 @@ namespace PlatLegeretSain.Model
             // Si le groupe a une réservation
             if (numeroTable != 0)
             {
+                View.Game1.Print("MH > groupe " + clients[0].groupe + " a une réservation");
                 Restaurant.GRCT.TableAssignment(numeroTable, clients);
             }
             else
@@ -25,13 +26,23 @@ namespace PlatLegeretSain.Model
                     // Si une table libre adaptée a été trouvé
                     if (numeroTable != 0)
                     {
+                        View.Game1.Print("MH > groupe " + clients[0].groupe + " a une table libre");
                         Restaurant.GRCT.TableAssignment(numeroTable, clients);
                     }
-                    else
+                    else // Plus de table assez grande
                     {
-                        // Plus de place disponible
-                        Restaurant.MH.setState(new TableIndisponible());
+                        View.Game1.Print("MH > groupe " + clients[0].groupe + " n'a plus de table assez grande");
+                        View.Game1.Print("Client > notre groupe de " + clients.Count + " sort");
+                        foreach (Client client in clients)
+                        {
+                            client.QuitterRestaurant();
+                        }
                     }
+                }
+                else // Plus de table libre
+                {
+                    View.Game1.Print("MH > groupe " + clients[0].groupe + " restaurant plein");
+                    Restaurant.MH.setState(new TableIndisponible());
                 }
             }
         }

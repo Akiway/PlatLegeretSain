@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlatLegeretSain", "PlatLege
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlatLegeretSain.Test", "PlatLegeretSain.Test\PlatLegeretSain.Test.csproj", "{BB57E755-807A-4D5E-87F3-7A5EE05E8151}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supervision", "Supervision\Supervision.csproj", "{DEC23357-6610-4C1A-9364-A61E353B453E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{BB57E755-807A-4D5E-87F3-7A5EE05E8151}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB57E755-807A-4D5E-87F3-7A5EE05E8151}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB57E755-807A-4D5E-87F3-7A5EE05E8151}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEC23357-6610-4C1A-9364-A61E353B453E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEC23357-6610-4C1A-9364-A61E353B453E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEC23357-6610-4C1A-9364-A61E353B453E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEC23357-6610-4C1A-9364-A61E353B453E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

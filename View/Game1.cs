@@ -36,6 +36,7 @@ namespace PlatLegeretSain.View
         List<Button> Buttons;
         Song Musique;
         SoundEffect Ambiance;
+        Model.Statistique stats;
 
         private Game1()
         {
@@ -56,7 +57,7 @@ namespace PlatLegeretSain.View
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            stats = Controller.Program.stats;
 
             base.Initialize();
         }
@@ -115,10 +116,11 @@ namespace PlatLegeretSain.View
             {
                 button.Update(gameTime);
             }
+            stats.Update(gameTime);
 
             ThreadPool.GetAvailableThreads(out availableThreads, out io);
             ThreadPool.GetMaxThreads(out maxThreads, out io);
-            nbClientATable = Model.Restaurant.Clients.FindAll(x => x.imgEtat != "").Count;
+            /*nbClientATable = Model.Restaurant.Clients.FindAll(x => x.imgEtat != "").Count;
             nbClientCarte = Model.Restaurant.Clients.FindAll(x => x.imgEtat == "carte_").Count;
             nbClientCarre1 = nbClientCarre2 = 0;
             foreach (Model.Client client in Model.Restaurant.Clients)
@@ -135,7 +137,7 @@ namespace PlatLegeretSain.View
                     }
                 }
             }
-            nbTableLibre = Model.Restaurant.Tables.FindAll(x => x.Disponible == true).Count;
+            nbTableLibre = Model.Restaurant.Tables.FindAll(x => x.Disponible == true).Count;*/
 
             // TODO: Add your update logic here
 
@@ -173,12 +175,12 @@ namespace PlatLegeretSain.View
                 new Vector2(60, 65), Color.Red);
 
             DrawText("Threads : " + (maxThreads - availableThreads), 1350, 765);
-            DrawText("Clients dans le restaurant : " + Model.Restaurant.Clients.Count, 1350, 795);
-            DrawText("a table : " + nbClientATable, 1415, 825);
-            DrawText("lisant la carte : " + nbClientCarte, 1415, 855);
-            DrawText("dans le carre 1 : " + nbClientCarre1, 1415, 885);
-            DrawText("dans le carre 2 : " + nbClientCarre2, 1415, 915);
-            DrawText("Tables libres : " + nbTableLibre, 1350, 945);
+            DrawText("Clients dans le restaurant : " + stats.nbClient, 1350, 795);
+            DrawText("a table : " + stats.nbClientATable, 1415, 825);
+            DrawText("lisant la carte : " + stats.nbClientCarte, 1415, 855);
+            DrawText("dans le carre 1 : " + stats.nbClientCarre1, 1415, 885);
+            DrawText("dans le carre 2 : " + stats.nbClientCarre2, 1415, 915);
+            DrawText("Tables libres : " + stats.nbTableLibre, 1350, 945);
             DrawText("Vitesse : x" + Clock.Speed, 1650, 765);
 
             foreach (Button button in Buttons)

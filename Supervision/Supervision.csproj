@@ -6,11 +6,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{E082F086-673F-4333-A877-048F4E8E02A3}</ProjectGuid>
+    <ProjectGuid>{DEC23357-6610-4C1A-9364-A61E353B453E}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PlatLegeretSain</RootNamespace>
-    <AssemblyName>PlatLegeretSain</AssemblyName>
+    <RootNamespace>Supervision</RootNamespace>
+    <AssemblyName>Supervision</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>DesktopGL</MonoGamePlatform>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -42,50 +42,10 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Controller\Key.cs" />
-    <Compile Include="Controller\Mousse.cs" />
-    <Compile Include="Model\Clock.cs" />
-    <Compile Include="Model\SocketServer.cs" />
-    <Compile Include="Model\Statistique.cs" />
-    <Compile Include="View\Button.cs" />
-    <Compile Include="Model\ChefCuisine.cs" />
-    <Compile Include="Model\ChefRang.cs" />
-    <Compile Include="Model\Nyancat.cs" />
-    <Compile Include="Model\GestionReservationsClientsTables.cs" />
-    <Compile Include="Model\Client.cs" />
-    <Compile Include="Model\Commande.cs" />
-    <Compile Include="Model\CommisCuisine.cs" />
-    <Compile Include="Model\CommisSalle.cs" />
-    <Compile Include="Model\Cuisine.cs" />
-    <Compile Include="Model\Cuisinier.cs" />
-    <Compile Include="Model\Database.cs" />
-    <Compile Include="Model\Dessert.cs" />
-    <Compile Include="Model\Employe.cs" />
-    <Compile Include="Model\Entree.cs" />
-    <Compile Include="Model\IMovable.cs" />
-    <Compile Include="Model\IClientState.cs" />
-    <Compile Include="Model\Restaurant.cs" />
-    <Compile Include="Model\CheckOrder.cs" />
-    <Compile Include="Model\WaitForTable.cs" />
+    <Compile Include="Model\SocketClient.cs" />
     <Compile Include="View\Game1.cs" />
-    <Compile Include="Model\Ingrédient.cs" />
-    <Compile Include="Model\IFreeTable.cs" />
-    <Compile Include="Model\MaitreHotel.cs" />
-    <Compile Include="Model\Materiel.cs" />
-    <Compile Include="Model\Plat.cs" />
-    <Compile Include="Model\Plongeur.cs" />
-    <Compile Include="Model\PositionPossible.cs" />
     <Compile Include="Controller\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Model\Recette.cs" />
-    <Compile Include="Model\Repas.cs" />
-    <Compile Include="Model\Reservation.cs" />
-    <Compile Include="Model\Serveur.cs" />
-    <Compile Include="Model\Table.cs" />
-    <Compile Include="Model\TableIndisponible.cs" />
-    <Compile Include="Model\TableDisponible.cs" />
-    <Compile Include="Model\Ustensile.cs" />
-    <Compile Include="View\PLSsprites.cs" />
     <Compile Include="View\SpriteFrame.cs" />
     <Compile Include="View\SpriteRender.cs" />
     <Compile Include="View\SpriteSheet.cs" />
@@ -96,7 +56,6 @@
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -151,16 +110,13 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="app.manifest" />
-    <None Include="ClassDiagram1.cd" />
     <None Include="Content\digital_display.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\PLSsprites.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\PLSsprites.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <ProjectReference Include="..\PlatLegeretSain.csproj">
+      <Project>{e082f086-673f-4333-a877-048f4e8e02a3}</Project>
+      <Name>PlatLegeretSain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

@@ -69,9 +69,9 @@ namespace PlatLegeretSain.Model
 
         public void QuitterRestaurant()
         {
-            ThreadPool.QueueUserWorkItem(Sortir);
-            //Thread threadQuitterRestaurant = new Thread(new ThreadStart(Sortir));
-            //threadQuitterRestaurant.Start();
+            //ThreadPool.QueueUserWorkItem(Sortir);
+            Thread threadQuitterRestaurant = new Thread(Sortir);
+            threadQuitterRestaurant.Start();
         }
 
         public void Sortir(object args)

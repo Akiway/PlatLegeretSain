@@ -7,6 +7,7 @@ namespace PlatLegeretSain.Controller
     /// </summary>
     public static class Program
     {
+        public static Model.Statistique stats;
 
         /// <summary>
         /// The main entry point for the application.
@@ -15,6 +16,8 @@ namespace PlatLegeretSain.Controller
         static void Main()
         {
             Model.Clock.Instance();
+            stats = new Model.Statistique();
+            Model.SocketServer.Instance();
 
             Model.Restaurant resto = Model.Restaurant.Instance();
             var game = View.Game1.Instance();
