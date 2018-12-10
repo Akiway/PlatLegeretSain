@@ -28,7 +28,6 @@ namespace PlatLegeretSain.Model
 
         public SocketServer()
         {
-            //InitializeComponent();
             StartServer();
         }
 

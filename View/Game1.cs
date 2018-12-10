@@ -121,24 +121,6 @@ namespace PlatLegeretSain.View
 
             ThreadPool.GetAvailableThreads(out availableThreads, out io);
             ThreadPool.GetMaxThreads(out maxThreads, out io);
-            /*nbClientATable = Model.Restaurant.Clients.FindAll(x => x.imgEtat != "").Count;
-            nbClientCarte = Model.Restaurant.Clients.FindAll(x => x.imgEtat == "carte_").Count;
-            nbClientCarre1 = nbClientCarre2 = 0;
-            foreach (Model.Client client in Model.Restaurant.Clients)
-            {
-                if (client.numTable != 0)
-                {
-                    if (Model.Restaurant.Tables.Find(x => x.Numero == client.numTable).Carre == 1)
-                    {
-                        nbClientCarre1++;
-                    }
-                    else if (Model.Restaurant.Tables.Find(x => x.Numero == client.numTable).Carre == 2)
-                    {
-                        nbClientCarre2++;
-                    }
-                }
-            }
-            nbTableLibre = Model.Restaurant.Tables.FindAll(x => x.Disponible == true).Count;*/
 
             // TODO: Add your update logic here
 
