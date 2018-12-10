@@ -47,6 +47,10 @@
     <Compile Include="Model\Clock.cs" />
     <Compile Include="Model\SocketServer.cs" />
     <Compile Include="Model\Statistique.cs" />
+    <Compile Include="Model\ComptoirPlatsChauds.cs" />
+    <Compile Include="Model\ConsoleTable.cs" />
+    <Compile Include="Model\LookMenu.cs" />
+    <Compile Include="Model\ReadyToOrder.cs" />
     <Compile Include="View\Button.cs" />
     <Compile Include="Model\ChefCuisine.cs" />
     <Compile Include="Model\ChefRang.cs" />

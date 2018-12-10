@@ -16,32 +16,33 @@ namespace PlatLegeretSain.Model
             this.Y = y;
             this.img = "Serveur_";
             this.orientation = "left";
+            this.Occuped = false;
         }
 
-        public List<Repas> repas
-        {
-            get => default(List<Repas>);
-            set
-            {
-            }
-        }
+        public List<Repas> repas;
 
-        public Boolean etat
+        public Boolean Occuped;
+
+        public void BringBread(int numTable)
         {
-            get => default(Boolean);
-            set
+            this.Occuped = true;
+            // Apporter le pain et l'eau à la table numTable
+            if(Restaurant.Tables.Find(x => x.Numero.Equals(numTable)).NbPlace > 6)
             {
+                Restaurant.console.nbBouteilleEau -= 2;
+                Restaurant.console.nbCorbeillePain -= 2;
             }
+            else
+            {
+                Restaurant.console.nbBouteilleEau -= 1;
+                Restaurant.console.nbCorbeillePain -= 1;
+            }
+            this.Occuped = false;
         }
 
         public void debarasser()
         {
-            throw new System.NotImplementedException();
-        }
-
-        public void notifier()
-        {
-            throw new System.NotImplementedException();
+           
         }
     }
 }

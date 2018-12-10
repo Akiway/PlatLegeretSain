@@ -105,7 +105,8 @@ namespace PlatLegeretSain.Model
             for (int i = 0; i < vitesseManger; i++)
             {
                 int index = new Random().Next(listChoix.Count);
-                string randomResult = listChoix[index];
+                //string randomResult = listChoix[index];
+                string randomResult = "Entree";
 
                 switch (randomResult)
                 {

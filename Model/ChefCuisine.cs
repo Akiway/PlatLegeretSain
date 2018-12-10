@@ -62,7 +62,7 @@ namespace PlatLegeretSain.Model
                     CookNow.Add(Database.Instance().GetRecette(element.dessert, element.numTable));
                 }
             }
-            //ManageOrder();
+            ManageOrder();
         }
 
         public void ManageOrder()
@@ -70,28 +70,40 @@ namespace PlatLegeretSain.Model
             List<Repas> listUrgent = new List<Repas>();
             List<Repas> listAnticipation = new List<Repas>();
 
-            if (Restaurant.C1.Occuped == false)
+            if (Restaurant.C1.Occuped == false && CookNow != null)
             {
                 foreach (Repas element in CookNow)
                 {
-                    if (element.numTable == CookNow[0].numTable)
+                    int numTableCookNow = CookNow[0].numTable;
+                    if (element.numTable == numTableCookNow)
                     {
-                        listUrgent.Add(element);
-                        CookNow.Remove(element);
+                        listUrgent.Add(element); 
                     }
                 }
+                foreach(Repas element in listUrgent)
+                {
+                    CookNow.Remove(element);
+                }
             }
-            if (Restaurant.C2.Occuped == false)
+
+            if (Restaurant.C2.Occuped == false && CookNowAnticipation != null)
             {
                 foreach (Repas element in CookNowAnticipation)
                 {
-                    if (element.numTable == CookNowAnticipation[0].numTable)
+                    int numTaleCookNowAnticipation = CookNowAnticipation[0].numTable;
+                    if (element.numTable == numTaleCookNowAnticipation)
                     {
-                        listUrgent.Add(element);
-                        CookNow.Remove(element);
+                        listAnticipation.Add(element);
                     }
                 }
+                foreach(Repas element in listAnticipation)
+                {
+                    CookNowAnticipation.Remove(element);
+                }
             }
+
+            Restaurant.C1.Cuisiner(listUrgent);
+            Restaurant.C2.Cuisiner(listAnticipation);
         }
     }
 }

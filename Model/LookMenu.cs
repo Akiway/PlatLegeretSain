@@ -6,17 +6,19 @@ using System.Threading.Tasks;
 
 namespace PlatLegeretSain.Model
 {
-    class CheckOrder : IClientState
+    class LookMenu : IClientState
     {
         public void ManageClient(Client context)
         {
-            if (context.numTable <= Restaurant.Tables.Count / 2)
+            int numTable = context.numTable;
+
+            if(numTable <= Restaurant.Tables.Count / 2)
             {
-                Restaurant.CR1.takeOrder(context.numTable);
+                Restaurant.Serveur1.BringBread(numTable);
             }
             else
             {
-                Restaurant.CR2.takeOrder(context.numTable);
+                Restaurant.Serveur2.BringBread(numTable);
             }
         }
     }
