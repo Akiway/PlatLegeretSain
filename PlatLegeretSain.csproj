@@ -45,6 +45,7 @@
     <Compile Include="Controller\Key.cs" />
     <Compile Include="Controller\Mousse.cs" />
     <Compile Include="Model\Clock.cs" />
+    <Compile Include="Model\Parameters.cs" />
     <Compile Include="Model\SocketServer.cs" />
     <Compile Include="Model\Statistique.cs" />
     <Compile Include="Model\ComptoirPlatsChauds.cs" />

@@ -164,6 +164,8 @@ namespace PlatLegeretSain.Model
             //ThreadPool.QueueUserWorkItem(DonnerCarte, clients);
             if (this.Occuped == false)
             {
+                GoToTable(table.Numero);
+
                 Thread threadCarte = new Thread(new ParameterizedThreadStart(DonnerCarte));
                 threadCarte.Start(clients);
             }
@@ -174,19 +176,21 @@ namespace PlatLegeretSain.Model
             this.Occuped = true;
             List<Client> listClients = (List<Client>) args;
             int numTable = listClients[0].numTable;
-
-            foreach (Client client in listClients)
-            {
-                client.imgEtat = "carte_";
-            }
+            
             listClients[0].setState(new LookMenu());
-            // After 5 min :
-            Thread.Sleep(Clock.STime(5000));
+            // CR stay at table 1 min
+            Thread.Sleep(Clock.STime(1000));
+            this.Occuped = false;
+
+            // CR go away 4 min :
+            Thread.Sleep(Clock.STime(4000));
+
+            this.Occuped = true;
+            GoToTable(numTable);
+
             listClients[0].setState(new ReadyToOrder());
-            foreach (Client client in listClients)
-            {
-                client.imgEtat = "table_";
-            }
+            // CR stay at table 1 min
+            Thread.Sleep(Clock.STime(1000));
             this.Occuped = false;
         }
 
@@ -232,6 +236,47 @@ namespace PlatLegeretSain.Model
         public void donnerCommande(List<Commande> commandes)
         {
             Restaurant.CC.NewCommande(commandes);
+        }
+
+        public void GoToTable(int numTable)
+        {
+            Table table = Restaurant.Tables.Find(x => x.Numero == numTable);
+            int nbPlaces = table.NbPlace;
+            int half = nbPlaces / 2;
+            int cx = table.X;
+            int cy = table.Y;
+            int ecart = 46, decalage = ecart / 2;
+
+            if (table.OrientationHorizontale)
+            {
+                if (half % 2 != 0) // 2, 6, 10 places
+                {
+                    this.X = cx + (half / 2 + 1) * ecart - decalage / 2;
+                    this.Y = cy;
+                    this.orientation = "left";
+                }
+                else // 4, 8 places
+                {
+                    this.X = cx + half / 2 * ecart + decalage/2;
+                    this.Y = cy;
+                    this.orientation = "left";
+                }
+            }
+            else
+            {
+                if (half % 2 != 0) // 2, 6, 10 places
+                {
+                    this.X = cx;
+                    this.Y = cy + (half / 2 + 1) * ecart - decalage / 2;
+                    this.orientation = "back";
+                }
+                else // 4, 8 places
+                {
+                    this.X = cx;
+                    this.Y = cy + half / 2 * ecart + decalage/2;
+                    this.orientation = "back";
+                }
+            }
         }
     }
 }

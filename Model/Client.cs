@@ -40,6 +40,7 @@ namespace PlatLegeretSain.Model
 
         public void setState(IClientState newState)
         {
+            this.clientState = newState;
             ManageClient();
         }
 
