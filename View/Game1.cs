@@ -185,7 +185,7 @@ namespace PlatLegeretSain.View
             Console.WriteLine(text);
 
             using (System.IO.StreamWriter file =
-            new System.IO.StreamWriter("../../../../Logs.txt", true))
+            new System.IO.StreamWriter(Controller.Program.logFile, true))
             {
                 file.WriteLine(text);
             }

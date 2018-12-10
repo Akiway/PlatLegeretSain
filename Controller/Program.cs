@@ -8,6 +8,7 @@ namespace PlatLegeretSain.Controller
     public static class Program
     {
         public static Model.Statistique stats;
+        public static string logFile;
 
         /// <summary>
         /// The main entry point for the application.
@@ -15,9 +16,11 @@ namespace PlatLegeretSain.Controller
         [STAThread]
         static void Main()
         {
-            // Reset Logs
+            // Create new logs
+            string date = DateTime.Now.Day + "-" + DateTime.Now.Month + "-" + DateTime.Now.Year + " " + DateTime.Now.Hour + "H" + DateTime.Now.Minute + "M" + DateTime.Now.Second;
+            logFile = "../../../../logs/" + date + ".txt";
             using (System.IO.StreamWriter file =
-            new System.IO.StreamWriter("../../../../Logs.txt", false))
+            new System.IO.StreamWriter(logFile, false))
             {
                 file.WriteLine("--- Simulation du " + DateTime.Now);
             }
