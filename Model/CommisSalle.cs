@@ -16,12 +16,12 @@ namespace PlatLegeretSain.Model
 
         public void servir()
         {
-            throw new System.NotImplementedException();
+            
         }
 
         public void aider()
         {
-            throw new System.NotImplementedException();
+            
         }
 
         public void BringBread(int numTable)

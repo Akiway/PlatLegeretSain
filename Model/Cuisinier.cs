@@ -31,18 +31,22 @@ namespace PlatLegeretSain.Model
 
         public void DishReady(Repas repas)
         {
-            Restaurant.commisCuisine.EmmenerPlatComptoir(repas);
-
-            View.Game1.Print("--------------------- Cuisinier ----------------------");
-            View.Game1.Print(repas.nom);
-            View.Game1.Print(listRepas.Count.ToString());
-            if(listRepas.FindAll(x => x.ready.Equals(true)).Count == listRepas.Count)
+            if (this.name == "C1")
             {
-                Restaurant.commisCuisine.callWaiter();
-                View.Game1.Print("All");
+                View.Game1.Print("Cuisinier 1 > DishReady");
+                Restaurant.commisCuisine.EmmenerPlatComptoir(repas);
+
+                View.Game1.Print("--------------------- Cuisinier 1 ----------------------");
+                View.Game1.Print(repas.nom);
+                View.Game1.Print(listRepas.Count.ToString());
+                if (listRepas.FindAll(x => x.ready.Equals(true)).Count == listRepas.Count)
+                {
+                    Restaurant.commisCuisine.callWaiter(repas.numTable);
+                    View.Game1.Print("All");
+                }
+                this.Occuped = false;
+                View.Game1.Print("--------------------- FinCuisinier 1 -------------------");
             }
-            this.Occuped = false;
-            View.Game1.Print("--------------------- FinCuisinier -------------------");
         }
     }
 }

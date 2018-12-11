@@ -179,6 +179,7 @@ namespace PlatLegeretSain.Model
             {
                 client.imgEtat = "carte_";
             }
+            View.Game1.Print("Chef raaaaaaaaaaaaaaaaaaaaaaaaaaaaang");
             listClients[0].setState(new LookMenu());
             // After 5 min :
             Thread.Sleep(Clock.STime(5000));

@@ -34,5 +34,6 @@ namespace PlatLegeretSain.Model
             List<Repas> listRepas = new List<Repas>();
             listRepas = ComptoirPlatsChauds.Instance().GetDish();
         }
+
     }
 }
