@@ -44,18 +44,5 @@ namespace PlatLegeretSain.Model
         {
             this.etatTable = newEtat;
         }
-
-        /// <summary>
-        /// Change le State en TableDisponible
-        /// </summary>
-        public void PlaceLibere()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void PasPlace()
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

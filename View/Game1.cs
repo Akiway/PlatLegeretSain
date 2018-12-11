@@ -184,11 +184,12 @@ namespace PlatLegeretSain.View
         {
             Console.WriteLine(text);
 
-            using (System.IO.StreamWriter file =
-            new System.IO.StreamWriter(Controller.Program.logFile, true))
-            {
-                file.WriteLine(text);
-            }
+            //using (System.IO.StreamWriter file =
+            //new System.IO.StreamWriter(Controller.Program.logFile, true))
+            //{
+            //    file.WriteLine(text);
+            //    file.Close();
+            //}
         }
     }
 }

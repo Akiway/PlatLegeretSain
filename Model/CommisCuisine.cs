@@ -2,14 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace PlatLegeretSain.Model
 {
     public class CommisCuisine : Employe
     {
+        public Semaphore disponibiliteServeurCarre1;
+        public Semaphore disponibiliteServeurCarre2;
+
         public CommisCuisine()
         {
-            
+            disponibiliteServeurCarre1 = new Semaphore(2, 2);
+            disponibiliteServeurCarre2 = new Semaphore(2, 2);
         }
 
         public void eplucher()
@@ -40,7 +45,8 @@ namespace PlatLegeretSain.Model
             // Choix du serveur
             if (numTable <= Restaurant.Tables.Count / 2)
             {
-                if (Restaurant.Serveur1.Occuped == false)
+                disponibiliteServeurCarre1.WaitOne();
+                if(Restaurant.Serveur1.Occuped == false)
                 {
                     Restaurant.Serveur1.BringDish(numTable);
                 }
@@ -48,13 +54,11 @@ namespace PlatLegeretSain.Model
                 {
                     Restaurant.Serveur2.BringDish(numTable);
                 }
-                else
-                {
-                    // Thread 5 min
-                }
+                disponibiliteServeurCarre1.Release();
             }
             else
             {
+                disponibiliteServeurCarre2.WaitOne();
                 if (Restaurant.Serveur3.Occuped == false)
                 {
                     Restaurant.Serveur3.BringDish(numTable);
@@ -63,10 +67,7 @@ namespace PlatLegeretSain.Model
                 {
                     Restaurant.Serveur4.BringDish(numTable);
                 }
-                else
-                {
-                    // Thread 5 min
-                }
+                disponibiliteServeurCarre2.Release();
             }
         }
     }

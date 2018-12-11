@@ -1,0 +1,48 @@
+--- Simulation du 11/12/2018 09:41:16
+Server error > L’adresse demandée n’est pas valide dans son contexte
+Connexion à la base de donnée réussie
+Res : 3 clients à 01/01/2018 10:48:00
+Res : 1 clients à 01/01/2018 10:03:00
+Res : 4 clients à 01/01/2018 12:02:00
+MH > groupe 1 a une table libre
+Table 18 > Lit le menu
+Table 18 > Le commis de salle apporte le pain et l'eau aux clients
+Table 18 > Le commis de salle apporte le pain et l'eau aux clients
+CR2 > Je prend la commande de la table 18
+============= Commandes de la table 18 =============
+vitesseManger : 1 / UnDeuxFois : 1
+quiche loraine /  / 
+pate de sanglier /  / 
+tagliatelle de concombre au saumon fumee /  / 
+quiche loraine /  / 
+EnChauffe
+EnChauffe
+EnChauffe
+EnChauffe
+MH > groupe 2 a une table libre
+Table 32 > Lit le menu
+Table 32 > Le commis de salle apporte le pain et l'eau aux clients
+Cuisinier 1 > DishReady
+Emmener plat comptoir ! 
+--------------------- Cuisinier 1 ----------------------
+quiche loraine
+Cuisinier 1 > DishReady
+4
+Emmener plat comptoir ! 
+--------------------- FinCuisinier 1 -------------------
+--------------------- Cuisinier 1 ----------------------
+pate de sanglier
+Cuisinier 1 > DishReady
+Emmener plat comptoir ! 
+--------------------- Cuisinier 1 ----------------------
+tagliatelle de concombre au saumon fumee
+4
+--------------------- FinCuisinier 1 -------------------
+Cuisinier 1 > DishReady
+Emmener plat comptoir ! 
+--------------------- Cuisinier 1 ----------------------
+quiche loraine
+4
+Commis de cuisine > callWaiter !
+All
+--------------------- FinCuisinier 1 -------------------

@@ -1,0 +1,79 @@
+--- Simulation du 11/12/2018 09:17:49
+Server error > L’adresse demandée n’est pas valide dans son contexte
+Connexion à la base de donnée réussie
+Res : 4 clients à 01/01/2018 11:11:00
+Res : 6 clients à 01/01/2018 11:54:00
+MH > groupe 1 a une table libre
+Table 2 > Lit le menu
+Table 2 > Le commis de salle apporte le pain et l'eau aux clients
+Table 2 > Le commis de salle apporte le pain et l'eau aux clients
+CR1 > Je prend la commande de la table 2
+============= Commandes de la table 2 =============
+vitesseManger : 1 / UnDeuxFois : 1
+tarte au thoon /  / 
+EnChauffe
+MH > groupe 2 a une table libre
+Table 3 > Lit le menu
+Table 3 > Le commis de salle apporte le pain et l'eau aux clients
+Cuisinier 1 > DishReady
+Emmener plat comptoir ! 
+--------------------- Cuisinier 1 ----------------------
+tarte au thoon
+1
+Commis de cuisine > callWaiter !
+All
+--------------------- FinCuisinier 1 -------------------
+Table 3 > Le commis de salle apporte le pain et l'eau aux clients
+CR1 > Je prend la commande de la table 3
+============= Commandes de la table 3 =============
+vitesseManger : 1 / UnDeuxFois : 1
+soupe chinoise /  / 
+tagliatelle de concombre au saumon fumee /  / 
+tarte au thoon /  / 
+feuillete de crabe /  / 
+cagouilles a la charantaise /  / 
+soupe chinoise /  / 
+oeuf cocotte /  / 
+soupe chinoise /  / 
+tagliatelle de concombre au saumon fumee /  / 
+EnChauffe
+EnChauffe
+EnChauffe
+EnChauffe
+EnChauffe
+EnChauffe
+EnChauffe
+EnChauffe
+EnChauffe
+MH > groupe 3 a une table libre
+Table 10 > Lit le menu
+Table 10 > Le commis de salle apporte le pain et l'eau aux clients
+Cuisinier 1 > DishReady
+Emmener plat comptoir ! 
+--------------------- Cuisinier 1 ----------------------
+soupe chinoise
+Cuisinier 1 > DishReady
+Emmener plat comptoir ! 
+--------------------- Cuisinier 1 ----------------------
+tagliatelle de concombre au saumon fumee
+10
+--------------------- FinCuisinier 1 -------------------
+Cuisinier 1 > DishReady
+Emmener plat comptoir ! 
+--------------------- Cuisinier 1 ----------------------
+tarte au thoon
+10
+--------------------- FinCuisinier 1 -------------------
+Cuisinier 1 > DishReady
+Emmener plat comptoir ! 
+--------------------- Cuisinier 1 ----------------------
+cagouilles a la charantaise
+10
+Cuisinier 1 > DishReady
+Emmener plat comptoir ! 
+--------------------- Cuisinier 1 ----------------------
+soupe chinoise
+10
+Commis de cuisine > callWaiter !
+All
+--------------------- FinCuisinier 1 -------------------

@@ -23,6 +23,7 @@ namespace PlatLegeretSain.Controller
             new System.IO.StreamWriter(logFile, false))
             {
                 file.WriteLine("--- Simulation du " + DateTime.Now);
+                file.Close();
             }
 
             //Load parameters

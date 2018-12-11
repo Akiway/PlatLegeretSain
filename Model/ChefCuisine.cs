@@ -16,94 +16,87 @@ namespace PlatLegeretSain.Model
             return CC;
         }
 
-        private List<Repas> CookNow = new List<Repas>();
-        private List<Repas> CookNowAnticipation = new List<Repas>();
-        private List<Repas> CookLater = new List<Repas>();
+        private List<Repas> EntreeEtPlatCourt = new List<Repas>();
+        private List<Repas> PlatLongetDessert = new List<Repas>();
 
         public ChefCuisine()
         {
 
         }
 
-        public void NewCommande(List<Commande> commandes)
+        public void NewCommande(object args)
         {
+            List<Commande> commandes = (List<Commande>)args;
             foreach (Commande element in commandes)
             {
                 if (element.entree != "")
                 {
-                    CookNow.Add(Database.Instance().GetRecette(element.entree, element.numTable));
-                    if (element.plat != "")
-                    {
-                        Repas repas = Database.Instance().GetRecette(element.plat, element.numTable);
-                        if (repas.recette.tempsCuisson <= 30)
-                        {
-                            CookLater.Add(repas);
-                        }
-                        else
-                        {
-                            CookNowAnticipation.Add(repas);
-                        }
-                    }
-                    else if (element.dessert != "")
-                    {
-                        CookLater.Add(Database.Instance().GetRecette(element.dessert, element.numTable));
-                    }
+                    EntreeEtPlatCourt.Add(Database.Instance().GetRecette(element.entree, element.numTable));
                 }
-                else if (element.plat != null)
+                else if (element.plat != "")
                 {
-                    CookNow.Add(Database.Instance().GetRecette(element.plat, element.numTable));
-                    if (element.dessert != "")
+                    Repas repas = Database.Instance().GetRecette(element.plat, element.numTable);
+                    if (repas.recette.tempsCuisson <= 30)
                     {
-                        CookLater.Add(Database.Instance().GetRecette(element.dessert, element.numTable));
+                        EntreeEtPlatCourt.Add(repas);
+                    }
+                    else
+                    {
+                        PlatLongetDessert.Add(repas);
                     }
                 }
                 else
                 {
-                    CookNow.Add(Database.Instance().GetRecette(element.dessert, element.numTable));
+                    PlatLongetDessert.Add(Database.Instance().GetRecette(element.dessert, element.numTable));
                 }
+                ManageOrder();
             }
-            ManageOrder();
         }
 
         public void ManageOrder()
         {
-            List<Repas> listUrgent = new List<Repas>();
-            List<Repas> listAnticipation = new List<Repas>();
+            List<Repas> listEntreeEtPlatCourt = new List<Repas>();
+            List<Repas> listPlatLongetDessert = new List<Repas>();
 
-            if (Restaurant.C1.Occuped == false && CookNow != null)
+            if (EntreeEtPlatCourt != null)
             {
-                foreach (Repas element in CookNow)
+                foreach (Repas element in EntreeEtPlatCourt)
                 {
-                    int numTableCookNow = CookNow[0].numTable;
-                    if (element.numTable == numTableCookNow)
+                    int numTableEntreeEtPlatCourt = EntreeEtPlatCourt[0].numTable;
+                    if (element.numTable == numTableEntreeEtPlatCourt)
                     {
-                        listUrgent.Add(element); 
+                        listEntreeEtPlatCourt.Add(element);
                     }
                 }
-                foreach(Repas element in listUrgent)
+                foreach (Repas element in listEntreeEtPlatCourt)
                 {
-                    CookNow.Remove(element);
+                    EntreeEtPlatCourt.Remove(element);
                 }
             }
 
-            if (Restaurant.C2.Occuped == false && CookNowAnticipation != null)
+            if (PlatLongetDessert != null)
             {
-                foreach (Repas element in CookNowAnticipation)
+                foreach (Repas element in PlatLongetDessert)
                 {
-                    int numTaleCookNowAnticipation = CookNowAnticipation[0].numTable;
-                    if (element.numTable == numTaleCookNowAnticipation)
+                    int numTablePlatLongetDessert = PlatLongetDessert[0].numTable;
+                    if (element.numTable == numTablePlatLongetDessert)
                     {
-                        listAnticipation.Add(element);
+                        listPlatLongetDessert.Add(element);
                     }
                 }
-                foreach(Repas element in listAnticipation)
+                foreach (Repas element in listPlatLongetDessert)
                 {
-                    CookNowAnticipation.Remove(element);
+                    PlatLongetDessert.Remove(element);
                 }
             }
 
-            Restaurant.C1.Cuisiner(listUrgent);
-            Restaurant.C2.Cuisiner(listAnticipation);
+            Restaurant.C1.SemaphoreCuisinier.WaitOne();
+            Restaurant.C1.Cuisiner(listEntreeEtPlatCourt);
+            Restaurant.C1.SemaphoreCuisinier.Release();
+
+            Restaurant.C2.SemaphoreCuisinier.WaitOne();
+            Restaurant.C2.Cuisiner(listPlatLongetDessert);
+            Restaurant.C2.SemaphoreCuisinier.Release();
         }
     }
 }

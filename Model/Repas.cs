@@ -18,7 +18,7 @@ namespace PlatLegeretSain.Model
         public Recette recette;
         public bool ready;
 
-        public void EnChauffe(Cuisinier cuisinier)
+        public void Conception(Cuisinier cuisinier)
         {
             Thread threadWaitTime = new Thread(new ParameterizedThreadStart(WaitTime));
             threadWaitTime.Start(cuisinier);

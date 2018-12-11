@@ -62,7 +62,16 @@ namespace PlatLegeretSain.Model
             for (int i = nbClient; i < 11 && findTable == false; i++)
             {
                 List<Table> listTables = new List<Table>();
-                listTables = Restaurant.Tables.FindAll(x => x.NbPlace.Equals(i));
+
+                if (Restaurant.Tables.FindAll(x => x.Disponible.Equals(true) && x.Numero < Restaurant.Tables.Count / 2).Count < Restaurant.Tables.FindAll(x => x.Disponible.Equals(true) && x.Numero >= Restaurant.Tables.Count / 2).Count)
+                {
+                    listTables = Restaurant.Tables.FindAll(x => x.NbPlace.Equals(i) && x.Numero >= Restaurant.Tables.Count / 2);
+                }
+                else
+                {
+                    listTables = Restaurant.Tables.FindAll(x => x.NbPlace.Equals(i) && x.Numero < Restaurant.Tables.Count / 2);
+                }
+
                 if (listTables.FindAll(x => x.Disponible.Equals(true)).Count != 0)
                 {
                     listTables = listTables.FindAll(x => x.Disponible.Equals(true));

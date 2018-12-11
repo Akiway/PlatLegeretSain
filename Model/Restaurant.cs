@@ -117,7 +117,7 @@ namespace PlatLegeretSain.Model
             // Tant que le thread actuel est vivant
             while (Thread.CurrentThread.IsAlive)
             {
-                Thread.Sleep(Clock.STime(1000)); // 1 sec
+                Thread.Sleep(Clock.STime(4000)); // 1 sec
                 Random random = new Random();
                 bool boolValue = Convert.ToBoolean(random.Next() % 2);
 

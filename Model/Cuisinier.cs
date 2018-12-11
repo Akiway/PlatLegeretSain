@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace PlatLegeretSain.Model
 {
@@ -9,23 +10,44 @@ namespace PlatLegeretSain.Model
     {
         public Cuisinier(String name)
         {
-            this.Occuped = false;
+            this.SemaphoreCuisinier = new Semaphore(1, 1);
             this.name = name;
         }
 
-        public bool Occuped;
+        public Semaphore SemaphoreCuisinier;
         public String name;
-        public List<Repas> listRepas = new List<Repas>();
+        public List<Repas> listMtn = new List<Repas>();
+        public List<Repas> listApres = new List<Repas>();
 
         public void Cuisiner(List<Repas> repas)
         {
-            this.Occuped = true;
             foreach(Repas element in repas)
             {
-                element.EnChauffe(this);
-                this.listRepas.Add(element);
-                View.Game1.Print("EnChauffe");
-                // Supprimer ingredients des recettes de la BDD
+                if(this.name == "C1")
+                {
+                    // S'il y a des entrees dans la liste
+                    if(repas.FindAll(x => x.nom.Equals("entree")).Count != 0)
+                    {
+                        if (element.nom == "entree")
+                        {
+                            listMtn.Add(element);
+                        }
+                        else
+                        {
+                            listApres.Add(element);
+                        }
+                    }
+                    else
+                    {
+                        listMtn.Add(element);
+                    }
+                }
+                else
+                {
+
+                }
+                element.Conception(this);
+                View.Game1.Print("Conception");
             }
         }
 
@@ -33,19 +55,20 @@ namespace PlatLegeretSain.Model
         {
             if (this.name == "C1")
             {
-                View.Game1.Print("Cuisinier 1 > DishReady");
-                Restaurant.commisCuisine.EmmenerPlatComptoir(repas);
-
-                View.Game1.Print("--------------------- Cuisinier 1 ----------------------");
-                View.Game1.Print(repas.nom);
-                View.Game1.Print(listRepas.Count.ToString());
-                if (listRepas.FindAll(x => x.ready.Equals(true)).Count == listRepas.Count)
+                if(listMtn.FindAll(x => x.Equals(repas)).Count != 0)
                 {
-                    Restaurant.commisCuisine.callWaiter(repas.numTable);
-                    View.Game1.Print("All");
+                    Restaurant.commisCuisine.EmmenerPlatComptoir(repas);
+                    View.Game1.Print("Le commis de cuisine met un plat sur le comptoir");
+                    if (listMtn.FindAll(x => x.ready.Equals(true)).Count == listMtn.Count)
+                    {
+                        Restaurant.commisCuisine.callWaiter(repas.numTable);
+                        View.Game1.Print("All");
+                    }
                 }
-                this.Occuped = false;
-                View.Game1.Print("--------------------- FinCuisinier 1 -------------------");
+                else
+                {
+                    Restaurant.commisCuisine.EmmenerPlatEtuve(repas);
+                }
             }
         }
     }

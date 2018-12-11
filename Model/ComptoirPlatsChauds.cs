@@ -18,7 +18,6 @@ namespace PlatLegeretSain.Model
         }
 
         List<Repas> dishReady = new List<Repas>();
-        private List<Repas> listDishReady;
 
         public void NewDishReady(Repas repas)
         {
@@ -27,10 +26,10 @@ namespace PlatLegeretSain.Model
 
         public List<Repas> GetDish()
         {
-            // Copier la liste en local puis la vider
             List<Repas> listDishReady = new List<Repas>();
             listDishReady = dishReady;
-            return this.listDishReady;
+            dishReady.Clear();
+            return listDishReady;
         }
     }
 }
