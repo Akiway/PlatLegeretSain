@@ -110,8 +110,7 @@ namespace PlatLegeretSain.Model
             for (int i = 0; i < vitesseManger; i++)
             {
                 int index = new Random().Next(listChoix.Count);
-                //string randomResult = listChoix[index];
-                string randomResult = "Entree";
+                string randomResult = listChoix[index];
 
                 switch (randomResult)
                 {
@@ -156,6 +155,7 @@ namespace PlatLegeretSain.Model
 
             Thread.Sleep(Clock.STime(tempsAttente * 1000)); // Multiplier par 3600 pour temps reel
 
+            // Les clients appelent le serveur pour debarasser
             if (numTable <= Restaurant.Tables.Count / 2)
             {
                 disponibiliteServeurCarre1.WaitOne();
@@ -181,6 +181,16 @@ namespace PlatLegeretSain.Model
                     Restaurant.Serveur4.debarasser(numTable);
                 }
                 disponibiliteServeurCarre2.Release();
+            }
+
+            // Changement d'état
+            if(tempsAttente == 15 && this.Commande.plat != null)
+            {
+                this.setState(new AttendPlat());
+            }
+            else if(tempsAttente == 15 && this.Commande.dessert != null)
+            {
+                this.setState(new AttendDessert());
             }
         }
     }

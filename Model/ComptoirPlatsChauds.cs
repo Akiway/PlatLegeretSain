@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PlatLegeretSain.Model
 {
-    sealed class ComptoirPlatsChauds : Employe
+    sealed class ComptoirPlatsChauds
     {
         // Singleton
         private static ComptoirPlatsChauds CPC = null;

@@ -30,12 +30,13 @@ namespace PlatLegeretSain.Model
         public void EmmenerPlatComptoir(Repas repas)
         {
             Restaurant.CPC.NewDishReady(repas);
-            View.Game1.Print("Emmener plat comptoir ! ");
+            View.Game1.Print("Emmener plat comptoir ! "+repas.nom);
         }
 
         public void EmmenerPlatEtuve(Repas repas)
         {
-            View.Game1.Print("Emmener plat étuve ! ");
+            Restaurant.tableChaude.NewDishWaiting(repas);
+            View.Game1.Print("Emmener plat étuve ! " + repas.nom);
         }
 
         public void callWaiter(int numTable)
@@ -46,6 +47,7 @@ namespace PlatLegeretSain.Model
             if (numTable <= Restaurant.Tables.Count / 2)
             {
                 disponibiliteServeurCarre1.WaitOne();
+
                 if(Restaurant.Serveur1.Occuped == false)
                 {
                     Restaurant.Serveur1.BringDish(numTable);

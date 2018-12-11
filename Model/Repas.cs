@@ -11,7 +11,10 @@ namespace PlatLegeretSain.Model
         public Repas()
         {
             this.ready = false;
+            semaphoreCuisinier = new Semaphore(1, 1);
         }
+
+        public Semaphore semaphoreCuisinier;
 
         public string nom;
         public int numTable;
@@ -23,7 +26,9 @@ namespace PlatLegeretSain.Model
             Cuisinier cuisinier = (Cuisinier)args;
             Thread.Sleep(Clock.STime(this.recette.tempsCuisson * 100));
             this.ready = true;
+            semaphoreCuisinier.WaitOne();
             cuisinier.DishReady(this);
+            semaphoreCuisinier.Release();
         }
     }
 }

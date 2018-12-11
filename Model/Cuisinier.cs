@@ -44,7 +44,7 @@ namespace PlatLegeretSain.Model
                 }
                 else
                 {
-
+                    listApres.Add(element);
                 }
                 ThreadPool.QueueUserWorkItem(element.Conception, this);
                 View.Game1.Print("Conception du repas");
@@ -69,6 +69,10 @@ namespace PlatLegeretSain.Model
                 {
                     Restaurant.commisCuisine.EmmenerPlatEtuve(repas);
                 }
+            }
+            else
+            {
+                Restaurant.commisCuisine.EmmenerPlatEtuve(repas);
             }
         }
     }

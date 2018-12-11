@@ -23,6 +23,7 @@ namespace PlatLegeretSain.Model
         public static CommisSalle commisSalle;
         public static CommisCuisine commisCuisine;
         public static ComptoirPlatsChauds CPC;
+        public static TableChaude tableChaude;
         public static GestionReservationsClientsTables GRCT;
         public static List<Employe> Employes = new List<Employe>();
         public static List<Client> Clients = new List<Client>();
@@ -48,6 +49,7 @@ namespace PlatLegeretSain.Model
             CC = ChefCuisine.Instance();
             commisSalle = new CommisSalle();
             console = ConsoleTable.Instance();
+            tableChaude = TableChaude.Instance();
             C1 = new Cuisinier("C1");
             C2 = new Cuisinier("C2");
             commisCuisine = new CommisCuisine();
