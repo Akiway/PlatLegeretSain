@@ -152,6 +152,8 @@ namespace PlatLegeretSain.Model
                     break;
             }
 
+            View.Game1.Print("Les clients de la table " + this.numTable + " mange leur " + repas.nom);
+
             Thread.Sleep(Clock.STime(tempsAttente * 1000)); // Multiplier par 3600 pour temps reel
 
             if (numTable <= Restaurant.Tables.Count / 2)

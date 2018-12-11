@@ -18,17 +18,10 @@ namespace PlatLegeretSain.Model
         public Recette recette;
         public bool ready;
 
-        public void Conception(Cuisinier cuisinier)
-        {
-            Thread threadWaitTime = new Thread(new ParameterizedThreadStart(WaitTime));
-            threadWaitTime.Start(cuisinier);
-        }
-
-        public void WaitTime(object args)
+        public void Conception(object args)
         {
             Cuisinier cuisinier = (Cuisinier)args;
-            //Thread.Sleep(Clock.STime(this.recette.tempsCuisson));
-            Thread.Sleep(Clock.STime(5000));
+            Thread.Sleep(Clock.STime(this.recette.tempsCuisson * 100));
             this.ready = true;
             cuisinier.DishReady(this);
         }

@@ -26,7 +26,7 @@ namespace PlatLegeretSain.Model
         {
             this.Occuped = true;
 
-
+            View.Game1.Print("Un serveur débarasse la table " + numTable);
 
             this.Occuped = false;
         }

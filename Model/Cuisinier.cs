@@ -46,8 +46,8 @@ namespace PlatLegeretSain.Model
                 {
 
                 }
-                element.Conception(this);
-                View.Game1.Print("Conception");
+                ThreadPool.QueueUserWorkItem(element.Conception, this);
+                View.Game1.Print("Conception du repas");
             }
         }
 
