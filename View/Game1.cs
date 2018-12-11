@@ -180,6 +180,15 @@ namespace PlatLegeretSain.View
 
         public void DrawText(string text, int x, int y) => spriteBatch.DrawString(spriteFont, text, new Vector2(x, y), Color.White);
 
-        public static void Print(string text) => Console.WriteLine(text);
+        public static void Print(string text)
+        {
+            Console.WriteLine(text);
+
+            using (System.IO.StreamWriter file =
+            new System.IO.StreamWriter(Controller.Program.logFile, true))
+            {
+                file.WriteLine(text);
+            }
+        }
     }
 }
