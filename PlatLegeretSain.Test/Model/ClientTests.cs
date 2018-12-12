@@ -34,7 +34,7 @@ namespace PlatLegeretSain.Model.Tests
         {
             Client client = new Client(10);
             client.MoveUp(20);
-            Assert.AreEqual("back", client.orientation);
+            Assert.AreEqual("back", client.Orientation);
         }
 
         [TestMethod()]
@@ -42,7 +42,7 @@ namespace PlatLegeretSain.Model.Tests
         {
             Client client = new Client(10);
             client.MoveDown(20);
-            Assert.AreEqual("front", client.orientation);
+            Assert.AreEqual("front", client.Orientation);
         }
 
         [TestMethod()]
@@ -50,7 +50,7 @@ namespace PlatLegeretSain.Model.Tests
         {
             Client client = new Client(10);
             client.MoveLeft(20);
-            Assert.AreEqual("left", client.orientation);
+            Assert.AreEqual("left", client.Orientation);
         }
 
         [TestMethod()]
@@ -58,7 +58,7 @@ namespace PlatLegeretSain.Model.Tests
         {
             Client client = new Client(10);
             client.MoveRight(20);
-            Assert.AreEqual("right", client.orientation);
+            Assert.AreEqual("right", client.Orientation);
         }
 
         [TestMethod()]

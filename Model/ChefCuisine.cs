@@ -21,7 +21,7 @@ namespace PlatLegeretSain.Model
 
         public ChefCuisine()
         {
-
+            this.img = "Cc_";
         }
 
         public void NewCommande(object args)

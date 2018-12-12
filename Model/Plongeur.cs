@@ -9,7 +9,7 @@ namespace PlatLegeretSain.Model
     {
         public Plongeur()
         {
-            throw new System.NotImplementedException();
+            this.img = "Plongeur_";
         }
 
         public void nettoyer()

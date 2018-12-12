@@ -47,7 +47,7 @@ namespace PlatLegeretSain.Model
             try
             {
                 serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                IPAddress ip = (Dns.Resolve("192.168.43.232")).AddressList[0];
+                IPAddress ip = (Dns.Resolve("10.162.129.15")).AddressList[0];
                 serverSocket.Bind(new IPEndPoint(ip, 3333));
                 serverSocket.Listen(10);
                 serverSocket.BeginAccept(AcceptCallback, null);

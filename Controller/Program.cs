@@ -19,12 +19,7 @@ namespace PlatLegeretSain.Controller
             // Create new logs
             string date = DateTime.Now.Day + "-" + DateTime.Now.Month + "-" + DateTime.Now.Year + " " + DateTime.Now.Hour + "H" + DateTime.Now.Minute + "M" + DateTime.Now.Second;
             logFile = "../../../../logs/" + date + ".txt";
-            using (System.IO.StreamWriter file =
-            new System.IO.StreamWriter(logFile, false))
-            {
-                file.WriteLine("--- Simulation du " + DateTime.Now);
-                file.Close();
-            }
+            View.Game1.Print("--- Simulation du " + DateTime.Now);
 
             //Load parameters
             //Model.Parameters.Instance();

@@ -15,6 +15,7 @@ namespace PlatLegeretSain.Model
         {
             disponibiliteServeurCarre1 = new Semaphore(2, 2);
             disponibiliteServeurCarre2 = new Semaphore(2, 2);
+            this.img = "CommisCuisine_";
         }
 
         public void eplucher()

@@ -4,13 +4,17 @@
  * Contains references to each image within the sprite sheet.
  *
  * https://www.codeandweb.com/texturepacker
- * $TexturePacker:SmartUpdate:68689dbc002f5292c351827f43ef9da3:6d442e87b76cf7a901d4a9529280e765:392bb42978da344af36d8fe9bbfcaedc$
+ * $TexturePacker:SmartUpdate:1b895098f41b019f29e1af01d50768dc:f913432cc075c7a3dfab759e2c546159:392bb42978da344af36d8fe9bbfcaedc$
  *
  */
 namespace TexturePackerMonoGameDefinitions
 {
 	public class PLSsprites
 	{
+		public const string Cc_back = "Cc_back";
+		public const string Cc_front = "Cc_front";
+		public const string Cc_left = "Cc_left";
+		public const string Cc_right = "Cc_right";
 		public const string Client_back = "Client_back";
 		public const string Client_carte_back = "Client_carte_back";
 		public const string Client_carte_front = "Client_carte_front";
@@ -23,10 +27,22 @@ namespace TexturePackerMonoGameDefinitions
 		public const string Client_table_front = "Client_table_front";
 		public const string Client_table_left = "Client_table_left";
 		public const string Client_table_right = "Client_table_right";
+		public const string CommisCuisine_back = "CommisCuisine_back";
+		public const string CommisCuisine_front = "CommisCuisine_front";
+		public const string CommisCuisine_left = "CommisCuisine_left";
+		public const string CommisCuisine_right = "CommisCuisine_right";
+		public const string CommisSalle_back = "CommisSalle_back";
+		public const string CommisSalle_front = "CommisSalle_front";
+		public const string CommisSalle_left = "CommisSalle_left";
+		public const string CommisSalle_right = "CommisSalle_right";
 		public const string Cr_back = "Cr_back";
 		public const string Cr_front = "Cr_front";
 		public const string Cr_left = "Cr_left";
 		public const string Cr_right = "Cr_right";
+		public const string Cuisinier_back = "Cuisinier_back";
+		public const string Cuisinier_front = "Cuisinier_front";
+		public const string Cuisinier_left = "Cuisinier_left";
+		public const string Cuisinier_right = "Cuisinier_right";
 		public const string Mh = "Mh";
 		public const string Mh_back = "Mh_back";
 		public const string Mh_front = "Mh_front";
@@ -36,10 +52,39 @@ namespace TexturePackerMonoGameDefinitions
 		public const string Nyancat_front = "Nyancat_front";
 		public const string Nyancat_left = "Nyancat_left";
 		public const string Nyancat_right = "Nyancat_right";
+		public const string Plongeur_back = "Plongeur_back";
+		public const string Plongeur_front = "Plongeur_front";
+		public const string Plongeur_left = "Plongeur_left";
+		public const string Plongeur_right = "Plongeur_right";
 		public const string Restaurant = "Restaurant";
 		public const string Serveur_back = "Serveur_back";
 		public const string Serveur_front = "Serveur_front";
 		public const string Serveur_left = "Serveur_left";
 		public const string Serveur_right = "Serveur_right";
+		public const string Table2 = "Table2";
+		public const string Table2_dessert = "Table2_dessert";
+		public const string Table2_pain = "Table2_pain";
+		public const string Table2_repas = "Table2_repas";
+		public const string Table2_vide = "Table2_vide";
+		public const string Table4 = "Table4";
+		public const string Table4_dessert = "Table4_dessert";
+		public const string Table4_pain = "Table4_pain";
+		public const string Table4_repas = "Table4_repas";
+		public const string Table4_vide = "Table4_vide";
+		public const string Table6 = "Table6";
+		public const string Table6_dessert = "Table6_dessert";
+		public const string Table6_pain = "Table6_pain";
+		public const string Table6_repas = "Table6_repas";
+		public const string Table6_vide = "Table6_vide";
+		public const string Table8 = "Table8";
+		public const string Table8_dessert = "Table8_dessert";
+		public const string Table8_pain = "Table8_pain";
+		public const string Table8_repas = "Table8_repas";
+		public const string Table8_vide = "Table8_vide";
+		public const string Table10 = "Table10";
+		public const string Table10_dessert = "Table10_dessert";
+		public const string Table10_pain = "Table10_pain";
+		public const string Table10_repas = "Table10_repas";
+		public const string Table10_vide = "Table10_vide";
 	}
 }

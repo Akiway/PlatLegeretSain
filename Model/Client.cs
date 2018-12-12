@@ -12,7 +12,7 @@ namespace PlatLegeretSain.Model
         public int Y { get; set; }
         public string img { get; set; }
         public string imgEtat { get; set; }
-        public string orientation { get; set; }
+        public string Orientation { get; set; }
         private int vitesse { get; set; }
         public int groupe { get; set; }
         public int numTable = 0;
@@ -30,7 +30,7 @@ namespace PlatLegeretSain.Model
             this.Y = 1000;
             this.img = "Client_";
             this.imgEtat = "";
-            this.orientation = "back";
+            this.Orientation = "back";
             this.client = this;
             this.clientState = new WaitForTable();
             disponibiliteServeurCarre1 = new Semaphore(2, 2);
@@ -51,30 +51,30 @@ namespace PlatLegeretSain.Model
         public void MoveUp(int distance)
         {
             this.Y -= distance;
-            this.orientation = "back";
+            this.Orientation = "back";
         }
 
         public void MoveDown(int distance)
         {
             this.Y += distance;
-            this.orientation = "front";
+            this.Orientation = "front";
         }
 
         public void MoveLeft(int distance)
         {
             this.X -= distance;
-            this.orientation = "left";
+            this.Orientation = "left";
         }
 
         public void MoveRight(int distance)
         {
             this.X += distance;
-            this.orientation = "right";
+            this.Orientation = "right";
         }
 
         public void QuitterRestaurant()
         {
-            //ThreadPool.QueueUserWorkItem(Sortir);
+            //ThreadPool impossible or every clients in the group will leave one by one instead of all together
             Thread threadQuitterRestaurant = new Thread(Sortir);
             threadQuitterRestaurant.Start();
         }
@@ -135,6 +135,7 @@ namespace PlatLegeretSain.Model
 
         public void Eat(object args)
         {
+            Restaurant.Tables.Find(x => x.Numero == this.numTable).ImgState = "_repas";
             Repas repas = (Repas)args;
             int tempsAttente = 0;
 

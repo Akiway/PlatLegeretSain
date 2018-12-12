@@ -12,6 +12,7 @@ namespace PlatLegeretSain.Model
         {
             this.SemaphoreCuisinier = new Semaphore(1, 1);
             this.name = name;
+            this.img = "Cuisinier_";
         }
 
         public Semaphore SemaphoreCuisinier;
@@ -57,6 +58,7 @@ namespace PlatLegeretSain.Model
             {
                 if(listMtn.FindAll(x => x.Equals(repas)).Count != 0)
                 {
+                    // Ajouter animation déplacement du commisCuisine
                     Restaurant.commisCuisine.EmmenerPlatComptoir(repas);
                     View.Game1.Print("Le commis de cuisine met un plat sur le comptoir");
                     if (listMtn.FindAll(x => x.ready.Equals(true)).Count == listMtn.Count)

@@ -16,7 +16,7 @@ namespace PlatLegeretSain.Model
             this.X = x;
             this.Y = y;
             this.img = "Serveur_";
-            this.orientation = "left";
+            this.Orientation = "left";
             this.Occuped = false;
         }
 
@@ -36,9 +36,19 @@ namespace PlatLegeretSain.Model
             View.Game1.Print(" --------------------------------------------------------------------------- BringDish !");
             
             this.Occuped = true;
+            // Deplacement au comptoir 1 sec
+            MoveToCuisine();
+            Thread.Sleep(Clock.STime(1000));
             List<Repas> listRepas = new List<Repas>();
             listRepas = ComptoirPlatsChauds.Instance().GetDish();
 
+            // Deplacement à la table numéro numTable
+            MoveToTable(numTable);
+            // Distribution des plats       BUG : listRepas est vide
+            ThreadPool.QueueUserWorkItem(Restaurant.Clients.Find(x => x.numTable.Equals(numTable)).Eat, listRepas[0]);
+            // Wait at the table 1 sec
+            Thread.Sleep(Clock.STime(1000));
+            MoveToOrigin();
             View.Game1.Print(ComptoirPlatsChauds.Instance().dishReady.Count.ToString());
             View.Game1.Print(listRepas.Count.ToString());
 
@@ -54,5 +64,11 @@ namespace PlatLegeretSain.Model
             this.Occuped = false;
         }
 
+        public void MoveToCuisine()
+        {
+            this.X = 1180;
+            this.Y = 250;
+            this.Orientation = "right";
+        }
     }
 }
