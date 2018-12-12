@@ -41,14 +41,12 @@ namespace PlatLegeretSain.Model
 
         public void callWaiter(int numTable)
         {
-            // Appeler le serveur
-            View.Game1.Print("Commis de cuisine > callWaiter !");
             // Choix du serveur
             if (numTable <= Restaurant.Tables.Count / 2)
             {
                 disponibiliteServeurCarre1.WaitOne();
 
-                if(Restaurant.Serveur1.Occuped == false)
+                if (Restaurant.Serveur1.Occuped == false)
                 {
                     Restaurant.Serveur1.BringDish(numTable);
                 }
