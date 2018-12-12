@@ -40,8 +40,14 @@ namespace PlatLegeretSain.Model
             timeSeconds = Clock.Seconds;
             timeTotalSecondes = Clock.TotalSeconds;
             nbClient = Restaurant.Clients.Count;
-            nbClientATable = Restaurant.Clients.FindAll(x => x.imgEtat != "").Count;
-            nbClientCarte = Restaurant.Clients.FindAll(x => x.imgEtat == "carte_").Count;
+            try
+            {
+                nbClientATable = Restaurant.Clients.FindAll(x => x.imgEtat != "").Count;
+                nbClientCarte = Restaurant.Clients.FindAll(x => x.imgEtat == "carte_").Count;
+            } catch
+            {
+                //Just ignore
+            }
             nbClientCarre1 = nbClientCarre2 = 0;
             for (int i=0; i<Restaurant.Clients.Count; i++)
             {

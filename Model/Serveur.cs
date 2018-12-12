@@ -15,7 +15,7 @@ namespace PlatLegeretSain.Model
             this.X = x;
             this.Y = y;
             this.img = "Serveur_";
-            this.orientation = "left";
+            this.Orientation = "left";
             this.Occuped = false;
         }
 

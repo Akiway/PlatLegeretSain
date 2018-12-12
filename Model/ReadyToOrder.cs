@@ -11,6 +11,7 @@ namespace PlatLegeretSain.Model
         public void ManageClient(Client context)
         {
             int numTable = context.numTable;
+            View.Game1.Print("Table " + numTable + " débute de la prise de la commande à " + DateTime.Now.TimeOfDay);
 
             View.Game1.Print("Table " + numTable + " > Le commis de salle apporte le pain et l'eau aux clients");
             List<Client> listClients = Restaurant.Clients.FindAll(x => x.groupe == context.groupe);

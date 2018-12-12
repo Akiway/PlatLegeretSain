@@ -19,7 +19,7 @@ namespace Supervision.Model
             {
                 clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 // Connect to the specified host.
-                var endPoint = new IPEndPoint(IPAddress.Parse("192.168.43.232"/* IP Server */), 3333);
+                var endPoint = new IPEndPoint(IPAddress.Parse("10.162.129.15"/* IP Server */), 3333);
                 clientSocket.BeginConnect(endPoint, ConnectCallback, null);
             }
             catch (SocketException ex)

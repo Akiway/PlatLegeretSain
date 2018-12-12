@@ -11,6 +11,7 @@ namespace PlatLegeretSain.Model
         {
             this.Occuped = false;
             this.name = name;
+            this.img = "Cuisinier_";
         }
 
         public bool Occuped;

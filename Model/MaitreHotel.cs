@@ -15,13 +15,13 @@ namespace PlatLegeretSain.Model
                 MH = new MaitreHotel();
             return MH;
         }
-
+        
         private MaitreHotel()
         {
-            this.X = 1220;
-            this.Y = 765;
+            this.X = 1230;
+            this.Y = 780;
             this.img = "Mh_";
-            this.orientation = "front";
+            this.Orientation = "front";
             this.etatTable = new TableDisponible();
         }
 
@@ -33,29 +33,9 @@ namespace PlatLegeretSain.Model
             etatTable.AccueillirClient(this.etatTable, numReservation, clients);
         }
 
-        public void appelerChefRang()
-        {
-            Restaurant.CR1.MoveLeft(100);
-            Restaurant.CR1.MoveDown(340);
-            Restaurant.CR1.MoveRight(100);
-        }
-
         public void setState(IFreeTable newEtat)
         {
             this.etatTable = newEtat;
-        }
-
-        /// <summary>
-        /// Change le State en TableDisponible
-        /// </summary>
-        public void PlaceLibere()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void PasPlace()
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

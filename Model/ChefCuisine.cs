@@ -22,11 +22,12 @@ namespace PlatLegeretSain.Model
 
         public ChefCuisine()
         {
-
+            this.img = "Cc_";
         }
 
-        public void NewCommande(List<Commande> commandes)
+        public void NewCommande(object args)
         {
+            List<Commande> commandes = (List<Commande>)args;
             foreach (Commande element in commandes)
             {
                 if (element.entree != "")

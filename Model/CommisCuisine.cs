@@ -9,7 +9,7 @@ namespace PlatLegeretSain.Model
     {
         public CommisCuisine()
         {
-            
+            this.img = "CommisCuisine_";
         }
 
         public void eplucher()

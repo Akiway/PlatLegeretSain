@@ -17,6 +17,8 @@ namespace PlatLegeretSain.Model
             this.Y = y;
             this.OrientationHorizontale = orientation;
             this.Disponible = disponibilite;
+            this.Img = "Table";
+            this.ImgState = "";
         }
 
         public int Carre { get; set; }
@@ -27,6 +29,8 @@ namespace PlatLegeretSain.Model
         public int Y { get; set; }
         public bool OrientationHorizontale { get; set; }
         public bool Disponible { get; set; }
+        public string Img { get; set; }
+        public string ImgState { get; set; }
 
         public bool DessertApres { get; set; }
 

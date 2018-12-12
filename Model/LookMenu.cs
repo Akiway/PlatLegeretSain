@@ -20,7 +20,6 @@ namespace PlatLegeretSain.Model
             }
 
             View.Game1.Print("Table " + numTable + " > Le commis de salle apporte le pain et l'eau aux clients");
-            Restaurant.commisSalle.BringBread(numTable);
         }
     }
 }
