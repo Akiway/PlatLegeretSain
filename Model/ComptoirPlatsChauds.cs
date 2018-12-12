@@ -17,7 +17,7 @@ namespace PlatLegeretSain.Model
             return CPC;
         }
 
-        List<Repas> dishReady = new List<Repas>();
+        public List<Repas> dishReady = new List<Repas>();
 
         public void NewDishReady(Repas repas)
         {

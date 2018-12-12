@@ -33,6 +33,8 @@ namespace PlatLegeretSain.Model
 
         public void BringDish(int numTable)
         {
+            View.Game1.Print(" --------------------------------------------------------------------------- BringDish !");
+            
             this.Occuped = true;
             // Deplacement au comptoir 1 sec
             MoveToCuisine();
@@ -47,6 +49,18 @@ namespace PlatLegeretSain.Model
             // Wait at the table 1 sec
             Thread.Sleep(Clock.STime(1000));
             MoveToOrigin();
+            View.Game1.Print(ComptoirPlatsChauds.Instance().dishReady.Count.ToString());
+            View.Game1.Print(listRepas.Count.ToString());
+
+            foreach (Repas element in listRepas)
+            {
+                View.Game1.Print(" ----------------------------------------------------------- "+element.nom);
+            }
+
+            //ThreadPool.QueueUserWorkItem(Restaurant.Clients.Find(x => x.numTable.Equals(numTable)).Eat, listRepas[0]);
+
+            // Deplacement à la table numéro numTable
+            // Distribution des plats
             this.Occuped = false;
         }
 
