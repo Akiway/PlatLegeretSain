@@ -42,33 +42,23 @@ namespace PlatLegeretSain.Model
         public void callWaiter(int numTable)
         {
             // Choix du serveur
+            List<Serveur> Serveurs;
             if (numTable <= Restaurant.Tables.Count / 2)
             {
+                Serveurs = Restaurant.Serveurs.FindAll(x => x.Carre == 1);
                 disponibiliteServeurCarre1.WaitOne();
-
-                if (Restaurant.Serveur1.Occuped == false)
-                {
-                    Restaurant.Serveur1.BringDish(numTable);
-                }
-                else if (Restaurant.Serveur2.Occuped == false)
-                {
-                    Restaurant.Serveur2.BringDish(numTable);
-                }
-                disponibiliteServeurCarre1.Release();
             }
             else
             {
+                Serveurs = Restaurant.Serveurs.FindAll(x => x.Carre == 2);
                 disponibiliteServeurCarre2.WaitOne();
-                if (Restaurant.Serveur3.Occuped == false)
-                {
-                    Restaurant.Serveur3.BringDish(numTable);
-                }
-                else if (Restaurant.Serveur4.Occuped == false)
-                {
-                    Restaurant.Serveur4.BringDish(numTable);
-                }
-                disponibiliteServeurCarre2.Release();
             }
+
+            foreach (Serveur serveur in Serveurs)
+            {
+                serveur.BringDish(numTable);
+            }
+            disponibiliteServeurCarre2.Release();
         }
     }
 }

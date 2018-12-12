@@ -9,8 +9,8 @@ namespace PlatLegeretSain.Model
         public int Y { get; set; }
         public string img;
         public string Orientation { get; set; }
-        public List<PositionPossible> positionsPossibles { get; set; }
-        public string positionActuel { get; set; }
+        public List<PositionPossible> PositionsPossibles { get; set; }
+        public string PositionActuel { get; set; }
         public int OriginX { get; set; }
         public int OriginY { get; set; }
         public string OriginOrientation { get; set; }

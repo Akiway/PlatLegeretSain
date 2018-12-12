@@ -156,35 +156,26 @@ namespace PlatLegeretSain.Model
             Thread.Sleep(Clock.STime(tempsAttente * 1000)); // Multiplier par 3600 pour temps reel
 
             // Les clients appelent le serveur pour debarasser
+            List<Serveur> Serveurs;
             if (numTable <= Restaurant.Tables.Count / 2)
             {
+                Serveurs = Restaurant.Serveurs.FindAll(x => x.Carre == 1);
                 disponibiliteServeurCarre1.WaitOne();
-                if (Restaurant.Serveur1.Occuped == false)
-                {
-                    Restaurant.Serveur1.debarasser(numTable);
-                }
-                else if (Restaurant.Serveur2.Occuped == false)
-                {
-                    Restaurant.Serveur2.debarasser(numTable);
-                }
-                disponibiliteServeurCarre1.Release();
             }
             else
             {
+                Serveurs = Restaurant.Serveurs.FindAll(x => x.Carre == 2);
                 disponibiliteServeurCarre2.WaitOne();
-                if (Restaurant.Serveur3.Occuped == false)
-                {
-                    Restaurant.Serveur3.debarasser(numTable);
-                }
-                else if (Restaurant.Serveur4.Occuped == false)
-                {
-                    Restaurant.Serveur4.debarasser(numTable);
-                }
-                disponibiliteServeurCarre2.Release();
             }
 
+            foreach (Serveur serveur in Serveurs)
+            {
+                serveur.debarasser(numTable);
+            }
+            disponibiliteServeurCarre2.Release();
+
             // Changement d'état
-            if(tempsAttente == 15 && this.Commande.plat != null)
+            if (tempsAttente == 15 && this.Commande.plat != null)
             {
                 this.setState(new AttendPlat());
             }

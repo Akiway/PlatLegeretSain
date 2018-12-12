@@ -32,7 +32,6 @@ namespace PlatLegeretSain.View
         SpriteSheetLoader loader;
         SpriteFont spriteFont, spriteFontClock;
         int availableThreads, maxThreads, io;
-        int nbClientATable, nbClientCarte, nbClientCarre1, nbClientCarre2, nbTableLibre;
         List<Button> Buttons;
         public static Song Musique, Nyancat;
         SoundEffect Ambiance;
@@ -170,7 +169,7 @@ namespace PlatLegeretSain.View
 
             // Affichage des stats
             spriteBatch.DrawString(spriteFontClock,
-                (Clock.Minutes + 10) + ":" + (Clock.Seconds < 10 ? "0" : null) + Clock.Seconds,
+                (Clock.Minutes + Model.Parameters.InitialHour) + ":" + (Clock.Seconds < 10 ? "0" : null) + Clock.Seconds,
                 new Vector2(60, 65), Color.Red);
 
             DrawText("Threads : " + (maxThreads - availableThreads), 1350, 765);
