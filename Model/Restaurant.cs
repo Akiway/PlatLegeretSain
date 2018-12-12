@@ -24,6 +24,7 @@ namespace PlatLegeretSain.Model
         public static CommisCuisine commisCuisine;
         public static Plongeur Plongeur;
         public static ComptoirPlatsChauds CPC;
+        public static TableChaude tableChaude;
         public static GestionReservationsClientsTables GRCT;
         public static List<Employe> Employes = new List<Employe>();
         public static List<Client> Clients = new List<Client>();
@@ -97,6 +98,7 @@ namespace PlatLegeretSain.Model
             GRCT = GestionReservationsClientsTables.Instance();
             CPC = ComptoirPlatsChauds.Instance();
             console = ConsoleTable.Instance();
+            tableChaude = TableChaude.Instance();
 
             Database.Instance().GetRecettesNames();
 

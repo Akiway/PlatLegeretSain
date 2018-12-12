@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PlatLegeretSain.Model
 {
-    sealed class ComptoirPlatsChauds : Employe
+    sealed class ComptoirPlatsChauds
     {
         // Singleton
         private static ComptoirPlatsChauds CPC = null;
@@ -26,8 +26,10 @@ namespace PlatLegeretSain.Model
 
         public List<Repas> GetDish()
         {
-            // Copier la liste en local puis la vider
-            return this.dishReady;
+            List<Repas> listDishReady = new List<Repas>();
+            listDishReady = dishReady;
+            dishReady.Clear();
+            return listDishReady;
         }
     }
 }

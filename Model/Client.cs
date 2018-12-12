@@ -20,6 +20,8 @@ namespace PlatLegeretSain.Model
         private Reservation Reservation { get; set; }
         public Client client;
         public IClientState clientState { get; set; }
+        public Semaphore disponibiliteServeurCarre1;
+        public Semaphore disponibiliteServeurCarre2;
 
         public Client(int numGroup)
         {
@@ -31,6 +33,8 @@ namespace PlatLegeretSain.Model
             this.Orientation = "back";
             this.client = this;
             this.clientState = new WaitForTable();
+            disponibiliteServeurCarre1 = new Semaphore(2, 2);
+            disponibiliteServeurCarre2 = new Semaphore(2, 2);
         }
 
         public void ManageClient()
@@ -106,8 +110,7 @@ namespace PlatLegeretSain.Model
             for (int i = 0; i < vitesseManger; i++)
             {
                 int index = new Random().Next(listChoix.Count);
-                //string randomResult = listChoix[index];
-                string randomResult = "Entree";
+                string randomResult = listChoix[index];
 
                 switch (randomResult)
                 {
@@ -126,7 +129,69 @@ namespace PlatLegeretSain.Model
                 }
             }
             Commande commande = new Commande(entree, plat, dessert, this.numTable);
+            this.Commande = commande;
             return commande;
+        }
+
+        public void Eat(object args)
+        {
+            Repas repas = (Repas)args;
+            int tempsAttente = 0;
+
+            switch (repas.nom)
+            {
+                case "entree":
+                    tempsAttente = 15;
+                    break;
+                case "plat":
+                    tempsAttente = 25;
+                    break;
+                case "dessert":
+                    tempsAttente = 10;
+                    break;
+            }
+
+            View.Game1.Print("Les clients de la table " + this.numTable + " mange leur " + repas.nom);
+
+            Thread.Sleep(Clock.STime(tempsAttente * 1000)); // Multiplier par 3600 pour temps reel
+
+            // Les clients appelent le serveur pour debarasser
+            if (numTable <= Restaurant.Tables.Count / 2)
+            {
+                disponibiliteServeurCarre1.WaitOne();
+                if (Restaurant.Serveur1.Occuped == false)
+                {
+                    Restaurant.Serveur1.debarasser(numTable);
+                }
+                else if (Restaurant.Serveur2.Occuped == false)
+                {
+                    Restaurant.Serveur2.debarasser(numTable);
+                }
+                disponibiliteServeurCarre1.Release();
+            }
+            else
+            {
+                disponibiliteServeurCarre2.WaitOne();
+                if (Restaurant.Serveur3.Occuped == false)
+                {
+                    Restaurant.Serveur3.debarasser(numTable);
+                }
+                else if (Restaurant.Serveur4.Occuped == false)
+                {
+                    Restaurant.Serveur4.debarasser(numTable);
+                }
+                disponibiliteServeurCarre2.Release();
+            }
+
+            // Changement d'état
+            if(tempsAttente == 15 && this.Commande.plat != null)
+            {
+                this.setState(new AttendPlat());
+            }
+            else if(tempsAttente == 15 && this.Commande.dessert != null)
+            {
+                this.setState(new AttendDessert());
+            }
         }
     }
 }

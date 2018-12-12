@@ -1,0 +1,51 @@
+--- Simulation du 11/12/2018 09:42:28
+Server error > L’adresse demandée n’est pas valide dans son contexte
+Connexion à la base de donnée réussie
+Res : 8 clients à 01/01/2018 10:54:00
+Res : 9 clients à 01/01/2018 11:05:00
+Res : 1 clients à 01/01/2018 12:17:00
+MH > groupe 1 a une table libre
+Table 21 > Lit le menu
+Table 21 > Le commis de salle apporte le pain et l'eau aux clients
+Table 21 > Le commis de salle apporte le pain et l'eau aux clients
+CR2 > Je prend la commande de la table 21
+============= Commandes de la table 21 =============
+vitesseManger : 1 / UnDeuxFois : 1
+tarte au thoon /  / 
+feuillete de crabe /  / 
+feuillete de crabe /  / 
+pate de porc /  / 
+soupe chinoise /  / 
+EnChauffe
+EnChauffe
+EnChauffe
+EnChauffe
+EnChauffe
+MH > groupe 2 a une table libre
+Table 16 > Lit le menu
+Table 16 > Le commis de salle apporte le pain et l'eau aux clients
+Cuisinier 1 > DishReady
+Cuisinier 1 > DishReady
+Emmener plat comptoir ! 
+Emmener plat comptoir ! 
+--------------------- Cuisinier 1 ----------------------
+--------------------- Cuisinier 1 ----------------------
+tarte au thoon
+feuillete de crabe
+5
+5
+--------------------- FinCuisinier 1 -------------------
+Cuisinier 1 > DishReady
+Emmener plat comptoir ! 
+--------------------- Cuisinier 1 ----------------------
+feuillete de crabe
+5
+--------------------- FinCuisinier 1 -------------------
+Cuisinier 1 > DishReady
+Emmener plat comptoir ! 
+--------------------- Cuisinier 1 ----------------------
+soupe chinoise
+5
+Commis de cuisine > callWaiter !
+All
+--------------------- FinCuisinier 1 -------------------

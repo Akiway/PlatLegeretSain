@@ -11,19 +11,24 @@ namespace PlatLegeretSain.Model
         public Repas()
         {
             this.ready = false;
+            semaphoreCuisinier = new Semaphore(1, 1);
         }
+
+        public Semaphore semaphoreCuisinier;
 
         public string nom;
         public int numTable;
         public Recette recette;
         public bool ready;
 
-        public void EnChauffe(Cuisinier cuisinier)
+        public void Conception(object args)
         {
-            //Thread.Sleep(Clock.STime(this.recette.tempsCuisson));
-            Thread.Sleep(Clock.STime(5000));
+            Cuisinier cuisinier = (Cuisinier)args;
+            Thread.Sleep(Clock.STime(this.recette.tempsCuisson * 100));
             this.ready = true;
+            semaphoreCuisinier.WaitOne();
             cuisinier.DishReady(this);
+            semaphoreCuisinier.Release();
         }
     }
 }

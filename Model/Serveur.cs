@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace PlatLegeretSain.Model
 {
@@ -19,13 +20,15 @@ namespace PlatLegeretSain.Model
             this.Occuped = false;
         }
 
-        public List<Repas> repas;
+        public bool Occuped;
 
-        public Boolean Occuped;
-
-        public void debarasser()
+        public void debarasser(int numTable)
         {
-           
+            this.Occuped = true;
+
+            View.Game1.Print("Un serveur débarasse la table " + numTable);
+
+            this.Occuped = false;
         }
 
         public void BringDish(int numTable)
@@ -33,6 +36,12 @@ namespace PlatLegeretSain.Model
             this.Occuped = true;
             List<Repas> listRepas = new List<Repas>();
             listRepas = ComptoirPlatsChauds.Instance().GetDish();
+
+            ThreadPool.QueueUserWorkItem(Restaurant.Clients.Find(x => x.numTable.Equals(numTable)).Eat, listRepas[0]);
+            // Deplacement à la table numéro numTable
+            // Distribution des plats
+            this.Occuped = false;
         }
+
     }
 }

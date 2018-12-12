@@ -1,0 +1,47 @@
+--- Simulation du 11/12/2018 09:17:02
+Server error > L’adresse demandée n’est pas valide dans son contexte
+Connexion à la base de donnée réussie
+Res : 5 clients à 01/01/2018 11:24:00
+Res : 6 clients à 01/01/2018 12:50:00
+MH > groupe 1 a une table libre
+Table 1 > Lit le menu
+Table 1 > Le commis de salle apporte le pain et l'eau aux clients
+Table 1 > Le commis de salle apporte le pain et l'eau aux clients
+CR1 > Je prend la commande de la table 1
+============= Commandes de la table 1 =============
+vitesseManger : 1 / UnDeuxFois : 1
+tagliatelle de concombre au saumon fumee /  / 
+gaspatcho /  / 
+soupe chinoise /  / 
+soupe chinoise /  / 
+oeuf cocotte /  / 
+tagliatelle de concombre au saumon fumee /  / 
+oeuf cocotte /  / 
+cagouilles a la charantaise /  / 
+EnChauffe
+EnChauffe
+EnChauffe
+EnChauffe
+EnChauffe
+EnChauffe
+EnChauffe
+EnChauffe
+MH > groupe 2 a une table libre
+Table 9 > Lit le menu
+Table 9 > Le commis de salle apporte le pain et l'eau aux clients
+Cuisinier 1 > DishReady
+Cuisinier 1 > DishReady
+Emmener plat comptoir ! 
+--------------------- Cuisinier 1 ----------------------
+Cuisinier 1 > DishReady
+Emmener plat comptoir ! 
+--------------------- Cuisinier 1 ----------------------
+soupe chinoise
+8
+--------------------- FinCuisinier 1 -------------------
+Cuisinier 1 > DishReady
+Emmener plat comptoir ! 
+--------------------- Cuisinier 1 ----------------------
+soupe chinoise
+8
+--------------------- FinCuisinier 1 -------------------
