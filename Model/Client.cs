@@ -135,6 +135,7 @@ namespace PlatLegeretSain.Model
 
         public void Eat(object args)
         {
+            Restaurant.Tables.Find(x => x.Numero == this.numTable).ImgState = "_repas";
             Repas repas = (Repas)args;
             int tempsAttente = 0;
 
