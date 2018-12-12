@@ -136,16 +136,12 @@ namespace PlatLegeretSain.Model
                 Random random = new Random();
                 bool boolValue = Convert.ToBoolean(random.Next() % 2);
 
-                Thread.Sleep(Clock.STime(6000)); // 3 sec
+                Thread.Sleep(Clock.STime(3000)); // 3 sec
 
                 if (boolValue == true)
                 {
-                    if (Restaurant.Clients.Count < 4)
-                    {
-                        //int nbClient = new Random().Next(1, 11);
-                        int nbClient = 1;
-                        GRCT.CreationClient(0, nbClient, Thread.CurrentThread);
-                    }
+                    int nbClient = new Random().Next(1, 11);
+                    GRCT.CreationClient(0, nbClient, Thread.CurrentThread);
                 }
             }
         }

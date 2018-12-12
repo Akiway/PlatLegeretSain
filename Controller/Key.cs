@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Nyancat = PlatLegeretSain.Model.Nyancat;
 using Microsoft.Xna.Framework.Media;
 using System;
+using System.Threading;
 
 namespace PlatLegeretSain.Controller
 {
@@ -32,6 +33,12 @@ namespace PlatLegeretSain.Controller
                 {
                     Model.Clock.Speed = 0.5;
                 }
+            }
+
+            if (oldKeyboard.IsKeyDown(Keys.A) && keyboard.IsKeyUp(Keys.A))
+            {
+                //Thread.CurrentThread.Suspend();
+                //Monitor.Wait(Model.Restaurant.Instance());
             }
 
             if (keyboard.IsKeyDown(Keys.Z))

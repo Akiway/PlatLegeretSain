@@ -161,18 +161,22 @@ namespace PlatLegeretSain.Model
             {
                 Serveurs = Restaurant.Serveurs.FindAll(x => x.Carre == 1);
                 disponibiliteServeurCarre1.WaitOne();
+                foreach (Serveur serveur in Serveurs)
+                {
+                    serveur.debarasser(numTable);
+                }
+                disponibiliteServeurCarre2.Release();
             }
             else
             {
                 Serveurs = Restaurant.Serveurs.FindAll(x => x.Carre == 2);
                 disponibiliteServeurCarre2.WaitOne();
+                foreach (Serveur serveur in Serveurs)
+                {
+                    serveur.debarasser(numTable);
+                }
+                disponibiliteServeurCarre2.Release();
             }
-
-            foreach (Serveur serveur in Serveurs)
-            {
-                serveur.debarasser(numTable);
-            }
-            disponibiliteServeurCarre2.Release();
 
             // Changement d'état
             if (tempsAttente == 15 && this.Commande.plat != null)
