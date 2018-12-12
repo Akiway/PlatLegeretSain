@@ -139,7 +139,7 @@ namespace PlatLegeretSain.Model
             Repas repas = (Repas)args;
             int tempsAttente = 0;
 
-            switch (repas.nom)
+            switch (repas.type)
             {
                 case "entree":
                     tempsAttente = 15;
@@ -151,8 +151,7 @@ namespace PlatLegeretSain.Model
                     tempsAttente = 10;
                     break;
             }
-
-            View.Game1.Print("Les clients de la table " + this.numTable + " mange leur " + repas.nom);
+            View.Game1.Print("Les clients de la table " + this.numTable + " mange leur " + repas.type);
 
             Thread.Sleep(Clock.STime(tempsAttente * 1000)); // Multiplier par 3600 pour temps reel
 
@@ -189,7 +188,7 @@ namespace PlatLegeretSain.Model
             {
                 this.setState(new AttendPlat());
             }
-            else if(tempsAttente == 15 && this.Commande.dessert != null)
+            else if( ( tempsAttente == 15 || tempsAttente == 25 ) && this.Commande.dessert != null)
             {
                 this.setState(new AttendDessert());
             }

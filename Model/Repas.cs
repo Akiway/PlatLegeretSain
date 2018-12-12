@@ -19,6 +19,7 @@ namespace PlatLegeretSain.Model
         public string nom;
         public int numTable;
         public Recette recette;
+        public string type;
         public bool ready;
 
         public void Conception(object args)

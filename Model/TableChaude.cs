@@ -27,8 +27,9 @@ namespace PlatLegeretSain.Model
         public List<Repas> GetDish(String name, int numTable)
         {
             List<Repas> listDishWaiting = new List<Repas>();
-            listDishWaiting = dishWaiting.FindAll(x => x.nom.Equals(name) && x.numTable.Equals(numTable));
-            foreach(Repas element in listDishWaiting)
+            listDishWaiting = dishWaiting.FindAll(x => x.type.Equals(name) && x.numTable.Equals(numTable));
+
+            foreach (Repas element in listDishWaiting)
             {
                 dishWaiting.Remove(element);
             }

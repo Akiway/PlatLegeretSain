@@ -10,12 +10,10 @@ namespace PlatLegeretSain.Model
     {
         public Cuisinier(String name)
         {
-            this.SemaphoreCuisinier = new Semaphore(1, 1);
             this.name = name;
             this.img = "Cuisinier_";
         }
 
-        public Semaphore SemaphoreCuisinier;
         public String name;
         public List<Repas> listMtn = new List<Repas>();
         public List<Repas> listApres = new List<Repas>();
@@ -27,9 +25,9 @@ namespace PlatLegeretSain.Model
                 if(this.name == "C1")
                 {
                     // S'il y a des entrees dans la liste
-                    if(repas.FindAll(x => x.nom.Equals("entree")).Count != 0)
+                    if(repas.FindAll(x => x.type.Equals("entree")).Count != 0)
                     {
-                        if (element.nom == "entree")
+                        if (element.type == "entree")
                         {
                             listMtn.Add(element);
                         }
@@ -48,7 +46,7 @@ namespace PlatLegeretSain.Model
                     listApres.Add(element);
                 }
                 ThreadPool.QueueUserWorkItem(element.Conception, this);
-                View.Game1.Print("Conception du repas");
+                View.Game1.Print("Conception du repas : "+element.nom);
             }
         }
 
@@ -64,7 +62,6 @@ namespace PlatLegeretSain.Model
                     if (listMtn.FindAll(x => x.ready.Equals(true)).Count == listMtn.Count)
                     {
                         Restaurant.commisCuisine.callWaiter(repas.numTable);
-                        View.Game1.Print("All");
                     }
                 }
                 else

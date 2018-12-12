@@ -110,7 +110,7 @@ namespace PlatLegeretSain.Model
                 View.Game1.Print("Reservation : " + res.NbClient + " clients à " + res.Heure);
             }
 
-            ThreadPool.QueueUserWorkItem(ThreadReservation);
+            //ThreadPool.QueueUserWorkItem(ThreadReservation);
             ThreadPool.QueueUserWorkItem(ThreadClientAleatoire);
         }
         
@@ -142,12 +142,17 @@ namespace PlatLegeretSain.Model
                 Random random = new Random();
                 bool boolValue = Convert.ToBoolean(random.Next() % 2);
 
+                Thread.Sleep(Clock.STime(6000)); // 3 sec
+
                 if (boolValue == true)
                 {
-                    int nbClient = new Random().Next(1, 11);
-                    GRCT.CreationClient(0, nbClient, Thread.CurrentThread);
+                    if (Restaurant.Clients.Count < 4)
+                    {
+                        //int nbClient = new Random().Next(1, 11);
+                        int nbClient = 1;
+                        GRCT.CreationClient(0, nbClient, Thread.CurrentThread);
+                    }
                 }
-                Thread.Sleep(Clock.STime(3000)); // 3 sec
             }
         }
 

@@ -24,11 +24,15 @@ namespace PlatLegeretSain.Model
             this.dishReady.Add(repas);
         }
 
-        public List<Repas> GetDish()
+        public List<Repas> GetDish(int numTable)
         {
             List<Repas> listDishReady = new List<Repas>();
-            listDishReady = dishReady;
-            dishReady.Clear();
+            listDishReady = this.dishReady.FindAll(x => x.numTable.Equals(numTable));
+
+            foreach(Repas element in listDishReady)
+            {
+                this.dishReady.Remove(element);
+            }
             return listDishReady;
         }
     }

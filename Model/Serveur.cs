@@ -33,34 +33,21 @@ namespace PlatLegeretSain.Model
 
         public void BringDish(int numTable)
         {
-            View.Game1.Print(" --------------------------------------------------------------------------- BringDish !");
-            
             this.Occuped = true;
             // Deplacement au comptoir 1 sec
             MoveToCuisine();
             Thread.Sleep(Clock.STime(1000));
-            List<Repas> listRepas = new List<Repas>();
-            listRepas = ComptoirPlatsChauds.Instance().GetDish();
-
             // Deplacement à la table numéro numTable
             MoveToTable(numTable);
-            // Distribution des plats       BUG : listRepas est vide
-            ThreadPool.QueueUserWorkItem(Restaurant.Clients.Find(x => x.numTable.Equals(numTable)).Eat, listRepas[0]);
             // Wait at the table 1 sec
             Thread.Sleep(Clock.STime(1000));
             MoveToOrigin();
-            View.Game1.Print(ComptoirPlatsChauds.Instance().dishReady.Count.ToString());
-            View.Game1.Print(listRepas.Count.ToString());
 
-            foreach (Repas element in listRepas)
-            {
-                View.Game1.Print(" ----------------------------------------------------------- "+element.nom);
-            }
+            List<Repas> listRepas = new List<Repas>();
+            listRepas = Restaurant.CPC.GetDish(numTable);
 
-            //ThreadPool.QueueUserWorkItem(Restaurant.Clients.Find(x => x.numTable.Equals(numTable)).Eat, listRepas[0]);
+            ThreadPool.QueueUserWorkItem(Restaurant.Clients.Find(x => x.numTable.Equals(numTable)).Eat, listRepas[0]);
 
-            // Deplacement à la table numéro numTable
-            // Distribution des plats
             this.Occuped = false;
         }
 

@@ -27,6 +27,7 @@ namespace PlatLegeretSain.Model
         public void installerClient(object args)
         {
             int numTable = (int)args;
+            View.Game1.Print("Les clients sont placés à la table "+numTable);
             Table table = Restaurant.Tables.Find(x => x.Numero.Equals(numTable));
             int nbClientAPlacer = Restaurant.Clients.FindAll(x => x.numTable.Equals(numTable)).Count;
 

@@ -31,7 +31,6 @@ namespace PlatLegeretSain.Model
         public void EmmenerPlatComptoir(Repas repas)
         {
             Restaurant.CPC.NewDishReady(repas);
-            View.Game1.Print("Emmener plat comptoir ! "+repas.nom);
         }
 
         public void EmmenerPlatEtuve(Repas repas)
