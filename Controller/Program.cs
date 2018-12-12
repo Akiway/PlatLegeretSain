@@ -22,7 +22,7 @@ namespace PlatLegeretSain.Controller
             View.Game1.Print("--- Simulation du " + DateTime.Now);
 
             //Load parameters
-            //Model.Parameters.Instance();
+            Model.Parameters.Instance();
 
             // Create the main clock
             Model.Clock.Instance();

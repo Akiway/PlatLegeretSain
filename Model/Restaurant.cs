@@ -35,7 +35,7 @@ namespace PlatLegeretSain.Model
         public static List<String> listPlats = new List<string>();
         public static List<String> listDesserts = new List<string>();
         public static ChefRang CR1, CR2;
-        public static Serveur Serveur1, Serveur2, Serveur3, Serveur4;
+        public static List<Serveur> Serveurs = new List<Serveur>();
         public static string Time { get; set; }
 
         public static List<Commande> commandes = new List<Commande>();
@@ -79,18 +79,12 @@ namespace PlatLegeretSain.Model
             Employes.Add(CR1);
             Employes.Add(CR2);
             // Serveurs
-            Serveur1 = new Serveur(1);
-            Serveur1.SetOrigin(1130, 320, "left", true);
-            Serveur2 = new Serveur(1);
-            Serveur2.SetOrigin(1130, 280, "left", true);
-            Serveur3 = new Serveur(2);
-            Serveur3.SetOrigin(1130, 240, "left", true);
-            Serveur4 = new Serveur(2);
-            Serveur4.SetOrigin(1130, 200, "left", true);
-            Employes.Add(Serveur1);
-            Employes.Add(Serveur2);
-            Employes.Add(Serveur3);
-            Employes.Add(Serveur4);
+            for (int i = 0; i < Parameters.Serveur; i++)
+            {
+                Serveur Serveur = new Serveur(i < Parameters.Serveur/2 ? 1 : 2);
+                Serveur.SetOrigin(1130, 320 - (40 * i), "left", true);
+                Employes.Add(Serveur);
+            }
             // Nyancat magique de l'espace
             Nyancat nyancat = Nyancat.Instance();
             Employes.Add(nyancat);

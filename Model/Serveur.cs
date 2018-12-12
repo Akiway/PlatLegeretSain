@@ -8,7 +8,7 @@ namespace PlatLegeretSain.Model
 {
     public class Serveur : Employe
     {
-        private int Carre { get; set; }
+        public int Carre { get; set; }
 
         public Serveur(int carre, int x = 1130, int y = 200)
         {

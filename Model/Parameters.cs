@@ -21,11 +21,11 @@ namespace PlatLegeretSain.Model
             return Param;
         }
 
-        public int InitialHour { get; set; }
-        public int Serveur { get; set; }
-        public int CommisSalle { get; set; }
-        public int Cuisinier { get; set; }
-        public int CommisCuisine { get; set; }
+        public static int InitialHour { get; set; }
+        public static int Serveur { get; set; }
+        public static int CommisSalle { get; set; }
+        public static int Cuisinier { get; set; }
+        public static int CommisCuisine { get; set; }
 
         private Parameters()
         {
@@ -34,24 +34,45 @@ namespace PlatLegeretSain.Model
                 string line;
                 // Read and display lines from the file until the end of 
                 // the file is reached.
-                CSharpCodeProvider myCodeCompiler = new CSharpCodeProvider();
+                /*CSharpCodeProvider myCodeCompiler = new CSharpCodeProvider();
                 ICodeCompiler icc = myCodeCompiler.CreateCompiler();
                 String[] referenceAssemblies = { "System.dll" };
                 string myAssemblyName = "myAssembly.dll";
                 CompilerParameters myCompilerParameters =
                 new CompilerParameters(referenceAssemblies, myAssemblyName);
                 myCompilerParameters.GenerateExecutable = false;
-                myCompilerParameters.GenerateInMemory = false;
+                myCompilerParameters.GenerateInMemory = false;*/
                 while ((line = sr.ReadLine()) != null)
                 {
                     Console.WriteLine("Model." + line.Split(' ')[0] + " = " + line.Split(' ')[1] + ";");
-
-                    String CsharpSourceCode = "Model." + line.Split(' ')[0] + " = " + line.Split(' ')[1] + ";";
-                    CompilerResults myCompilerResults = myCodeCompiler.CompileAssemblyFromSource(myCompilerParameters, CsharpSourceCode);
+                    string var = line.Split(' ')[0];
+                    string value = line.Split(' ')[1];
+                    switch (var)
+                    {
+                        case "InitialHour":
+                            InitialHour = Convert.ToInt32(value);
+                            break;
+                        case "Serveur":
+                            Serveur = Convert.ToInt32(value);
+                            break;
+                        case "CommisSalle":
+                            CommisSalle = Convert.ToInt32(value);
+                            break;
+                        case "Cuisinier":
+                            Cuisinier = Convert.ToInt32(value);
+                            break;
+                        case "CommisCuisine":
+                            CommisCuisine = Convert.ToInt32(value);
+                            break;
+                        default:
+                            View.Game1.Print("Erreur paramètre : Le paramètre " + line.Split(' ')[0] + " n'est pas reconnu.");
+                            break;
+                    }
+                    //String CsharpSourceCode = "Model." + line.Split(' ')[0] + " = " + line.Split(' ')[1] + ";";
+                    //CompilerResults myCompilerResults = myCodeCompiler.CompileAssemblyFromSource(myCompilerParameters, CsharpSourceCode);
                 }
-                Console.WriteLine(InitialHour);
-                Console.WriteLine(Serveur);
             }
+
         }
     }
 }
