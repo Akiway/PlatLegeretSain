@@ -25,9 +25,14 @@ namespace PlatLegeretSain.Model
         public void debarasser(int numTable)
         {
             this.Occuped = true;
-
+            MoveToTable(numTable);
             View.Game1.Print("Un serveur débarasse la table " + numTable);
-
+            // Récupère la vaiselle
+            Thread.Sleep(Clock.STime(1000));
+            Restaurant.Tables.Find(x => x.Numero == numTable).ImgState = "";
+            MoveToCuisine();
+            // Dépose la vaiselle
+            Thread.Sleep(Clock.STime(1000));
             this.Occuped = false;
         }
 
