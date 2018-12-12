@@ -165,13 +165,13 @@ namespace PlatLegeretSain.Model
                 {
                     serveur.debarasser(numTable);
                 }
-                disponibiliteServeurCarre2.Release();
+                disponibiliteServeurCarre1.Release();
             }
             else
             {
                 Serveurs = Restaurant.Serveurs.FindAll(x => x.Carre == 2);
                 disponibiliteServeurCarre2.WaitOne();
-                foreach (Serveur serveur in Serveurs)
+                foreach (Serveur serveur in Serveurs) 
                 {
                     serveur.debarasser(numTable);
                 }

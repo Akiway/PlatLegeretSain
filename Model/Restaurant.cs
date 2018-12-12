@@ -141,10 +141,9 @@ namespace PlatLegeretSain.Model
 
                 if (boolValue == true)
                 {
-                    if (Restaurant.Clients.Count == 0)
+                    if (Restaurant.Clients.Count < 20)
                     {
-                        //int nbClient = new Random().Next(1, 11);
-                        int nbClient = 1;
+                        int nbClient = new Random().Next(1, 11);
                         GRCT.CreationClient(0, nbClient, Thread.CurrentThread);
                     }
                 }
