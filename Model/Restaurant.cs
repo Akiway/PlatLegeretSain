@@ -84,6 +84,7 @@ namespace PlatLegeretSain.Model
                 Serveur Serveur = new Serveur(i < Parameters.Serveur/2 ? 1 : 2);
                 Serveur.SetOrigin(1130, 320 - (40 * i), "left", true);
                 Employes.Add(Serveur);
+                Serveurs.Add(Serveur);
             }
             // Nyancat magique de l'espace
             Nyancat nyancat = Nyancat.Instance();
@@ -136,12 +137,16 @@ namespace PlatLegeretSain.Model
                 Random random = new Random();
                 bool boolValue = Convert.ToBoolean(random.Next() % 2);
 
-                Thread.Sleep(Clock.STime(3000)); // 3 sec
+                Thread.Sleep(Clock.STime(6000)); // 3 sec
 
                 if (boolValue == true)
                 {
-                    int nbClient = new Random().Next(1, 11);
-                    GRCT.CreationClient(0, nbClient, Thread.CurrentThread);
+                    if (Restaurant.Clients.Count == 0)
+                    {
+                        //int nbClient = new Random().Next(1, 11);
+                        int nbClient = 1;
+                        GRCT.CreationClient(0, nbClient, Thread.CurrentThread);
+                    }
                 }
             }
         }

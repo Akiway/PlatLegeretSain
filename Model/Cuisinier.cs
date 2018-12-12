@@ -59,6 +59,9 @@ namespace PlatLegeretSain.Model
                     // Ajouter animation déplacement du commisCuisine
                     Restaurant.commisCuisine.EmmenerPlatComptoir(repas);
                     View.Game1.Print("Le commis de cuisine met un plat sur le comptoir");
+                    View.Game1.Print("la : " + listMtn.FindAll(x => x.ready.Equals(true)).Count);
+                    View.Game1.Print("ici : " + listMtn.Count);
+
                     if (listMtn.FindAll(x => x.ready.Equals(true)).Count == listMtn.Count)
                     {
                         Restaurant.commisCuisine.callWaiter(repas.numTable);
