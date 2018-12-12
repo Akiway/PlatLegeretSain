@@ -38,6 +38,7 @@ namespace PlatLegeretSain.Model
 
         public void BringDish(int numTable)
         {
+            View.Game1.Print("Le serveur amene un plat à la table " + numTable);
             this.Occuped = true;
             // Deplacement au comptoir 1 sec
             MoveToCuisine();
