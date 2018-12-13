@@ -236,17 +236,15 @@ namespace PlatLegeretSain.Model
             ThreadPool.QueueUserWorkItem(Restaurant.CC.NewCommande, commandes);
         }
 
-        public void MoveToReception()
+        public override void MoveToReception(bool teleport = true)
         {
-            this.X = 1180;
-            this.Y = 870;
+            MoveTo(1180, 870, teleport);
             this.Orientation = "right";
         }
 
-        public void MoveToCuisine()
+        public override void MoveToCuisine(bool teleport = true)
         {
-            this.X = 1180;
-            this.Y = 300;
+            MoveTo(1180, 300, teleport);
             this.Orientation = "right";
         }
     }

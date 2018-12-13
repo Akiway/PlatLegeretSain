@@ -135,7 +135,6 @@ namespace PlatLegeretSain.Model
 
         public void Eat(object args)
         {
-            Restaurant.Tables.Find(x => x.Numero == this.numTable).ImgState = "_repas";
             Repas repas = (Repas)args;
             int tempsAttente = 0;
 
@@ -155,8 +154,21 @@ namespace PlatLegeretSain.Model
 
             Thread.Sleep(Clock.STime(tempsAttente * 1000)); // Multiplier par 3600 pour temps reel
 
-            // Les clients appelent le serveur pour debarasser
-            List<Serveur> Serveurs;
+            if (this.Commande.dessert != null && repas.type == "dessert")
+            {
+                Partir();
+            }
+            else if (this.Commande.plat != null && this.Commande.dessert == null && repas.type == "plat")
+            {
+                Partir();
+            }
+            else if (this.Commande.entree != null && this.Commande.plat == null && this.Commande.dessert == null && repas.type == "entree")
+            {
+                Partir();
+            }
+
+                // Les clients appelent le serveur pour debarasser
+                List<Serveur> Serveurs;
             if (numTable <= Restaurant.Tables.Count / 2)
             {
                 Serveurs = Restaurant.Serveurs.FindAll(x => x.Carre == 1);
@@ -165,7 +177,7 @@ namespace PlatLegeretSain.Model
                 {
                     serveur.debarasser(numTable);
                 }
-                disponibiliteServeurCarre2.Release();
+                disponibiliteServeurCarre1.Release();
             }
             else
             {
@@ -187,6 +199,16 @@ namespace PlatLegeretSain.Model
             {
                 this.setState(new AttendDessert());
             }
+        }
+
+        public void Partir()
+        {
+            this.X = 1220;
+            this.Y = 850;
+            this.Orientation = "back";
+            this.imgEtat = "";
+            Thread threadQuitterRestaurant = new Thread(Sortir);
+            threadQuitterRestaurant.Start();
         }
     }
 }

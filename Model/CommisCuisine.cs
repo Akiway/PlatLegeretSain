@@ -18,23 +18,19 @@ namespace PlatLegeretSain.Model
             this.img = "CommisCuisine_";
         }
 
-        public void eplucher()
-        {
-            
-        }
-
-        public void chercher()
-        {
-            
-        }
-
         public void EmmenerPlatComptoir(Repas repas)
         {
+            // Animation déplacement à l'étuve
+            MoveToEtuve();
             Restaurant.CPC.NewDishReady(repas);
+            // Animation déplacement au comptoir
+            MoveToComptoir();
         }
 
         public void EmmenerPlatEtuve(Repas repas)
         {
+            // Animation déplacement à l'étuve
+            MoveToEtuve(false);
             Restaurant.tableChaude.NewDishWaiting(repas);
             View.Game1.Print("Emmener plat étuve ! " + repas.nom);
         }

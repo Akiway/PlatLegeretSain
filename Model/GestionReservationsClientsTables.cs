@@ -38,7 +38,6 @@ namespace PlatLegeretSain.Model
             }
 
             // Déplace les nouveaux clients jusqu'à l'accueil
-            // A FAIRE : Dupliquer la liste en locale pour éviter le platage du a une modification de la liste PS: listclient est déjà locale héhé je suis débile à pas l'utiliser...
             while (listClient[listClient.Count - 1].Y > 850)
             {
                 foreach (Client client in listClient)
