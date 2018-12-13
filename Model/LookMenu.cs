@@ -12,14 +12,14 @@ namespace PlatLegeretSain.Model
         {
             int numTable = context.numTable;
 
-            if(numTable <= Restaurant.Tables.Count / 2)
+            View.Game1.Print("Table " + numTable + " > Lit le menu");
+            List<Client> listClients = Restaurant.Clients.FindAll(x => x.groupe == context.groupe);
+            foreach (Client client in listClients)
             {
-                Restaurant.Serveur1.BringBread(numTable);
+                client.imgEtat = "carte_";
             }
-            else
-            {
-                Restaurant.Serveur2.BringBread(numTable);
-            }
+
+            View.Game1.Print("Table " + numTable + " > Le commis de salle apporte le pain et l'eau aux clients");
         }
     }
 }

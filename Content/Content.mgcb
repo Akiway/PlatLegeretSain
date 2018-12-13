@@ -51,3 +51,9 @@
 /processorParam:Quality=Best
 /build:Musique.mp3
 
+#begin Nyancat.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Nyancat.mp3
+

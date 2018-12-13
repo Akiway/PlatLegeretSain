@@ -10,6 +10,8 @@ namespace PlatLegeretSain.Model
     {
         private int Carre { get; set; }
         public List<Commande> commandes { get; set; }
+        public bool Occuped;
+        public Semaphore CRPool;
 
         public ChefRang(int carre, int x = 1130, int y = 500)
         {
@@ -17,21 +19,23 @@ namespace PlatLegeretSain.Model
             this.X = x;
             this.Y = y;
             this.img = "Cr_";
-            this.orientation = "left";
+            this.Orientation = "left";
+            this.Occuped = false;
+            CRPool = new Semaphore(1, 1);
         }
 
-
-        public void installerClient(int numTable)
+        public void installerClient(object args)
         {
-            int nbClient = Restaurant.Clients.FindAll(x => x.numTable.Equals(numTable)).Count;
-            //View.Game1.Print("----------------------------");
-            //View.Game1.Print("Je place "+nbClient+" client à la table numéro : "+numTable);
+            int numTable = (int)args;
+            View.Game1.Print("Les clients sont placés à la table "+numTable);
+            Table table = Restaurant.Tables.Find(x => x.Numero.Equals(numTable));
+            int nbClientAPlacer = Restaurant.Clients.FindAll(x => x.numTable.Equals(numTable)).Count;
 
-            DeplacerClient(Restaurant.Tables.Find(x => x.Numero.Equals(numTable)), nbClient);
-        }
+            this.CRPool.WaitOne();
+            MoveToReception();
+            // Wait 1 at the MH stand
+            Thread.Sleep(Clock.STime(1000));
 
-        private void DeplacerClient(Table table, int nbClientAPlacer)
-        {
             List<Client> clients = Restaurant.Clients.FindAll(x => x.numTable.Equals(table.Numero));
             foreach (Client client in Restaurant.Clients.FindAll(x => x.numTable.Equals(table.Numero)))
             {
@@ -44,7 +48,7 @@ namespace PlatLegeretSain.Model
             int clx, cly;
             int tour = 0;
             int clientActuel = 0;
-            int ecart = 46, decalage = ecart / 2;
+            int ecart = 45, decalage = ecart / 2;
 
             if (table.OrientationHorizontale) // Horizontal
             {
@@ -56,7 +60,7 @@ namespace PlatLegeretSain.Model
                         clx = cx - (ecart * half / 2 - decalage) + ecart * tour;
                         clients[clientActuel].X = clx;
                         clients[clientActuel].Y = cly;
-                        clients[clientActuel].orientation = "front";
+                        clients[clientActuel].Orientation = "front";
                         tour++;
                         nbClientAPlacer--;
                         clientActuel++;
@@ -65,16 +69,17 @@ namespace PlatLegeretSain.Model
                     while (tour < half && nbClientAPlacer > 0)
                     {
                         cly = cy + decalage;
-                        clx = cx - (ecart * half / 2 - decalage) + ecart * tour;
+                        clx = cx - (ecart * half / 2 - decalage) + ecart * tour + 1;
                         clients[clientActuel].X = clx;
                         clients[clientActuel].Y = cly;
-                        clients[clientActuel].orientation = "back";
+                        clients[clientActuel].Orientation = "back";
                         tour++;
                         nbClientAPlacer--;
                         clientActuel++;
                     }
 
-                } else // 4, 8 places
+                }
+                else // 4, 8 places
                 {
                     while (tour < half && nbClientAPlacer > 0)
                     {
@@ -82,7 +87,7 @@ namespace PlatLegeretSain.Model
                         clx = cx + decalage + (tour - half / 2) * ecart;
                         clients[clientActuel].X = clx;
                         clients[clientActuel].Y = cly;
-                        clients[clientActuel].orientation = "front";
+                        clients[clientActuel].Orientation = "front";
                         tour++;
                         nbClientAPlacer--;
                         clientActuel++;
@@ -94,14 +99,15 @@ namespace PlatLegeretSain.Model
                         clx = cx + decalage + (tour - half / 2) * ecart;
                         clients[clientActuel].X = clx;
                         clients[clientActuel].Y = cly;
-                        clients[clientActuel].orientation = "back";
+                        clients[clientActuel].Orientation = "back";
                         tour++;
                         nbClientAPlacer--;
                         clientActuel++;
                     }
                 }
 
-            } else // Vertical
+            }
+            else // Vertical
             {
                 if (half % 2 != 0) // 2, 6, 10 places
                 {
@@ -111,7 +117,7 @@ namespace PlatLegeretSain.Model
                         cly = cy - (tour - (half - 1) / 2) * ecart;
                         clients[clientActuel].X = clx;
                         clients[clientActuel].Y = cly;
-                        clients[clientActuel].orientation = "left";
+                        clients[clientActuel].Orientation = "left";
                         tour++;
                         nbClientAPlacer--;
                         clientActuel++;
@@ -123,7 +129,7 @@ namespace PlatLegeretSain.Model
                         cly = cy - (tour - (half - 1) / 2) * ecart;
                         clients[clientActuel].X = clx;
                         clients[clientActuel].Y = cly;
-                        clients[clientActuel].orientation = "right";
+                        clients[clientActuel].Orientation = "right";
                         tour++;
                         nbClientAPlacer--;
                         clientActuel++;
@@ -137,7 +143,7 @@ namespace PlatLegeretSain.Model
                         cly = cy + decalage + (tour - half / 2) * ecart;
                         clients[clientActuel].X = clx;
                         clients[clientActuel].Y = cly;
-                        clients[clientActuel].orientation = "left";
+                        clients[clientActuel].Orientation = "left";
                         tour++;
                         nbClientAPlacer--;
                         clientActuel++;
@@ -149,37 +155,45 @@ namespace PlatLegeretSain.Model
                         cly = cy + decalage + (tour - half / 2) * ecart;
                         clients[clientActuel].X = clx;
                         clients[clientActuel].Y = cly;
-                        clients[clientActuel].orientation = "right";
+                        clients[clientActuel].Orientation = "right";
                         tour++;
                         nbClientAPlacer--;
                         clientActuel++;
                     }
                 }
             }
-
-            //ThreadPool.QueueUserWorkItem(DonnerCarte, clients);
-            Thread threadCarte = new Thread(DonnerCarte);
-            threadCarte.Start(clients);
+            DonnerCarte(clients);
         }
 
-        public void DonnerCarte(object args)
+        private void DonnerCarte(object args)
         {
-            List<Client> clients = (List<Client>) args;
-            int numTable = clients[0].numTable;
+            List<Client> listClients = (List<Client>) args;
+            int numTable = listClients[0].numTable;
+            MoveToTable(numTable);
 
-            foreach (Client client in clients)
-            {
-                client.imgEtat = "carte_";
-            }
-            clients[0].setState(new LookMenu());
-            // Après 5 min :
-            Thread.Sleep(Clock.STime(5000));
+            listClients[0].setState(new LookMenu());
+            // CR stay at table 1 min
+            Thread.Sleep(Clock.STime(1000));
+            MoveToOrigin();
+            this.CRPool.Release();
+            // CR go away 4 min :
+            Thread.Sleep(Clock.STime(4000));
+            
+            this.CRPool.WaitOne();
+            MoveToTable(numTable);
 
-            clients[0].setState(new ReadyToOrder());
-            foreach (Client client in clients)
-            {
-                client.imgEtat = "table_";
-            }
+            listClients[0].setState(new ReadyToOrder());
+            // CR stay at table 1 min
+            Thread.Sleep(Clock.STime(1000));
+            MoveToCuisine();
+            // CR give the new ticket to the kitchen 1 min
+            Thread.Sleep(Clock.STime(1000));
+            MoveToOrigin();
+            this.CRPool.Release();
+
+            CommisSalle.CommisSallePool.WaitOne();
+            Restaurant.commisSalle.BringBread(numTable);
+            CommisSalle.CommisSallePool.Release();
         }
 
         public void takeOrder(int numTable)
@@ -192,7 +206,7 @@ namespace PlatLegeretSain.Model
             clients = Restaurant.Clients.FindAll(x => x.numTable.Equals(numTable));
 
             //int vitesseManger = new Random().Next(1, 4); // (1, 4) pour chiffre compris entre 1 et 3
-            int vitesseManger = 1;
+            int vitesseManger = 3;
             //int UnDeuxFois = new Random().Next(1, 3); // (1, 3) pour chiffre compris entre 1 et 2
             int UnDeuxFois = 1;
 
@@ -218,12 +232,20 @@ namespace PlatLegeretSain.Model
             {
                 View.Game1.Print(element.entree+" / "+ element.plat+" / "+ element.dessert);
             }
-            donnerCommande(commandes);
+
+            ThreadPool.QueueUserWorkItem(Restaurant.CC.NewCommande, commandes);
         }
 
-        public void donnerCommande(List<Commande> commandes)
+        public override void MoveToReception(bool teleport = true)
         {
-            Restaurant.CC.NewCommande(commandes);
+            MoveTo(1180, 870, teleport);
+            this.Orientation = "right";
+        }
+
+        public override void MoveToCuisine(bool teleport = true)
+        {
+            MoveTo(1180, 300, teleport);
+            this.Orientation = "right";
         }
     }
 }

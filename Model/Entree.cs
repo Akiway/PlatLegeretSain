@@ -7,11 +7,12 @@ namespace PlatLegeretSain.Model
 {
     public class Entree : Repas
     {
-        public Entree(string nom, Recette recette, int numTable)
+        public Entree(string nom, Recette recette, int numTable, string type)
         {
             this.nom = nom;
             this.numTable = numTable;
             this.recette = recette;
+            this.type = type;
         }
     }
 }

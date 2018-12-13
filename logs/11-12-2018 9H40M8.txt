@@ -1,0 +1,56 @@
+--- Simulation du 11/12/2018 09:40:08
+Server error > L’adresse demandée n’est pas valide dans son contexte
+Connexion à la base de donnée réussie
+Res : 2 clients à 01/01/2018 12:37:00
+Res : 8 clients à 01/01/2018 11:06:00
+Res : 1 clients à 01/01/2018 12:49:00
+MH > groupe 1 a une table libre
+Table 16 > Lit le menu
+Table 16 > Le commis de salle apporte le pain et l'eau aux clients
+Table 16 > Le commis de salle apporte le pain et l'eau aux clients
+CR1 > Je prend la commande de la table 16
+============= Commandes de la table 16 =============
+vitesseManger : 1 / UnDeuxFois : 1
+pate de porc /  / 
+tarte au thoon /  / 
+oeuf cocotte /  / 
+EnChauffe
+EnChauffe
+EnChauffe
+MH > groupe 2 a une table libre
+Table 21 > Lit le menu
+Table 21 > Le commis de salle apporte le pain et l'eau aux clients
+Cuisinier 1 > DishReady
+Emmener plat comptoir ! 
+--------------------- Cuisinier 1 ----------------------
+pate de porc
+Cuisinier 1 > DishReady
+3
+Emmener plat comptoir ! 
+--------------------- FinCuisinier 1 -------------------
+--------------------- Cuisinier 1 ----------------------
+tarte au thoon
+Cuisinier 1 > DishReady
+3
+Emmener plat comptoir ! 
+--------------------- Cuisinier 1 ----------------------
+Commis de cuisine > callWaiter !
+oeuf cocotte
+3
+Commis de cuisine > callWaiter !
+All
+--------------------- FinCuisinier 1 -------------------
+Table 21 > Le commis de salle apporte le pain et l'eau aux clients
+CR2 > Je prend la commande de la table 21
+============= Commandes de la table 21 =============
+vitesseManger : 1 / UnDeuxFois : 1
+gaspatcho /  / 
+pate de sanglier /  / 
+feuillete de crabe /  / 
+feuillete de crabe /  / 
+tagliatelle de concombre au saumon fumee /  / 
+EnChauffe
+EnChauffe
+EnChauffe
+EnChauffe
+EnChauffe

@@ -32,11 +32,11 @@ namespace PlatLegeretSain.View
         SpriteSheetLoader loader;
         SpriteFont spriteFont, spriteFontClock;
         int availableThreads, maxThreads, io;
-        int nbClientATable, nbClientCarte, nbClientCarre1, nbClientCarre2, nbTableLibre;
         List<Button> Buttons;
-        Song Musique;
+        public static Song Musique, Nyancat;
         SoundEffect Ambiance;
         Model.Statistique stats;
+        public static Semaphore PrintPool = new Semaphore(1,1);
 
         private Game1()
         {
@@ -82,6 +82,7 @@ namespace PlatLegeretSain.View
 
             // Musique
             Musique = Content.Load<Song>("Musique");
+            Nyancat = Content.Load<Song>("Nyancat");
             Ambiance = Content.Load<SoundEffect>("Ambiance");
             MediaPlayer.Play(Musique);
             MediaPlayer.IsRepeating = true;
@@ -120,24 +121,6 @@ namespace PlatLegeretSain.View
 
             ThreadPool.GetAvailableThreads(out availableThreads, out io);
             ThreadPool.GetMaxThreads(out maxThreads, out io);
-            /*nbClientATable = Model.Restaurant.Clients.FindAll(x => x.imgEtat != "").Count;
-            nbClientCarte = Model.Restaurant.Clients.FindAll(x => x.imgEtat == "carte_").Count;
-            nbClientCarre1 = nbClientCarre2 = 0;
-            foreach (Model.Client client in Model.Restaurant.Clients)
-            {
-                if (client.numTable != 0)
-                {
-                    if (Model.Restaurant.Tables.Find(x => x.Numero == client.numTable).Carre == 1)
-                    {
-                        nbClientCarre1++;
-                    }
-                    else if (Model.Restaurant.Tables.Find(x => x.Numero == client.numTable).Carre == 2)
-                    {
-                        nbClientCarre2++;
-                    }
-                }
-            }
-            nbTableLibre = Model.Restaurant.Tables.FindAll(x => x.Disponible == true).Count;*/
 
             // TODO: Add your update logic here
 
@@ -157,21 +140,36 @@ namespace PlatLegeretSain.View
             DrawImage(PLSsprites.Restaurant, 0, 0);
 
 
-            // Affichage des employés
-            foreach(Model.Employe employe in Model.Restaurant.Employes)
+            // Affichage des tables
+            foreach (Model.Table table in Model.Restaurant.Tables)
             {
-                DrawImage(employe.img + employe.orientation, employe.X, employe.Y);
+                //DrawImage(table.Img + table.NbPlace, table.X, table.Y);
+                if (table.OrientationHorizontale)
+                {
+                    spriteRender.Draw(spriteSheet.Sprite(table.Img + table.NbPlace + table.ImgState), new Vector2(table.X, table.Y));
+                }
+                else
+                {
+                    spriteRender.Draw(spriteSheet.Sprite(table.Img + table.NbPlace + table.ImgState), new Vector2(table.X, table.Y), null, (float)Math.Atan2((double)1,(double)0));
+                }
             }
 
+
             // Affichage des clients
-            foreach(Model.Client client in Model.Restaurant.Clients)
+            try
             {
-                DrawImage(client.img + client.imgEtat + client.orientation, client.X, client.Y);
+                foreach (Model.Client client in Model.Restaurant.Clients)
+                {
+                    DrawImage(client.img + client.imgEtat + client.Orientation, client.X, client.Y);
+                }
+            } catch (Exception ex)
+            {
+                Print(ex.Message);
             }
 
             // Affichage des stats
             spriteBatch.DrawString(spriteFontClock,
-                (Clock.Minutes + 10) + ":" + (Clock.Seconds < 10 ? "0" : null) + Clock.Seconds,
+                (Clock.Minutes + Model.Parameters.InitialHour) + ":" + (Clock.Seconds < 10 ? "0" : null) + Clock.Seconds,
                 new Vector2(60, 65), Color.Red);
 
             DrawText("Threads : " + (maxThreads - availableThreads), 1350, 765);
@@ -188,6 +186,12 @@ namespace PlatLegeretSain.View
                 button.Draw(gameTime, spriteBatch);
             }
 
+            // Affichage des employés
+            foreach (Model.Employe employe in Model.Restaurant.Employes)
+            {
+                DrawImage(employe.img + employe.Orientation, employe.X, employe.Y);
+            }
+
             spriteBatch.End();
 
             base.Draw(gameTime);
@@ -197,6 +201,18 @@ namespace PlatLegeretSain.View
 
         public void DrawText(string text, int x, int y) => spriteBatch.DrawString(spriteFont, text, new Vector2(x, y), Color.White);
 
-        public static void Print(string text) => Console.WriteLine(text);
+        public static void Print(string text)
+        {
+            Console.WriteLine(text);
+
+            PrintPool.WaitOne();
+            using (System.IO.StreamWriter file =
+            new System.IO.StreamWriter(Controller.Program.logFile, true))
+            {
+                file.WriteLine(DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second + " | " + text);
+                file.Close();
+            }
+            PrintPool.Release();
+        }
     }
 }

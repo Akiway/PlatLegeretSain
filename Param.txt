@@ -1,0 +1,5 @@
+InitialHour 10
+Serveur 4
+CommisSalle 1
+Cuisinier 2
+CommisCuisine 1

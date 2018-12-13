@@ -128,16 +128,16 @@ namespace PlatLegeretSain.Model
 
             if(type == "entree")
             {
-                Entree entree = new Entree(recetteName, recette, numTable);
+                Entree entree = new Entree(recetteName, recette, numTable, "entree");
                 return entree;
             }
             else if(type == "plat"){
-                Plat plat = new Plat(recetteName, recette, numTable);
+                Plat plat = new Plat(recetteName, recette, numTable, "plat");
                 return plat;
             }
             else
             {
-                Dessert dessert = new Dessert(recetteName, recette, numTable);
+                Dessert dessert = new Dessert(recetteName, recette, numTable, "dessert");
                 return dessert;
             }
         }

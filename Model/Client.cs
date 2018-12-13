@@ -12,7 +12,7 @@ namespace PlatLegeretSain.Model
         public int Y { get; set; }
         public string img { get; set; }
         public string imgEtat { get; set; }
-        public string orientation { get; set; }
+        public string Orientation { get; set; }
         private int vitesse { get; set; }
         public int groupe { get; set; }
         public int numTable = 0;
@@ -20,6 +20,8 @@ namespace PlatLegeretSain.Model
         private Reservation Reservation { get; set; }
         public Client client;
         public IClientState clientState { get; set; }
+        public Semaphore disponibiliteServeurCarre1;
+        public Semaphore disponibiliteServeurCarre2;
 
         public Client(int numGroup)
         {
@@ -28,9 +30,11 @@ namespace PlatLegeretSain.Model
             this.Y = 1000;
             this.img = "Client_";
             this.imgEtat = "";
-            this.orientation = "back";
+            this.Orientation = "back";
             this.client = this;
             this.clientState = new WaitForTable();
+            disponibiliteServeurCarre1 = new Semaphore(2, 2);
+            disponibiliteServeurCarre2 = new Semaphore(2, 2);
         }
 
         public void ManageClient()
@@ -40,36 +44,37 @@ namespace PlatLegeretSain.Model
 
         public void setState(IClientState newState)
         {
+            this.clientState = newState;
             ManageClient();
         }
 
         public void MoveUp(int distance)
         {
             this.Y -= distance;
-            this.orientation = "back";
+            this.Orientation = "back";
         }
 
         public void MoveDown(int distance)
         {
             this.Y += distance;
-            this.orientation = "front";
+            this.Orientation = "front";
         }
 
         public void MoveLeft(int distance)
         {
             this.X -= distance;
-            this.orientation = "left";
+            this.Orientation = "left";
         }
 
         public void MoveRight(int distance)
         {
             this.X += distance;
-            this.orientation = "right";
+            this.Orientation = "right";
         }
 
         public void QuitterRestaurant()
         {
-            //ThreadPool.QueueUserWorkItem(Sortir);
+            //ThreadPool impossible or every clients in the group will leave one by one instead of all together
             Thread threadQuitterRestaurant = new Thread(Sortir);
             threadQuitterRestaurant.Start();
         }
@@ -105,8 +110,7 @@ namespace PlatLegeretSain.Model
             for (int i = 0; i < vitesseManger; i++)
             {
                 int index = new Random().Next(listChoix.Count);
-                //string randomResult = listChoix[index];
-                string randomResult = "Entree";
+                string randomResult = listChoix[index];
 
                 switch (randomResult)
                 {
@@ -125,7 +129,86 @@ namespace PlatLegeretSain.Model
                 }
             }
             Commande commande = new Commande(entree, plat, dessert, this.numTable);
+            this.Commande = commande;
             return commande;
+        }
+
+        public void Eat(object args)
+        {
+            Repas repas = (Repas)args;
+            int tempsAttente = 0;
+
+            switch (repas.type)
+            {
+                case "entree":
+                    tempsAttente = 15;
+                    break;
+                case "plat":
+                    tempsAttente = 25;
+                    break;
+                case "dessert":
+                    tempsAttente = 10;
+                    break;
+            }
+            View.Game1.Print("Les clients de la table " + this.numTable + " mange leur " + repas.type);
+
+            Thread.Sleep(Clock.STime(tempsAttente * 1000)); // Multiplier par 3600 pour temps reel
+
+            if (this.Commande.dessert != null && repas.type == "dessert")
+            {
+                Partir();
+            }
+            else if (this.Commande.plat != null && this.Commande.dessert == null && repas.type == "plat")
+            {
+                Partir();
+            }
+            else if (this.Commande.entree != null && this.Commande.plat == null && this.Commande.dessert == null && repas.type == "entree")
+            {
+                Partir();
+            }
+
+                // Les clients appelent le serveur pour debarasser
+                List<Serveur> Serveurs;
+            if (numTable <= Restaurant.Tables.Count / 2)
+            {
+                Serveurs = Restaurant.Serveurs.FindAll(x => x.Carre == 1);
+                disponibiliteServeurCarre1.WaitOne();
+                foreach (Serveur serveur in Serveurs)
+                {
+                    serveur.debarasser(numTable);
+                }
+                disponibiliteServeurCarre1.Release();
+            }
+            else
+            {
+                Serveurs = Restaurant.Serveurs.FindAll(x => x.Carre == 2);
+                disponibiliteServeurCarre2.WaitOne();
+                foreach (Serveur serveur in Serveurs) 
+                {
+                    serveur.debarasser(numTable);
+                }
+                disponibiliteServeurCarre2.Release();
+            }
+
+            // Changement d'état
+            if (tempsAttente == 15 && this.Commande.plat != null)
+            {
+                this.setState(new AttendPlat());
+            }
+            else if( ( tempsAttente == 15 || tempsAttente == 25 ) && this.Commande.dessert != null)
+            {
+                this.setState(new AttendDessert());
+            }
+        }
+
+        public void Partir()
+        {
+            this.X = 1220;
+            this.Y = 850;
+            this.Orientation = "back";
+            this.imgEtat = "";
+            Thread threadQuitterRestaurant = new Thread(Sortir);
+            threadQuitterRestaurant.Start();
         }
     }
 }

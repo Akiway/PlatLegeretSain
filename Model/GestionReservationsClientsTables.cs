@@ -38,9 +38,9 @@ namespace PlatLegeretSain.Model
             }
 
             // Déplace les nouveaux clients jusqu'à l'accueil
-            while (Restaurant.Clients.Find(x => x.groupe == numGroup).Y > 850)
+            while (listClient[listClient.Count - 1].Y > 850)
             {
-                foreach (Client client in Restaurant.Clients.FindAll(x => x.groupe == numGroup))
+                foreach (Client client in listClient)
                 {
                     client.MoveUp(1);
                 }
@@ -61,7 +61,16 @@ namespace PlatLegeretSain.Model
             for (int i = nbClient; i < 11 && findTable == false; i++)
             {
                 List<Table> listTables = new List<Table>();
-                listTables = Restaurant.Tables.FindAll(x => x.NbPlace.Equals(i));
+
+                if (Restaurant.Tables.FindAll(x => x.Disponible.Equals(true) && x.Numero < Restaurant.Tables.Count / 2).Count < Restaurant.Tables.FindAll(x => x.Disponible.Equals(true) && x.Numero >= Restaurant.Tables.Count / 2).Count)
+                {
+                    listTables = Restaurant.Tables.FindAll(x => x.NbPlace.Equals(i) && x.Numero >= Restaurant.Tables.Count / 2);
+                }
+                else
+                {
+                    listTables = Restaurant.Tables.FindAll(x => x.NbPlace.Equals(i) && x.Numero < Restaurant.Tables.Count / 2);
+                }
+
                 if (listTables.FindAll(x => x.Disponible.Equals(true)).Count != 0)
                 {
                     listTables = listTables.FindAll(x => x.Disponible.Equals(true));
@@ -88,10 +97,6 @@ namespace PlatLegeretSain.Model
             if (Restaurant.Tables.FindAll(x => x.Disponible.Equals(true)).Count == 0)
             {
                 Restaurant.MH.setState(new TableIndisponible());
-            }
-            else // A présent, il n'y a plus de places
-            {
-
             }
         }
     }

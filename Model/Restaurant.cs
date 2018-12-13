@@ -20,8 +20,11 @@ namespace PlatLegeretSain.Model
         public static MaitreHotel MH;
         public static ChefCuisine CC;
         public static Cuisinier C1, C2;
+        public static CommisSalle commisSalle;
         public static CommisCuisine commisCuisine;
+        public static Plongeur Plongeur;
         public static ComptoirPlatsChauds CPC;
+        public static TableChaude tableChaude;
         public static GestionReservationsClientsTables GRCT;
         public static List<Employe> Employes = new List<Employe>();
         public static List<Client> Clients = new List<Client>();
@@ -32,7 +35,7 @@ namespace PlatLegeretSain.Model
         public static List<String> listPlats = new List<string>();
         public static List<String> listDesserts = new List<string>();
         public static ChefRang CR1, CR2;
-        public static Serveur Serveur1, Serveur2;
+        public static List<Serveur> Serveurs = new List<Serveur>();
         public static string Time { get; set; }
 
         public static List<Commande> commandes = new List<Commande>();
@@ -41,50 +44,70 @@ namespace PlatLegeretSain.Model
 
         private Restaurant()
         {
-            Nyancat nyancat = Nyancat.Instance();
-            Employes.Add(nyancat);
+            // Maître d'Hôtel
             MH = MaitreHotel.Instance();
-            CC = ChefCuisine.Instance();
-            console = ConsoleTable.Instance();
-            C1 = new Cuisinier("C1");
-            C2 = new Cuisinier("C2");
-            commisCuisine = new CommisCuisine();
+            MH.SetOrigin(1230, 780, "front", true);
             Employes.Add(MH);
-            GRCT = GestionReservationsClientsTables.Instance();
-            CPC = ComptoirPlatsChauds.Instance();
-            CR1 = new ChefRang(1, 1130, 520);
-            CR2 = new ChefRang(2, 1130, 480);
+            // Chef de Cuisine
+            CC = ChefCuisine.Instance();
+            CC.SetOrigin(1250, 200, "front", true);
+            Employes.Add(CC);
+            // Commis de Salle
+            commisSalle = new CommisSalle();
+            commisSalle.SetOrigin(1240, 600, "left", true);
+            Employes.Add(commisSalle);
+            // Cuisiniers
+            C1 = new Cuisinier("C1");
+            C1.SetOrigin(1300, 150, "front", true);
+            C2 = new Cuisinier("C2");
+            C2.SetOrigin(1300, 250, "front", true);
+            Employes.Add(C1);
+            Employes.Add(C2);
+            // Commis de Cuisine
+            commisCuisine = new CommisCuisine();
+            commisCuisine.SetOrigin(1450, 300, "front", true);
+            Employes.Add(commisCuisine);
+            // Plongeur
+            Plongeur = new Plongeur();
+            Plongeur.SetOrigin(1400, 550, "front", true);
+            Employes.Add(Plongeur);
+            // Chefs de Rangs
+            CR1 = new ChefRang(1);
+            CR1.SetOrigin(1130, 520, "left", true);
+            CR2 = new ChefRang(2);
+            CR2.SetOrigin(1130, 480, "left", true);
             Employes.Add(CR1);
             Employes.Add(CR2);
-            Serveur1 = new Serveur(1, 1130, 240);
-            Serveur2 = new Serveur(2, 1130, 200);
-            Employes.Add(Serveur1);
-            Employes.Add(Serveur2);
+            // Serveurs
+            for (int i = 0; i < Parameters.Serveur; i++)
+            {
+                Serveur Serveur = new Serveur(i < Parameters.Serveur/2 ? 1 : 2);
+                Serveur.SetOrigin(1130, 320 - (40 * i), "left", true);
+                Employes.Add(Serveur);
+                Serveurs.Add(Serveur);
+            }
+            // Nyancat magique de l'espace
+            Nyancat nyancat = Nyancat.Instance();
+            Employes.Add(nyancat);
+
+            GRCT = GestionReservationsClientsTables.Instance();
+            CPC = ComptoirPlatsChauds.Instance();
+            console = ConsoleTable.Instance();
+            tableChaude = TableChaude.Instance();
 
             Database.Instance().GetRecettesNames();
 
             Tables = Database.Instance().GetTables();
 
-            MH.appelerChefRang();
-
             GenererReservation();
-            
             foreach (var res in Reservations)
             {
-                View.Game1.Print("Res : " + res.NbClient + " clients à " + res.Heure);
+                View.Game1.Print("Reservation : " + res.NbClient + " clients à " + res.Heure);
             }
 
-            //View.Game1.Print(Reservations.Find(x => x.Table.Equals("front")).GetType().Name.ToString());
-
-            ThreadPool.QueueUserWorkItem(ThreadReservation);
-            //Thread threadReservation = new Thread(ThreadReservation);
-            //threadReservation.Start();
+            //ThreadPool.QueueUserWorkItem(ThreadReservation);
             ThreadPool.QueueUserWorkItem(ThreadClientAleatoire);
-            //Thread threadClientAleatoire = new Thread(ThreadClientAleatoire);
-            //threadClientAleatoire.Start();
-
         }
-        //View.Game1.Print(res.NbClient + "clients pour la table " + res.numTable);
         
 
         public static void ThreadReservation(object args)
@@ -111,14 +134,19 @@ namespace PlatLegeretSain.Model
             // Tant que le thread actuel est vivant
             while (Thread.CurrentThread.IsAlive)
             {
-                Thread.Sleep(Clock.STime(1000)); // 1 sec
                 Random random = new Random();
                 bool boolValue = Convert.ToBoolean(random.Next() % 2);
 
+                Thread.Sleep(Clock.STime(3000)); // 3 sec
+
                 if (boolValue == true)
                 {
-                    int nbClient = new Random().Next(1, 11);
-                    GRCT.CreationClient(0, nbClient, Thread.CurrentThread);
+                    //if (Restaurant.Clients.Count == 0)
+                    //{
+                        int nbClient = new Random().Next(1, 11);
+                        //int nbClient = 1;
+                        GRCT.CreationClient(0, nbClient, Thread.CurrentThread);
+                    //}
                 }
             }
         }

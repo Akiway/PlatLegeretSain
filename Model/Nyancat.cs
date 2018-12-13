@@ -22,7 +22,7 @@ namespace PlatLegeretSain.Model
             this.X = -50;
             this.Y = 500;
             this.img = "Nyancat_";
-            this.orientation = "front";
+            this.Orientation = "front";
         }
     }
 }

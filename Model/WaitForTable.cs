@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace PlatLegeretSain.Model
@@ -12,11 +13,11 @@ namespace PlatLegeretSain.Model
         {
             if(context.numTable <= Restaurant.Tables.Count / 2)
             {
-                Restaurant.CR1.installerClient(context.numTable);
+                ThreadPool.QueueUserWorkItem(Restaurant.CR1.installerClient, context.numTable);
             }
             else
             {
-                Restaurant.CR2.installerClient(context.numTable);
+                ThreadPool.QueueUserWorkItem(Restaurant.CR2.installerClient, context.numTable);
             }
         }
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace PlatLegeretSain.Model
 {
@@ -9,40 +10,72 @@ namespace PlatLegeretSain.Model
     {
         public Cuisinier(String name)
         {
-            this.Occuped = false;
             this.name = name;
+            this.img = "Cuisinier_";
         }
 
-        public bool Occuped;
         public String name;
-        public List<Repas> listRepas = new List<Repas>();
+        public List<Repas> listMtn = new List<Repas>();
+        public List<Repas> listApres = new List<Repas>();
 
         public void Cuisiner(List<Repas> repas)
         {
-            this.Occuped = true;
             foreach(Repas element in repas)
             {
-                element.EnChauffe(this);
-                this.listRepas.Add(element);
-                View.Game1.Print("EnChauffe");
-                // Supprimer ingredients des recettes de la BDD
+                if(this.name == "C1")
+                {
+                    // S'il y a des entrees dans la liste
+                    if(repas.FindAll(x => x.type.Equals("entree")).Count != 0)
+                    {
+                        if (element.type == "entree")
+                        {
+                            listMtn.Add(element);
+                        }
+                        else
+                        {
+                            listApres.Add(element);
+                        }
+                    }
+                    else
+                    {
+                        listMtn.Add(element);
+                    }
+                }
+                else
+                {
+                    listApres.Add(element);
+                }
+                ThreadPool.QueueUserWorkItem(element.Conception, this);
+                View.Game1.Print("Conception du repas : "+element.nom);
             }
         }
 
         public void DishReady(Repas repas)
         {
-            Restaurant.commisCuisine.EmmenerPlatComptoir(repas);
-
-            View.Game1.Print("--------------------- Cuisinier ----------------------");
-            View.Game1.Print(repas.nom);
-            View.Game1.Print(listRepas.Count.ToString());
-            if(listRepas.FindAll(x => x.ready.Equals(true)).Count == listRepas.Count)
+            if (this.name == "C1")
             {
-                Restaurant.commisCuisine.callWaiter();
-                View.Game1.Print("All");
+                if(listMtn.FindAll(x => x.Equals(repas)).Count != 0)
+                {
+                    // Ajouter animation déplacement du commisCuisine
+                    Restaurant.commisCuisine.EmmenerPlatComptoir(repas);
+                    View.Game1.Print("Le commis de cuisine met un plat sur le comptoir");
+                    View.Game1.Print("la : " + listMtn.FindAll(x => x.ready.Equals(true)).Count);
+                    View.Game1.Print("ici : " + listMtn.Count);
+
+                    if (listMtn.FindAll(x => x.ready.Equals(true)).Count == listMtn.Count)
+                    {
+                        Restaurant.commisCuisine.callWaiter(repas.numTable);
+                    }
+                }
+                else
+                {
+                    Restaurant.commisCuisine.EmmenerPlatEtuve(repas);
+                }
             }
-            this.Occuped = false;
-            View.Game1.Print("--------------------- FinCuisinier -------------------");
+            else
+            {
+                Restaurant.commisCuisine.EmmenerPlatEtuve(repas);
+            }
         }
     }
 }
