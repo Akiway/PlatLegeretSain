@@ -183,7 +183,7 @@ namespace PlatLegeretSain.Model
             {
                 Serveurs = Restaurant.Serveurs.FindAll(x => x.Carre == 2);
                 disponibiliteServeurCarre2.WaitOne();
-                foreach (Serveur serveur in Serveurs)
+                foreach (Serveur serveur in Serveurs) 
                 {
                     serveur.debarasser(numTable);
                 }
