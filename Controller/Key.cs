@@ -25,7 +25,7 @@ namespace PlatLegeretSain.Controller
 
             if (oldKeyboard.IsKeyDown(Keys.Tab) && keyboard.IsKeyUp(Keys.Tab))
             {
-                if (Model.Clock.Speed < 2)
+                if (Model.Clock.Speed < 3)
                 {
                     Model.Clock.Speed += 0.5;
                 }

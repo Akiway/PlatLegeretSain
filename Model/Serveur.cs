@@ -22,14 +22,14 @@ namespace PlatLegeretSain.Model
 
         public bool Occuped;
 
-        public void debarasser(int numTable)
+        public void debarasser(int numTable, bool liberer = false)
         {
             this.Occuped = true;
             MoveToTable(numTable);
             View.Game1.Print("Un serveur débarasse la table " + numTable);
             // Récupère la vaiselle
             Thread.Sleep(Clock.STime(1000));
-            Restaurant.Tables.Find(x => x.Numero == numTable).ImgState = "";
+            Restaurant.Tables.Find(x => x.Numero == numTable).ImgState = liberer ? "_vide" : "";
             MoveToCuisine();
             // Dépose la vaiselle
             Thread.Sleep(Clock.STime(1000));
@@ -68,8 +68,13 @@ namespace PlatLegeretSain.Model
             Thread.Sleep(Clock.STime(1000));
             MoveToOrigin();
 
-
-            ThreadPool.QueueUserWorkItem(Restaurant.Clients.Find(x => x.numTable.Equals(numTable)).Eat, listRepas[0]);
+            if (listRepas.Count > 0)
+            {
+                ThreadPool.QueueUserWorkItem(Restaurant.Clients.Find(x => x.numTable.Equals(numTable)).Eat, listRepas[0]);
+            } else
+            {
+                View.Game1.Print("Serveur error > la liste de repas est vide");
+            }
             this.Occuped = false;
         }
 

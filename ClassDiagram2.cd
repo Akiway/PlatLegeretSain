@@ -1,0 +1,399 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="PlatLegeretSain.Controller.Key" Collapsed="true">
+    <Position X="25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>Controller\Key.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlatLegeretSain.Controller.Mousse" Collapsed="true">
+    <Position X="30.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controller\Mousse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlatLegeretSain.Controller.Program" Collapsed="true">
+    <Position X="25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Controller\Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlatLegeretSain.Model.AttendDessert" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="21.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Model\AttendDessert.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="PlatLegeretSain.Model.AttendPlat" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="23.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Model\AttendPlat.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="PlatLegeretSain.Model.CheckOrder" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="26.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Model\CheckOrder.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="PlatLegeretSain.Model.ChefCuisine" Collapsed="true">
+    <Position X="14.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAQAAUACAAAAAAAAQgAEAAAAAAA=</HashCode>
+      <FileName>Model\ChefCuisine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlatLegeretSain.Model.ChefRang" Collapsed="true">
+    <Position X="16.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAIAAgQAAIAAAAAAAIAgAAAgQAA=</HashCode>
+      <FileName>Model\ChefRang.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlatLegeretSain.Model.Client" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="28.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCEEAACAkQAAEABAEAAEAAACAAAAAAQIQAAQRAAAYAQ=</HashCode>
+      <FileName>Model\Client.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="PlatLegeretSain.Model.Clock" Collapsed="true">
+    <Position X="30.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAQCAAAQgAAAAAJAAAAAAAAQQADAAAAAQA=</HashCode>
+      <FileName>Model\Clock.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlatLegeretSain.Model.Commande" Collapsed="true">
+    <Position X="21.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAAAAAAAAQAAAAAAAASAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Commande.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlatLegeretSain.Model.CommisCuisine" Collapsed="true">
+    <Position X="5.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAAAAAACAAAAAAAAAEAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>Model\CommisCuisine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlatLegeretSain.Model.CommisSalle" Collapsed="true">
+    <Position X="10" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Model\CommisSalle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlatLegeretSain.Model.ComptoirPlatsChauds" Collapsed="true">
+    <Position X="23.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAEAAAAAAAAAAAAAACAAAAAAAAAQgAAAAAAAAA=</HashCode>
+      <FileName>Model\ComptoirPlatsChauds.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlatLegeretSain.Model.ConsoleTable" Collapsed="true">
+    <Position X="25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAAAAAAAIAAAAAAQAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Model\ConsoleTable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlatLegeretSain.Model.Cuisine" Collapsed="true">
+    <Position X="26.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Cuisine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlatLegeretSain.Model.Cuisinier" Collapsed="true">
+    <Position X="1" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAABAAAAAAAAgAAAAAEAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Cuisinier.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlatLegeretSain.Model.Database" Collapsed="true">
+    <Position X="28.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAQAAAAAQAJAAAAAARAQAAAQAgAKAARAAA=</HashCode>
+      <FileName>Model\Database.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlatLegeretSain.Model.Dessert" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Dessert.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlatLegeretSain.Model.Employe" Collapsed="true">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAACBUAAHAAoAAAAAgQAAAAKAAAIQAIAAAAEYAA=</HashCode>
+      <FileName>Model\Employe.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PlatLegeretSain.Model.Entree" Collapsed="true">
+    <Position X="2.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Entree.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlatLegeretSain.Model.GestionReservationsClientsTables" Collapsed="true">
+    <Position X="21.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAABEAAAAAAAAAgQAAAAAAAAAA=</HashCode>
+      <FileName>Model\GestionReservationsClientsTables.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlatLegeretSain.Model.Ingredient" Collapsed="true">
+    <Position X="23.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAACAAAAAEAA=</HashCode>
+      <FileName>Model\Ingrédient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlatLegeretSain.Model.LookMenu" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="26.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Model\LookMenu.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="PlatLegeretSain.Model.MaitreHotel" Collapsed="true">
+    <Position X="7.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAIAAAgAAAACAAAAQAAAAAAAAAQ=</HashCode>
+      <FileName>Model\MaitreHotel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlatLegeretSain.Model.Materiel" Collapsed="true">
+    <Position X="28.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIBAAAAIAAAAAAAAAAAAAACAAAACAAAAAAAAA=</HashCode>
+      <FileName>Model\Materiel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlatLegeretSain.Model.Nyancat" Collapsed="true">
+    <Position X="12.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Model\Nyancat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlatLegeretSain.Model.Parameters" Collapsed="true">
+    <Position X="21.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAIAAAAAAAAAAAACAAAABQAgAAgAAAAA=</HashCode>
+      <FileName>Model\Parameters.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlatLegeretSain.Model.Plat" Collapsed="true">
+    <Position X="5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Plat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlatLegeretSain.Model.Plongeur" Collapsed="true">
+    <Position X="3.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAAAAAAAAAAAAAAgAAEAAAAAAAAAA=</HashCode>
+      <FileName>Model\Plongeur.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlatLegeretSain.Model.ReadyToOrder" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="26.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Model\ReadyToOrder.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="PlatLegeretSain.Model.Recette" Collapsed="true">
+    <Position X="28.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAQAAAAAAIAAAAAAIAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Recette.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlatLegeretSain.Model.Repas" Collapsed="true">
+    <Position X="2.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgQAAAAAgAAEAICAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Repas.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlatLegeretSain.Model.Reservation" Collapsed="true">
+    <Position X="30.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAQAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Model\Reservation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlatLegeretSain.Model.Restaurant" Collapsed="true">
+    <Position X="21.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gUCBUEAAxAAAgAAQECIAQoCAAACAIMAAQAAgAAAAEQA=</HashCode>
+      <FileName>Model\Restaurant.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlatLegeretSain.Model.Serveur" Collapsed="true">
+    <Position X="19" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAIAAAAAAAAAAAAIAAAQAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Model\Serveur.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlatLegeretSain.Model.SocketServer" Collapsed="true">
+    <Position X="23.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAACABAAAgAAQAABAAACAAAAAQQABAAAAAAAA=</HashCode>
+      <FileName>Model\SocketServer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlatLegeretSain.Model.Statistique" Collapsed="true">
+    <Position X="21.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQgQAAEIEAAAACAAAACQAAAAgAAAEACBAAgAACAEAQ=</HashCode>
+      <FileName>Model\Statistique.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlatLegeretSain.Model.Table" Collapsed="true">
+    <Position X="23.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAIAQAACAAAAABAAAAQEgAAAAAAAAAAAAAAEBYAA=</HashCode>
+      <FileName>Model\Table.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlatLegeretSain.Model.TableChaude" Collapsed="true">
+    <Position X="25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAQAAAAEAAAAAAAAAAAAAAAAAAQgAAAAAAAAA=</HashCode>
+      <FileName>Model\TableChaude.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlatLegeretSain.Model.TableDisponible" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="26.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\TableDisponible.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="PlatLegeretSain.Model.TableIndisponible" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="28.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\TableIndisponible.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="PlatLegeretSain.Model.WaitForTable" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="30.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Model\WaitForTable.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="PlatLegeretSain.View.Button" Collapsed="true">
+    <Position X="25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAwAAAAABQAAAgAAAAAAAEAAAAKgACAAAAAACAAAYgA=</HashCode>
+      <FileName>View\Button.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlatLegeretSain.View.Game1" Collapsed="true">
+    <Position X="30.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABUAEEAQIAAgA0ABACAQQAAAAAAAAIgIQEABAACEAIQ=</HashCode>
+      <FileName>View\Game1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlatLegeretSain.View.SpriteFrame" Collapsed="true">
+    <Position X="25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAABAAAAAIAAEgAAAA=</HashCode>
+      <FileName>View\SpriteFrame.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlatLegeretSain.View.SpriteRender" Collapsed="true">
+    <Position X="26.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAgAAAAAAAAAAAAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\SpriteRender.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlatLegeretSain.View.SpriteSheet" Collapsed="true">
+    <Position X="28.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAACAAAA=</HashCode>
+      <FileName>View\SpriteSheet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlatLegeretSain.View.SpriteSheetLoader" Collapsed="true">
+    <Position X="30.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAgAAAAAAAAAAAIAAAAAAAAAAAAAQAAAAAQAAAAAA=</HashCode>
+      <FileName>View\SpriteSheetLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TexturePackerMonoGameDefinitions.PLSsprites" Collapsed="true">
+    <Position X="23.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>bCIBCAKAEQgIAAygCANEwwYAEWUBRQZAQEIpIgEAACA=</HashCode>
+      <FileName>View\PLSsprites.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="PlatLegeretSain.Model.IClientState" Collapsed="true">
+    <Position X="21.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Model\IClientState.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="PlatLegeretSain.Model.IFreeTable" Collapsed="true">
+    <Position X="23.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\IFreeTable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="PlatLegeretSain.Model.IMovable" Collapsed="true">
+    <Position X="25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAIQAAAAAAAYAA=</HashCode>
+      <FileName>Model\IMovable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="PlatLegeretSain.Model.PositionPossible" Collapsed="true">
+    <Position X="21.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\PositionPossible.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="PlatLegeretSain.Model.Ustensile" Collapsed="true">
+    <Position X="23.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Ustensile.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

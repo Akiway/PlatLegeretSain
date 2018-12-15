@@ -130,7 +130,7 @@ namespace PlatLegeretSain.Model
 
         public virtual void MoveToComptoir(bool teleport = true)
         {
-            MoveTo(1250, 300, teleport);
+            MoveTo(1250, 230, teleport);
             this.Orientation = "left";
         }
 

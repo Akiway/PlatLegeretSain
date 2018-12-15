@@ -39,19 +39,15 @@ namespace PlatLegeretSain.Model
             timeMinutes = Clock.Minutes;
             timeSeconds = Clock.Seconds;
             timeTotalSecondes = Clock.TotalSeconds;
-            nbClient = Restaurant.Clients.Count;
-            try
-            {
-                nbClientATable = Restaurant.Clients.FindAll(x => x.imgEtat != "").Count;
-                nbClientCarte = Restaurant.Clients.FindAll(x => x.imgEtat == "carte_").Count;
-            } catch
-            {
-                //Just ignore
-            }
+
+            List<Client> listClient = new List<Client>(Restaurant.Clients);
+            nbClient = listClient.Count;
+            nbClientATable = listClient.FindAll(x => x.imgEtat != "").Count;
+            nbClientCarte = listClient.FindAll(x => x.imgEtat == "carte_").Count;
             nbClientCarre1 = nbClientCarre2 = 0;
-            for (int i=0; i<Restaurant.Clients.Count; i++)
+            for (int i=0; i< listClient.Count; i++)
             {
-                Client client = Restaurant.Clients[i];
+                Client client = listClient[i];
                 if (client.numTable != 0)
                 {
                     if (Restaurant.Tables.Find(x => x.Numero == client.numTable).Carre == 1)
@@ -64,9 +60,12 @@ namespace PlatLegeretSain.Model
                     }
                 }
             }
+
             nbTableLibre = Restaurant.Tables.FindAll(x => x.Disponible == true).Count;
+
             vitesseSimulation = Clock.Speed;
             statutSimulation = "Running";
+
             int outAvailableThreads, outMaxThreads, outIo;
             ThreadPool.GetAvailableThreads(out outAvailableThreads, out outIo);
             ThreadPool.GetMaxThreads(out outMaxThreads, out outIo);
