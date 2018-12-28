@@ -137,7 +137,7 @@ namespace PlatLegeretSain.Model
                 Random random = new Random();
                 bool boolValue = Convert.ToBoolean(random.Next() % 2);
 
-                Thread.Sleep(Clock.STime(6000)); // 3 sec
+                Thread.Sleep(Clock.STime(3000)); // 3 sec
 
                 if (boolValue == true)
                 {
