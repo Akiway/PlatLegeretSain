@@ -22,17 +22,18 @@ namespace PlatLegeretSain.Model
 
         public bool Occuped;
 
-        public void debarasser(int numTable)
+        public void debarasser(int numTable, bool liberer = false)
         {
             this.Occuped = true;
             MoveToTable(numTable);
             View.Game1.Print("Un serveur débarasse la table " + numTable);
             // Récupère la vaiselle
             Thread.Sleep(Clock.STime(1000));
-            Restaurant.Tables.Find(x => x.Numero == numTable).ImgState = "";
+            Restaurant.Tables.Find(x => x.Numero == numTable).ImgState = liberer ? "_vide" : "";
             MoveToCuisine();
             // Dépose la vaiselle
             Thread.Sleep(Clock.STime(1000));
+            MoveToOrigin();
             this.Occuped = false;
         }
 
@@ -45,19 +46,39 @@ namespace PlatLegeretSain.Model
             Thread.Sleep(Clock.STime(1000));
             // Deplacement à la table numéro numTable
             MoveToTable(numTable);
-            // Wait at the table 1 sec
-            Thread.Sleep(Clock.STime(1000));
-            MoveToOrigin();
 
             List<Repas> listRepas = new List<Repas>();
             listRepas = Restaurant.CPC.GetDish(numTable);
 
-            ThreadPool.QueueUserWorkItem(Restaurant.Clients.Find(x => x.numTable.Equals(numTable)).Eat, listRepas[0]);
+            try
+            {
+                if (listRepas[0].type == "dessert")
+                {
+                    Restaurant.Tables.Find(x => x.Numero == numTable).ImgState = "_dessert";
+                }
+                else
+                {
+                    Restaurant.Tables.Find(x => x.Numero == numTable).ImgState = "_repas";
+                }
+            } catch
+            {
+                // Just ignore
+            }
+            // Wait at the table 1 sec
+            Thread.Sleep(Clock.STime(1000));
+            MoveToOrigin();
 
+            if (listRepas.Count > 0)
+            {
+                ThreadPool.QueueUserWorkItem(Restaurant.Clients.Find(x => x.numTable.Equals(numTable)).Eat, listRepas[0]);
+            } else
+            {
+                View.Game1.Print("Serveur error > la liste de repas est vide");
+            }
             this.Occuped = false;
         }
 
-        public void MoveToCuisine()
+        public override void MoveToCuisine(bool teleport = true)
         {
             this.X = 1180;
             this.Y = 250;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace PlatLegeretSain.Model
 {
@@ -34,38 +35,33 @@ namespace PlatLegeretSain.Model
         {
             this.Orientation = "back";
             this.Y -= distance;
-            Console.WriteLine("x: " + this.X + " y: " + this.Y);
         }
 
         public void MoveDown(int distance)
         {
             this.Orientation = "front";
             this.Y += distance;
-            Console.WriteLine("x: " + this.X + " y: " + this.Y);
         }
 
         public void MoveLeft(int distance)
         {
             this.Orientation = "left";
             this.X -= distance;
-            Console.WriteLine("x: " + this.X + " y: " + this.Y);
         }
 
         public void MoveRight(int distance)
         {
             this.Orientation = "right";
             this.X += distance;
-            Console.WriteLine("x: " + this.X + " y: " + this.Y);
         }
 
-        public void MoveToOrigin()
+        public virtual void MoveToOrigin(bool teleport = true)
         {
-            this.X = this.OriginX;
-            this.Y = this.OriginY;
+            MoveTo(this.OriginX, this.OriginY, teleport);
             this.Orientation = this.OriginOrientation;
         }
 
-        public void MoveToTable(int numTable)
+        public virtual void MoveToTable(int numTable, bool teleport = true)
         {
             Table table = Restaurant.Tables.Find(x => x.Numero == numTable);
             int nbPlaces = table.NbPlace;
@@ -73,19 +69,20 @@ namespace PlatLegeretSain.Model
             int cx = table.X;
             int cy = table.Y;
             int ecart = 46, decalage = ecart / 2;
+            int px, py;
 
             if (table.OrientationHorizontale)
             {
                 if (half % 2 != 0) // 2, 6, 10 places
                 {
-                    this.X = cx + (half / 2 + 1) * ecart - decalage / 2;
-                    this.Y = cy;
+                    px = cx + (half / 2 + 1) * ecart - decalage / 2;
+                    py = cy;
                     this.Orientation = "left";
                 }
                 else // 4, 8 places
                 {
-                    this.X = cx + half / 2 * ecart + decalage / 2;
-                    this.Y = cy;
+                    px = cx + half / 2 * ecart + decalage / 2;
+                    py = cy;
                     this.Orientation = "left";
                 }
             }
@@ -93,18 +90,81 @@ namespace PlatLegeretSain.Model
             {
                 if (half % 2 != 0) // 2, 6, 10 places
                 {
-                    this.X = cx;
-                    this.Y = cy + (half / 2 + 1) * ecart - decalage / 2;
+                    px = cx;
+                    py = cy + (half / 2 + 1) * ecart - decalage / 2;
                     this.Orientation = "back";
                 }
                 else // 4, 8 places
                 {
-                    this.X = cx;
-                    this.Y = cy + half / 2 * ecart + decalage / 2;
+                    px = cx;
+                    py = cy + half / 2 * ecart + decalage / 2;
                     this.Orientation = "back";
                 }
             }
+            MoveTo(px, py, teleport);
         }
 
+        public virtual void MoveToEtuve(bool teleport = true)
+        {
+            MoveTo(1280, 100, teleport);
+            this.Orientation = "left";
+        }
+
+        public virtual void MoveToFurnace(bool teleport = true)
+        {
+            MoveTo(1440, 75, teleport);
+            this.Orientation = "back";
+        }
+
+        public virtual void MoveToReception(bool teleport = true)
+        {
+            MoveTo(1180, 870, teleport);
+            this.Orientation = "right";
+        }
+
+        public virtual void MoveToCuisine(bool teleport = true)
+        {
+            MoveTo(1180, 300, teleport);
+            this.Orientation = "right";
+        }
+
+        public virtual void MoveToComptoir(bool teleport = true)
+        {
+            MoveTo(1250, 230, teleport);
+            this.Orientation = "left";
+        }
+
+        protected void MoveTo(int x, int y, bool teleport)
+        {
+            if (teleport)
+            {
+                this.X = x;
+                this.Y = y;
+            }
+            else
+            {
+                while (x != this.X || y != this.Y)
+                {
+                    if (x < this.X)
+                    {
+                        MoveLeft(1);
+                    }
+                    else if (x > this.X)
+                    {
+                        MoveRight(1);
+                    }
+                    if (y < this.Y)
+                    {
+                        MoveUp(1);
+                    }
+                    else if (y > this.Y)
+                    {
+                        MoveDown(1);
+                    }
+
+                    Thread.Sleep(Clock.STime(20));
+                }
+            }
+        }
     }
 }

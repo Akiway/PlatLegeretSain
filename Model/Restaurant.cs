@@ -18,29 +18,36 @@ namespace PlatLegeretSain.Model
         }
 
         public static MaitreHotel MH;
+        public static ChefRang CR1, CR2;
+        public static List<Serveur> Serveurs = new List<Serveur>();
         public static ChefCuisine CC;
         public static Cuisinier C1, C2;
         public static CommisSalle commisSalle;
         public static CommisCuisine commisCuisine;
         public static Plongeur Plongeur;
-        public static ComptoirPlatsChauds CPC;
-        public static TableChaude tableChaude;
-        public static GestionReservationsClientsTables GRCT;
+
         public static List<Employe> Employes = new List<Employe>();
         public static List<Client> Clients = new List<Client>();
-        public static ConsoleTable console;
         public static List<Reservation> Reservations = new List<Reservation>();
         public static List<Table> Tables = null;
+        public static List<int> groupList = new List<int>();
+
+        public static List<Commande> commandes = new List<Commande>();
         public static List<String> listEntrees = new List<string>();
         public static List<String> listPlats = new List<string>();
         public static List<String> listDesserts = new List<string>();
-        public static ChefRang CR1, CR2;
-        public static List<Serveur> Serveurs = new List<Serveur>();
+
+        public static ComptoirPlatsChauds CPC;
+        public static TableChaude tableChaude;
+        public static GestionReservationsClientsTables GRCT;
+        public static ConsoleTable console;
+
         public static string Time { get; set; }
 
-        public static List<Commande> commandes = new List<Commande>();
+        public static Semaphore disponibiliteServeurCarre1 = new Semaphore(2, 2);
+        public static Semaphore disponibiliteServeurCarre2 = new Semaphore(2, 2);
 
-        public static List<int> groupList = new List<int>();
+
 
         private Restaurant()
         {
@@ -50,7 +57,7 @@ namespace PlatLegeretSain.Model
             Employes.Add(MH);
             // Chef de Cuisine
             CC = ChefCuisine.Instance();
-            CC.SetOrigin(1250, 200, "front", true);
+            CC.SetOrigin(1250, 300, "left", true);
             Employes.Add(CC);
             // Commis de Salle
             commisSalle = new CommisSalle();
@@ -141,11 +148,8 @@ namespace PlatLegeretSain.Model
 
                 if (boolValue == true)
                 {
-                    if (Restaurant.Clients.Count < 20)
-                    {
-                        int nbClient = new Random().Next(1, 11);
-                        GRCT.CreationClient(0, nbClient, Thread.CurrentThread);
-                    }
+                    int nbClient = new Random().Next(1, 11);
+                    GRCT.CreationClient(0, nbClient, Thread.CurrentThread);
                 }
             }
         }

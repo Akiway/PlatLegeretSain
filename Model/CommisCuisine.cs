@@ -8,33 +8,25 @@ namespace PlatLegeretSain.Model
 {
     public class CommisCuisine : Employe
     {
-        public Semaphore disponibiliteServeurCarre1;
-        public Semaphore disponibiliteServeurCarre2;
 
         public CommisCuisine()
         {
-            disponibiliteServeurCarre1 = new Semaphore(2, 2);
-            disponibiliteServeurCarre2 = new Semaphore(2, 2);
             this.img = "CommisCuisine_";
-        }
-
-        public void eplucher()
-        {
-            
-        }
-
-        public void chercher()
-        {
-            
         }
 
         public void EmmenerPlatComptoir(Repas repas)
         {
+            // Animation déplacement à l'étuve
+            MoveToEtuve();
             Restaurant.CPC.NewDishReady(repas);
+            // Animation déplacement au comptoir
+            MoveToComptoir(false);
         }
 
         public void EmmenerPlatEtuve(Repas repas)
         {
+            // Animation déplacement à l'étuve
+            MoveToEtuve();
             Restaurant.tableChaude.NewDishWaiting(repas);
             View.Game1.Print("Emmener plat étuve ! " + repas.nom);
         }
@@ -48,18 +40,18 @@ namespace PlatLegeretSain.Model
             if (numTable <= Restaurant.Tables.Count / 2)
             {
                 Serveurs = Restaurant.Serveurs.FindAll(x => x.Carre == 1);
-                disponibiliteServeurCarre1.WaitOne();
+                Restaurant.disponibiliteServeurCarre1.WaitOne();
                 Serveur serveur = Serveurs.Find(x => x.Occuped == false);
                 serveur.BringDish(numTable);
-                disponibiliteServeurCarre1.Release();
+                Restaurant.disponibiliteServeurCarre1.Release();
             }
             else
             {
                 Serveurs = Restaurant.Serveurs.FindAll(x => x.Carre == 2);
-                disponibiliteServeurCarre2.WaitOne();
+                Restaurant.disponibiliteServeurCarre2.WaitOne();
                 Serveur serveur = Serveurs.Find(x => x.Occuped == false);
                 serveur.BringDish(numTable);
-                disponibiliteServeurCarre2.Release();
+                Restaurant.disponibiliteServeurCarre2.Release();
             }
         }
     }

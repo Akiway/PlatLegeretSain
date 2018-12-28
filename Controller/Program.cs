@@ -32,7 +32,7 @@ namespace PlatLegeretSain.Controller
             Model.SocketServer.Instance();
 
             // Start the simulation
-            Model.Restaurant resto = Model.Restaurant.Instance();
+            Model.Restaurant.Instance();
             var game = View.Game1.Instance();
             using (game)
             {

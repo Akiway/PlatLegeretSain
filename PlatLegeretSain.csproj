@@ -160,6 +160,7 @@
     </None>
     <None Include="app.manifest" />
     <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
     <None Include="Content\digital_display.ttf" />
   </ItemGroup>
   <ItemGroup>

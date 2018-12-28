@@ -209,7 +209,7 @@ namespace PlatLegeretSain.View
             using (System.IO.StreamWriter file =
             new System.IO.StreamWriter(Controller.Program.logFile, true))
             {
-                file.WriteLine(text);
+                file.WriteLine(DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second + " | " + text);
                 file.Close();
             }
             PrintPool.Release();

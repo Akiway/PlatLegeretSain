@@ -20,8 +20,6 @@ namespace PlatLegeretSain.Model
         private Reservation Reservation { get; set; }
         public Client client;
         public IClientState clientState { get; set; }
-        public Semaphore disponibiliteServeurCarre1;
-        public Semaphore disponibiliteServeurCarre2;
 
         public Client(int numGroup)
         {
@@ -33,8 +31,6 @@ namespace PlatLegeretSain.Model
             this.Orientation = "back";
             this.client = this;
             this.clientState = new WaitForTable();
-            disponibiliteServeurCarre1 = new Semaphore(2, 2);
-            disponibiliteServeurCarre2 = new Semaphore(2, 2);
         }
 
         public void ManageClient()
@@ -81,17 +77,17 @@ namespace PlatLegeretSain.Model
 
         public void Sortir(object args)
         {
-            while (client.X > 1220)
+            while (this.X > 1220)
             {
-                client.MoveLeft(1);
+                this.MoveLeft(1);
                 Thread.Sleep(Clock.STime(20));
             }
-            while (client.Y < 1020)
+            while (this.Y < 1020)
             {
-                client.MoveDown(1);
+                this.MoveDown(1);
                 Thread.Sleep(Clock.STime(20));
             }
-            Restaurant.Clients.Remove(client);
+            Restaurant.Clients.Remove(this);
             client = null;
         }
 
@@ -135,7 +131,6 @@ namespace PlatLegeretSain.Model
 
         public void Eat(object args)
         {
-            Restaurant.Tables.Find(x => x.Numero == this.numTable).ImgState = "_repas";
             Repas repas = (Repas)args;
             int tempsAttente = 0;
 
@@ -155,27 +150,39 @@ namespace PlatLegeretSain.Model
 
             Thread.Sleep(Clock.STime(tempsAttente * 1000)); // Multiplier par 3600 pour temps reel
 
-            // Les clients appelent le serveur pour debarasser
-            List<Serveur> Serveurs;
+            bool libererTable = false;
+            // Les clients quittent le restaurant s'ils ont fini de manger
+            if ((this.Commande.dessert != null && repas.type == "dessert") || (this.Commande.plat != null && this.Commande.dessert == null && repas.type == "plat") || (this.Commande.entree != null && this.Commande.plat == null && this.Commande.dessert == null && repas.type == "entree"))
+            {
+                View.Game1.Print("La table " + this.numTable + " a fini de manger et va partir");
+                foreach (Client client in Restaurant.Clients.FindAll(x => x.numTable == this.numTable))
+                {
+                    client.Partir();
+                    libererTable = true;
+                }
+            }
+
+                // Les clients appelent le serveur pour debarasser
+                List<Serveur> Serveurs;
             if (numTable <= Restaurant.Tables.Count / 2)
             {
                 Serveurs = Restaurant.Serveurs.FindAll(x => x.Carre == 1);
-                disponibiliteServeurCarre1.WaitOne();
+                Restaurant.disponibiliteServeurCarre1.WaitOne();
                 foreach (Serveur serveur in Serveurs)
                 {
-                    serveur.debarasser(numTable);
+                    serveur.debarasser(numTable, libererTable);
                 }
-                disponibiliteServeurCarre1.Release();
+                Restaurant.disponibiliteServeurCarre1.Release();
             }
             else
             {
                 Serveurs = Restaurant.Serveurs.FindAll(x => x.Carre == 2);
-                disponibiliteServeurCarre2.WaitOne();
+                Restaurant.disponibiliteServeurCarre2.WaitOne();
                 foreach (Serveur serveur in Serveurs) 
                 {
-                    serveur.debarasser(numTable);
+                    serveur.debarasser(numTable, libererTable);
                 }
-                disponibiliteServeurCarre2.Release();
+                Restaurant.disponibiliteServeurCarre2.Release();
             }
 
             // Changement d'état
@@ -187,6 +194,16 @@ namespace PlatLegeretSain.Model
             {
                 this.setState(new AttendDessert());
             }
+        }
+
+        public void Partir()
+        {
+            this.X = 1220;
+            this.Y = 850;
+            this.Orientation = "back";
+            this.imgEtat = "";
+            Thread threadQuitterRestaurant = new Thread(Sortir);
+            threadQuitterRestaurant.Start();
         }
     }
 }
